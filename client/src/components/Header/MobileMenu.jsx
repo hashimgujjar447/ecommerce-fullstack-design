@@ -146,11 +146,11 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
       </ul>
 
       {/* Second Group */}
-      <ul className="flex flex-col gap-4 px-4 mt-4 border-b border-[#DEE2E7]">
+      <ul className="flex flex-col gap-2 px-4 mt-4 border-b border-[#DEE2E7]">
         {mobileSecondItems.map((item) => (
           <li
             key={item.id}
-            className="flex items-center gap-2 h-[48px] text-[#1C1C1C] text-sm font-medium"
+            className="flex items-center gap-2 h-[40px] text-[#1C1C1C] text-sm font-medium"
           >
             <Link to={item.link} className="flex items-center gap-2">
               {item.icon}
@@ -161,11 +161,11 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
       </ul>
 
       {/* Third Group */}
-      <ul className="flex flex-col gap-4 px-10 pl-13 mt-4">
+      <ul className="flex flex-col gap-2 px-10 pl-13 mt-4">
         {mobileThirdItems.map((item) => (
           <li
             key={item.id}
-            className="flex items-center h-[48px] text-[#1C1C1C] text-sm font-medium"
+            className="flex items-center h-[40px] text-[#1C1C1C] text-sm font-medium"
           >
             <Link to={item.link} className="flex items-center gap-2">
               {item.name}
