@@ -9,6 +9,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import HeaderBottomPart from "./HeaderBottomPart.jsx";
 import { MdOutlineSearch } from "react-icons/md";
+import MobileMenu from "./MobileMenu.jsx";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -61,11 +62,13 @@ const Header = () => {
             className="text-3xl text-[#1C1C1C] md:hidden"
             onClick={() => setShowMenu((prev) => !prev)}
           />
-          {showMenu && (
-            <div className="absolute top-0 left-0">
-              <h1>Hello</h1>
-            </div>
-          )}
+
+          <div
+            className={`absolute top-0 left-0 w-[280px] min-h-screen md:hidden  bg-white shadow-lg  z-50 transform transition-all duration-500 ease-in-out
+    ${showMenu ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
+          >
+            <MobileMenu setShowMenu={setShowMenu} showMenu={showMenu} />
+          </div>
 
           <figure>
             <img
@@ -121,13 +124,13 @@ const Header = () => {
         </div>
       </div>
       <div className="md:hidden   px-10 sm:px-15 md:px-[40px]  lg:px-[50px] ">
-        <div className=" relative border-1 border-[#DEE2E7] bg-[#F7FAFC] ">
+        <div className=" relative border-1 border-[#DEE2E7] bg-[#F7FAFC] rounded-md ">
           <MdOutlineSearch className="text-[#8B96A5] text-xl absolute left-4 top-3" />
           <InputComponent
             type="text"
             name="search"
             placeholder="Search..."
-            className=" bg-[#F7FAFC] ml-7  h-[40px] rounded px-3  focus:outline-none transition-all"
+            className=" bg-[#F7FAFC] ml-7  h-[40px] px-3  focus:outline-none transition-all"
           />
         </div>
       </div>
