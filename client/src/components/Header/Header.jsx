@@ -55,7 +55,7 @@ const Header = () => {
     },
   ];
   return (
-    <header className="bg-[#FFFFFF] mb-4 ">
+    <header className="bg-[#FFFFFF]  ">
       <div className="flex items-center justify-between px-10 sm:px-15 md:px-[40px]  lg:px-[50px] py-[20px]   h-[80px]">
         <div className="flex items-center gap-4">
           <IoMenu
