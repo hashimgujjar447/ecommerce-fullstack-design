@@ -56,7 +56,7 @@ const Header = () => {
   ];
   return (
     <header className="bg-[#FFFFFF] mb-4 ">
-      <div className="flex items-center justify-between px-10 sm:px-15 md:px-[40px]  lg:px-[50px] py-[20px]   height-[80px]">
+      <div className="flex items-center justify-between px-10 sm:px-15 md:px-[40px]  lg:px-[50px] py-[20px]   h-[80px]">
         <div className="flex items-center gap-4">
           <IoMenu
             className="text-3xl text-[#1C1C1C] md:hidden"
@@ -134,9 +134,9 @@ const Header = () => {
           />
         </div>
       </div>
-      <div className=" py-4 md:flex h-[60px] md:border-y-1 border-[#E5E5E5] px-10 sm:px-15 md:px-[40px]  lg:px-[50px]    height-[80px]">
+      <nav className=" py-4 md:flex h-[60px] md:border-y-1 border-[#E5E5E5] px-10 sm:px-15 md:px-[40px]  lg:px-[50px]    height-[80px]">
         <HeaderBottomPart />
-      </div>
+      </nav>
     </header>
   );
 };

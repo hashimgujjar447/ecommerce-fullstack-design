@@ -131,11 +131,11 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
       </div>
 
       {/* First Group */}
-      <ul className="flex flex-col gap-4 px-4 border-b border-[#DEE2E7]">
+      <ul className="flex flex-col gap-2 px-4 border-b border-[#DEE2E7]">
         {mobileFirstItems.map((item) => (
           <li
             key={item.id}
-            className="flex items-center gap-2 h-[48px] text-[#1C1C1C] text-sm font-medium"
+            className="flex items-center gap-2 h-[40px] text-[#1C1C1C] text-sm font-medium"
           >
             <Link to={item.link} className="flex items-center gap-2">
               {item.icon}
