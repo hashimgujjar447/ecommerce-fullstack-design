@@ -56,7 +56,7 @@ const Header = () => {
   ];
   return (
     <header className="bg-[#FFFFFF]  ">
-      <div className="flex items-center justify-between px-10 sm:px-15 md:px-[40px]  lg:px-[50px] py-[20px]   h-[80px]">
+      <div className="flex items-center justify-between p-4 sm:px-15 md:px-[40px]  lg:px-[50px] py-[20px]   h-[80px]">
         <div className="flex items-center gap-4">
           <IoMenu
             className="text-3xl text-[#1C1C1C] md:hidden"
@@ -64,7 +64,7 @@ const Header = () => {
           />
 
           <div
-            className={`absolute top-0 left-0 w-[280px] min-h-screen md:hidden  bg-white shadow-lg  z-50 transform transition-all duration-500 ease-in-out
+            className={`fixed top-0 left-0 w-[280px] h-screen overflow-y-auto md:hidden bg-white shadow-lg z-50 transform transition-all duration-500 ease-in-out
     ${showMenu ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
           >
             <MobileMenu setShowMenu={setShowMenu} showMenu={showMenu} />
@@ -123,7 +123,7 @@ const Header = () => {
           })}
         </div>
       </div>
-      <div className="md:hidden   px-10 sm:px-15 md:px-[40px]  lg:px-[50px] ">
+      <div className="md:hidden   p-4 sm:px-15 md:px-[40px]  lg:px-[50px] ">
         <div className=" relative border-1 border-[#DEE2E7] bg-[#F7FAFC] rounded-md ">
           <MdOutlineSearch className="text-[#8B96A5] text-xl absolute left-4 top-3" />
           <InputComponent
@@ -134,7 +134,7 @@ const Header = () => {
           />
         </div>
       </div>
-      <nav className=" py-4 md:flex h-[60px] md:border-y-1 border-[#E5E5E5] px-10 sm:px-15 md:px-[40px]  lg:px-[50px]    height-[80px]">
+      <nav className=" py-4 md:flex h-[60px] md:border-y-1 border-[#E5E5E5] p-4 sm:px-15 md:px-[40px]  lg:px-[50px]    height-[80px]">
         <HeaderBottomPart />
       </nav>
     </header>
