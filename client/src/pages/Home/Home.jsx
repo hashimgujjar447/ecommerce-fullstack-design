@@ -4,6 +4,12 @@ import MainMiddle from "../../components/Home/MainComponent/MainMiddle";
 import MainRight from "../../components/Home/MainComponent/MainRight";
 import HomeDeal from "../../components/Home/HomeDealsAndOffers/HomeDeal";
 
+import HomeOutDoor from "../../components/Home/HomeOutdoor/HomeOutDoor";
+import HomeElectronics from "../../components/Home/HomeElectronics/HomeElectronics";
+import HomeSupplierCard from "../../components/Home/HomeContectSupplier/HomeSupplierCard";
+import RecommendedCard from "../../components/Home/HomeRecommendedItems/RecommendedCard";
+import HomeRecommended from "../../components/Home/HomeRecommendedItems/HomeRecommended";
+
 const Home = () => {
   return (
     <div>
@@ -29,6 +35,18 @@ const Home = () => {
         <div className="  md:mt-8 ">
           <HomeDeal />
         </div>
+      </div>
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[20px]">
+        <HomeOutDoor />
+      </div>
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+        <HomeElectronics />
+      </div>
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+        <HomeSupplierCard />
+      </div>
+      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+        <HomeRecommended />
       </div>
     </div>
   );
