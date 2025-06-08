@@ -9,6 +9,9 @@ import HomeElectronics from "../../components/Home/HomeElectronics/HomeElectroni
 import HomeSupplierCard from "../../components/Home/HomeContectSupplier/HomeSupplierCard";
 import RecommendedCard from "../../components/Home/HomeRecommendedItems/RecommendedCard";
 import HomeRecommended from "../../components/Home/HomeRecommendedItems/HomeRecommended";
+import ExtraServices from "../../components/Home/ExtraServices/ExtraServices";
+import HomeSuppliers from "../../components/Home/HomeSupplier.jsx/HomeSuppliers";
+import NewsLetter from "../../components/Home/NewsLetter/NewsLetter";
 
 const Home = () => {
   return (
@@ -47,6 +50,16 @@ const Home = () => {
       </div>
       <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
         <HomeRecommended />
+      </div>
+      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+        <ExtraServices />
+      </div>
+
+      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+        <HomeSuppliers />
+      </div>
+      <div className="   bg-[#f7fafc] pt-3">
+        <NewsLetter />
       </div>
     </div>
   );
