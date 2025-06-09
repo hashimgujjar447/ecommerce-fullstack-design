@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "rc-slider/assets/index.css";
+
 /* in your CSS or Tailwind config */
 /* index.css */
 .scrollbar-hide::-webkit-scrollbar {
