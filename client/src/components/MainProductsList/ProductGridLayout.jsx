@@ -1,7 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { UseContext } from "../../Context/EcommerceContext";
+import ProductCard from "../ProductCard";
 
-const ProductGridLayout = () => {
-  return <div>ProductGridLayout</div>;
+const ProductGridLayout = ({
+  totalProductsToShow,
+  activePage,
+  setActivePage,
+}) => {
+  const { products } = UseContext();
+
+  const productsPerPage = totalProductsToShow;
+  const startIndex = (activePage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+
+  const productsToDisplay = products.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [activePage]);
+  useEffect(() => {
+    setActivePage(1);
+  }, [totalProductsToShow]);
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-3 py-6">
+      {productsToDisplay.length > 0 ? (
+        productsToDisplay.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))
+      ) : (
+        <p className="text-center text-gray-500">No items available</p>
+      )}
+    </div>
+  );
 };
 
 export default ProductGridLayout;

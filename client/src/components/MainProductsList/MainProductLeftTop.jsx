@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import CustomCheckBox from "../CustomCheckBox";
+import { UseContext } from "../../Context/EcommerceContext";
 
-const MainProductLeftTop = ({ isGrid, setIsGrid }) => {
+const MainProductLeftTop = () => {
   const [showFeatured, setShowFeatured] = React.useState(false);
   const [feature, setFeature] = useState("Featured");
+  const { isGridView, toggleView } = UseContext();
   const menuItems = [
     { id: 1, label: "Featured" },
     { id: 2, label: "Most Popular" },
     { id: 3, label: "Best Rated" },
   ];
-
-  const toggleView = () => {
-    setIsGrid(!isGrid);
-  };
 
   return (
     <div className="bg-white flex justify-between items-center rounded-lg border-1 border-[#DEE2E7] px-4 py-2">
@@ -57,7 +55,7 @@ const MainProductLeftTop = ({ isGrid, setIsGrid }) => {
         <div className=" flex items-center border-1 border-[#DEE2E7] rounded">
           <div
             className={`p-2 ${
-              isGrid ? " bg-[#EFF2F4]" : "bg-white"
+              isGridView ? " bg-[#EFF2F4]" : "bg-white"
             } border-1 border-[#DEE2E7] rounded-l`}
             onClick={toggleView}
           >
@@ -70,7 +68,7 @@ const MainProductLeftTop = ({ isGrid, setIsGrid }) => {
 
           <div
             className={`p-2 ${
-              !isGrid ? " bg-[#EFF2F4]" : "bg-white"
+              !isGridView ? " bg-[#EFF2F4]" : "bg-white"
             } border-1 border-[#DEE2E7] rounded-r`}
             onClick={toggleView}
           >

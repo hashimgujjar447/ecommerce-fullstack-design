@@ -4,12 +4,15 @@ import Sidebar from "../../components/MainProductsList/Sidebar";
 import MainProductLeftTop from "../../components/MainProductsList/MainProductLeftTop";
 import ProductFlexList from "../../components/MainProductsList/ProductFlexList";
 import Pagination from "../../components/Paginantion";
+import { UseContext } from "../../Context/EcommerceContext";
+import ProductGridLayout from "../../components/MainProductsList/ProductGridLayout";
 
 const ProductList = () => {
-  const [isGrid, setIsGrid] = useState(false);
+  // const [isGrid, setIsGrid] = useState(false);
   const [totalProductsToShow, setTotalProductsToShow] = useState(6);
   const [showFeatured, setShowFeatured] = useState(false);
   const [activePage, setActivePage] = useState(1);
+  const { isGridView } = UseContext();
   const items = [
     {
       id: 1,
@@ -35,11 +38,18 @@ const ProductList = () => {
           {/* Main content scrolls while sidebar sticks */}
           <main className="flex-1">
             <div>
-              <MainProductLeftTop isGrid={isGrid} setIsGrid={setIsGrid} />
+              <MainProductLeftTop />
             </div>
             <div>
-              {isGrid ? (
-                <div>Grid</div>
+              {isGridView ? (
+                <>
+                  <div>products</div>
+                  <ProductGridLayout
+                    totalProductsToShow={totalProductsToShow}
+                    activePage={activePage}
+                    setActivePage={setActivePage}
+                  />
+                </>
               ) : (
                 <ProductFlexList
                   totalProductsToShow={totalProductsToShow}

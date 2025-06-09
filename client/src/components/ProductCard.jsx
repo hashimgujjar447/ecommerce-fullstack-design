@@ -1,13 +1,29 @@
+import { UseContext } from "../Context/EcommerceContext";
 import { MdOutlineStar } from "react-icons/md";
 const ProductCard = ({ product }) => {
+  const { isGridView } = UseContext();
   return (
-    <div className="flex gap-4 p-4 bg-white border border-[#DEE2E7] rounded-md mb-4 ">
-      <div className="w-[190px] h-[190px] bg-gray-100">
+    <div
+      className={`flex ${
+        isGridView ? "flex-col" : "flex-row"
+      } gap-4 p-4 bg-white border border-[#DEE2E7] rounded-md mb-4 relative `}
+    >
+      <div
+        className={` ${
+          isGridView
+            ? " flex items-center w-full h-full  justify-center"
+            : "w-[190px]  h-[190px]"
+        } `}
+      >
         {product.image ? (
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-full object-contain"
+            className={`${
+              isGridView
+                ? "w-[200px] h-[200px] object-contain"
+                : "w-full h-full object-contain"
+            }`}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -16,7 +32,11 @@ const ProductCard = ({ product }) => {
         )}
       </div>
       <div className="flex-1">
-        <h2 className="text-lg font-semibold text-gray-900">{product.title}</h2>
+        {!isGridView && (
+          <h2 className="text-lg font-semibold text-gray-900">
+            {product.title}
+          </h2>
+        )}
         <div className="flex items-center gap-2 text-sm mt-1">
           <span className="text-[#1C1C1C] text-[20px] font-semibold">
             ${product.price}
@@ -37,27 +57,57 @@ const ProductCard = ({ product }) => {
           </div>
 
           {/* Dot separator */}
-          <span className="text-[#DEE2E7]">•</span>
+          {!isGridView && (
+            <>
+              <span className="text-[#DEE2E7]">•</span>
 
-          {/* Orders */}
-          <span className="text-[#8B96A5] text-[14px]">
-            {product.orders} orders
-          </span>
+              {/* Orders */}
+              <span className="text-[#8B96A5] text-[14px]">
+                {product.orders} orders
+              </span>
 
-          {/* Dot separator */}
-          <span className="text-[#DEE2E7]">•</span>
+              {/* Dot separator */}
+              <span className="text-[#DEE2E7]">•</span>
 
-          {/* Free Shipping */}
-          <span className="text-[#00B517] text-[14px] font-medium">
-            Free Shipping
-          </span>
+              {/* Free Shipping */}
+              <span className="text-[#00B517] text-[14px] font-medium">
+                Free Shipping
+              </span>
+            </>
+          )}
         </div>
+        {isGridView && (
+          <h2 className="text-[16px]  text-[#606060]">{product.title}</h2>
+        )}
 
-        <p className="text-[16px] text-[#505050] mt-2">{product.description}</p>
-        <button className="text-blue-600 text-[16px] font-semibold mt-2 hover:underline">
-          View details
-        </button>
+        {!isGridView && (
+          <p className="text-[16px] text-[#505050] mt-2">
+            {product.description}
+          </p>
+        )}
+        {!isGridView && (
+          <button className="text-blue-600 text-[16px] font-semibold mt-2 hover:underline">
+            View details
+          </button>
+        )}
       </div>
+      {isGridView ? (
+        <div className="absolute right-4 bottom-19 p-2 border-1 border-[#DEE2E7] rounded-md shadow-sm">
+          <img
+            src="/assets/blueHeart.png"
+            alt="Blue Heart"
+            className="w-[20px] h-[20px]"
+          />
+        </div>
+      ) : (
+        <div className="absolute right-4 top-6 p-2 border-1 border-[#DEE2E7] rounded-md shadow-sm">
+          <img
+            src="/assets/blueHeart.png"
+            alt="Blue Heart"
+            className="w-[20px] h-[20px]"
+          />
+        </div>
+      )}
     </div>
   );
 };

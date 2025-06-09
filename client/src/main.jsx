@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App.jsx";
+import { ContextProvider } from "./Context/EcommerceContext.jsx";
 
 import { Home, ProductList } from "./pages/index.js";
 
@@ -23,7 +24,10 @@ const router = createBrowserRouter(
 );
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+  <ContextProvider>
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+    ,
+  </ContextProvider>,
 );
