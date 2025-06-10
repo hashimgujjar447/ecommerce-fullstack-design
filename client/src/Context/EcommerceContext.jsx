@@ -160,13 +160,42 @@ export const ContextProvider = ({ children }) => {
       image: "/assets/Bitma.png",
     },
   ]);
+  const [initialFilters, setInitialFilters] = useState({
+    categories: [
+      { id: 1, title: "Mobile accessory", selected: false },
+      { id: 2, title: "Electronics", selected: false },
+      { id: 3, title: "Smartphones", selected: false },
+      { id: 4, title: "Modern tech", selected: false },
+    ],
+    brands: [
+      { id: 1, title: "Samsung", selected: false },
+      { id: 2, title: "Apple", selected: false },
+      { id: 3, title: "Huawei", selected: false },
+      { id: 4, title: "Pocco", selected: false },
+      { id: 5, title: "Lenovo", selected: false },
+    ],
+    features: [
+      { id: 1, title: "Metallic", selected: true },
+      { id: 2, title: "Plastic cover", selected: false },
+      { id: 3, title: "8GB Ram", selected: false },
+      { id: 4, title: "Super power", selected: false },
+      { id: 5, title: "Large Memory", selected: false },
+    ],
+  });
 
   const toggleView = () => {
     setIsGridView((prev) => !prev);
   };
   return (
     <EcommerceContext.Provider
-      value={{ products, isGridView, setProducts, toggleView }}
+      value={{
+        products,
+        isGridView,
+        initialFilters,
+        setInitialFilters,
+        setProducts,
+        toggleView,
+      }}
     >
       {children}
     </EcommerceContext.Provider>

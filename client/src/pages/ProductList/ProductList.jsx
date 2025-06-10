@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ProductTopList from "../../components/MainProductsList/ProductTopList";
 import Sidebar from "../../components/MainProductsList/Sidebar";
 import MainProductLeftTop from "../../components/MainProductsList/MainProductLeftTop";
@@ -6,13 +6,15 @@ import ProductFlexList from "../../components/MainProductsList/ProductFlexList";
 import Pagination from "../../components/Paginantion";
 import { UseContext } from "../../Context/EcommerceContext";
 import ProductGridLayout from "../../components/MainProductsList/ProductGridLayout";
+import FilterTags from "../../components/MainProductsList/FilterTags";
+import MobileViewBelowProject from "../../components/MainProductsList/MobileViewBelowProject";
 
 const ProductList = () => {
   // const [isGrid, setIsGrid] = useState(false);
   const [totalProductsToShow, setTotalProductsToShow] = useState(6);
   const [showFeatured, setShowFeatured] = useState(false);
   const [activePage, setActivePage] = useState(1);
-  const { isGridView } = UseContext();
+  const { isGridView, initialFilters, setInitialFilters } = UseContext();
   const items = [
     {
       id: 1,
@@ -23,27 +25,72 @@ const ProductList = () => {
       label: 12,
     },
   ];
+
+  const activeFilters = useMemo(() => {
+    const selected = [];
+
+    Object.entries(initialFilters).forEach(([_, items]) => {
+      items.forEach((item) => {
+        if (item.selected) {
+          selected.push(item.title);
+        }
+      });
+    });
+
+    return selected;
+  }, [initialFilters]);
+  const handleRemove = (filterToRemove) => {
+    const updatedFilters = {};
+
+    Object.entries(initialFilters).forEach(([section, items]) => {
+      updatedFilters[section] = items.map((item) =>
+        item.title === filterToRemove ? { ...item, selected: false } : item,
+      );
+    });
+
+    setInitialFilters(updatedFilters);
+  };
+  const handleClearAll = () => {
+    const clearedFilters = {};
+
+    Object.entries(initialFilters).forEach(([section, items]) => {
+      clearedFilters[section] = items.map((item) => ({
+        ...item,
+        selected: false,
+      }));
+    });
+
+    setInitialFilters(clearedFilters);
+  };
+
   return (
     <div>
-      <div className="sm:px-15 md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:pt-[15px] pt-3">
+      <div className="sm:px-15 md:flex hidden  md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:pt-[15px] pt-3">
         <ProductTopList />
       </div>
       <div className="sm:px-15 md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:py-[20px] pt-3">
         <div className="flex gap-6">
           {/* Sidebar */}
-          <aside className="w-[240px] shrink-0  scrollbar-hide top-[100px]  overflow-y-auto">
+          <aside className="w-[240px] md:inline-block hidden shrink-0  scrollbar-hide top-[100px]  overflow-y-auto">
             <Sidebar />
           </aside>
 
           {/* Main content scrolls while sidebar sticks */}
-          <main className="flex-1">
+          <main className="flex-1 min-w-0">
             <div>
               <MainProductLeftTop />
             </div>
-            <div>
+            <div className="p-4 overflow-x-auto whitespace-nowrap w-full scrollbar-hide">
+              <FilterTags
+                filters={activeFilters}
+                onRemoveFilter={handleRemove}
+                onClearAll={handleClearAll}
+              />
+            </div>
+
+            <div className="p-2 sm:p-4 bg-[#f7fafc]">
               {isGridView ? (
                 <>
-                  <div>products</div>
                   <ProductGridLayout
                     totalProductsToShow={totalProductsToShow}
                     activePage={activePage}
@@ -59,7 +106,7 @@ const ProductList = () => {
               )}
             </div>
             <div>
-              <div className="flex justify-end items-center mt-4 gap-2">
+              <div className="flex justify-center  sm:justify-end items-center mt-4  gap-2">
                 <div
                   className="relative"
                   onClick={() => {
@@ -97,6 +144,14 @@ const ProductList = () => {
                   activePage={activePage}
                   setActivePage={setActivePage}
                 />
+              </div>
+              <div className="bg-[#f7fafc] mt-2 p-4">
+                <h1 className="mb-2 mt-2 text-lg font-semibold">
+                  You may also Like
+                </h1>
+                <div className=" sm:hidden  scrollbar-hide inline-block overflow-x-auto whitespace-nowrap w-full scrollbar-hidden">
+                  <MobileViewBelowProject />
+                </div>
               </div>
             </div>
           </main>

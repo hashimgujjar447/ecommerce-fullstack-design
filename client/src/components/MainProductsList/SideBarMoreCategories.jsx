@@ -14,7 +14,7 @@ const initialFilters = {
     { id: 1, title: "Any", selected: false },
     { id: 2, title: "Refurbished", selected: false },
     { id: 3, title: "Brand new", selected: false },
-    { id: 3, title: "Old items", selected: false },
+    { id: 4, title: "Old items", selected: false },
   ],
   Ratings: [
     {

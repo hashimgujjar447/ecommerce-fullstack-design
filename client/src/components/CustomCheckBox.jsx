@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-const CustomCheckBox = () => {
-  const [checked, setChecked] = useState(false);
-
+const CustomCheckBox = ({ handleChange, checked }) => {
   return (
     <label className="inline-flex items-center cursor-pointer space-x-2">
       {/* Hidden native checkbox for accessibility */}
       <input
         type="checkbox"
         checked={checked}
-        onChange={() => setChecked(!checked)}
+        onChange={() => {
+          handleChange();
+        }}
         className="sr-only"
       />
 

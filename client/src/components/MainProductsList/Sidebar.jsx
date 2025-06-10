@@ -1,35 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomCheckBox from "../CustomCheckBox";
 import SideBarMoreCategories from "./SideBarMoreCategories";
-
-const initialFilters = {
-  categories: [
-    { id: 1, title: "Mobile accessory", selected: false },
-    { id: 2, title: "Electronics", selected: false },
-    { id: 3, title: "Smartphones", selected: false },
-    { id: 4, title: "Modern tech", selected: false },
-  ],
-  brands: [
-    { id: 1, title: "Samsung", selected: true },
-    { id: 2, title: "Apple", selected: true },
-    { id: 3, title: "Huawei", selected: false },
-    { id: 4, title: "Pocco", selected: true },
-    { id: 5, title: "Lenovo", selected: false },
-  ],
-  features: [
-    { id: 1, title: "Metallic", selected: true },
-    { id: 2, title: "Plastic cover", selected: false },
-    { id: 3, title: "8GB Ram", selected: false },
-    { id: 4, title: "Super power", selected: false },
-    { id: 5, title: "Large Memory", selected: false },
-  ],
-};
+import { UseContext } from "../../Context/EcommerceContext";
 
 const Sidebar = () => {
-  const [filters, setFilters] = useState(initialFilters);
+  const { initialFilters, setInitialFilters } = UseContext();
+  // const [filters, setFilters] = useState(initialFilters);
 
   const handleToggle = (section, id) => {
-    setFilters((prev) => ({
+    setInitialFilters((prev) => ({
       ...prev,
       [section]: prev[section].map((item) =>
         item.id === id ? { ...item, selected: !item.selected } : item,
@@ -39,7 +18,7 @@ const Sidebar = () => {
 
   return (
     <div className="space-y-4 pr-2  text-sm text-gray-700">
-      {Object.entries(filters).map(([section, items]) => (
+      {Object.entries(initialFilters).map(([section, items]) => (
         <div key={section} className="border-t-1 border-[#DEE2E7] pb-4 pt-2 ">
           <div className="flex items-center mb-5 justify-between">
             <h3 className="font-semibold capitalize text-[16px] text-[#1C1C1C] ">
@@ -58,7 +37,10 @@ const Sidebar = () => {
                   key={item.id}
                   className="flex items-center space-x-3 text-sm"
                 >
-                  <CustomCheckBox />
+                  <CustomCheckBox
+                    checked={item.selected}
+                    handleChange={() => handleToggle(section, item.id)}
+                  />
 
                   <span className="text-[16px] text-[#1C1C1C]">
                     {item.title}
