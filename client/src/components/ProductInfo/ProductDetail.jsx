@@ -3,7 +3,7 @@ import React from "react";
 const ProductDetail = ({ currentProduct }) => {
   if (!currentProduct) return <p>Loading...</p>;
   return (
-    <div className="max-w-md mx-auto p-4  bg-white">
+    <div className="max-w-md mx-auto px-4  bg-white">
       <div className="flex items-center gap-1">
         <img src="/assets/greenTick.png" className="w-[18px] h-[14px]" />
         <p className="text-green-600  text-[16px] mb-1">In stock</p>

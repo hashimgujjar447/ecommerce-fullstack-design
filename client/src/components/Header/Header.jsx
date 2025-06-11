@@ -10,6 +10,7 @@ import { IoMenu } from "react-icons/io5";
 import HeaderBottomPart from "./HeaderBottomPart.jsx";
 import { MdOutlineSearch } from "react-icons/md";
 import MobileMenu from "./MobileMenu.jsx";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -23,19 +24,19 @@ const Header = () => {
     {
       id: 2,
       name: "Message",
-      link: "/about",
+      link: "/",
       logo: <MdMessage className="text-2xl text-[#8B96A5]" />,
     },
     {
       id: 3,
       name: "Orders",
-      link: "/orders",
+      link: "/",
       logo: <FaHeart className="text-2xl text-[#8B96A5]" />,
     },
     {
       id: 4,
       name: "My Cart",
-      link: "/contact",
+      link: "/cart",
       logo: <FaCartShopping className="text-2xl text-[#8B96A5]" />,
     },
   ];
@@ -44,7 +45,7 @@ const Header = () => {
     {
       id: 1,
 
-      link: "/contact",
+      link: "/",
       logo: <FaCartShopping className="w-[24px] h-[24px] text-[#1C1C1C]" />,
     },
     {
@@ -105,10 +106,14 @@ const Header = () => {
         <div className="flex items-center gap-2 hidden md:flex md:gap-4 lg:gap-6">
           {listItems.map((item) => {
             return (
-              <div key={item.id} className="flex flex-col  items-center">
+              <Link
+                to={item.link}
+                key={item.id}
+                className="flex flex-col  items-center"
+              >
                 {item.logo && <span className="text-2xl">{item.logo}</span>}
                 <p className="text-[12px] text-[#8B96A5]">{item.name}</p>
-              </div>
+              </Link>
             );
           })}
         </div>

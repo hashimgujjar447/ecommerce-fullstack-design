@@ -10,6 +10,7 @@ import {
 import App from "./App.jsx";
 import { ContextProvider } from "./Context/EcommerceContext.jsx";
 import ProductInfo from "./pages/ProductInfo/ProductInfo.jsx";
+import Cart from "./pages/Cart/Cart.jsx";
 
 import { Home, ProductList } from "./pages/index.js";
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/productInfo/:id" element={<ProductInfo />} />
+        <Route path="/cart" element={<Cart />} />
       </Route>
     </>,
   ),

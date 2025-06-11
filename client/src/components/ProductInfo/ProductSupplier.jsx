@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import ButtonComponent from "../Button";
 import InquiryModal from "./InquiryModel";
+import { UseContext } from "../../Context/EcommerceContext";
+import { useParams } from "react-router-dom";
 
-const ProductSupplier = () => {
+const ProductSupplier = ({ currentProduct }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const { addToCart } = UseContext();
+
   const sellerInfoList = [
     {
       icon: "/assets/DE@2x.png",
@@ -18,6 +22,18 @@ const ProductSupplier = () => {
       title: "Worldwide shipping",
     },
   ];
+
+  const handleInquiry = () => {
+    console.log(currentProduct);
+    if (!currentProduct) return;
+    const item = {
+      id: currentProduct.id,
+      price: currentProduct.price,
+      quantity: 1,
+    };
+    setShowPopup(true);
+    addToCart(item);
+  };
   return (
     <div className="border-1 border-[#DEE2E7] rounded p-4 w-full max-w-md">
       <div className="flex items-center gap-4 border-b-1 p-2 pb-4 border-[#DEE2E7]">
@@ -39,7 +55,9 @@ const ProductSupplier = () => {
       </div>
       <ButtonComponent
         type={"button"}
-        onClick={() => setShowPopup(true)}
+        onClick={() => {
+          handleInquiry(currentProduct);
+        }}
         className="bg-blue-600 w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
       >
         Send inquiry

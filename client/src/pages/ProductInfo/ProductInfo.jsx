@@ -16,6 +16,9 @@ const ProductInfo = () => {
 
   const [currentProduct, setCurrentProduct] = useState(null);
   console.log(products);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     if (products.length > 0) {
@@ -34,7 +37,7 @@ const ProductInfo = () => {
       <div>
         <ProductTopList />
       </div>
-      <div className="flex justify-between py-5 px-5 gap-2 mt-3 bg-white border-1 border-[#DEE2E7] ">
+      <div className="flex justify-between py-5 px-2 xl:px-5 gap-2 mt-3 bg-white border-1 border-[#DEE2E7] ">
         <div>
           <ImageGallery currentProduct={currentProduct} />
         </div>
@@ -42,7 +45,7 @@ const ProductInfo = () => {
           <ProductDetail currentProduct={currentProduct} />
         </div>
         <div className="flex-end">
-          <ProductSupplier />
+          <ProductSupplier currentProduct={currentProduct} />
         </div>
       </div>
       <div className="flex justify-between gap-2 mt-3 mb-3  ">

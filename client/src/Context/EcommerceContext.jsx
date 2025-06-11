@@ -3,6 +3,9 @@ import { createContext, useContext, useState } from "react";
 const EcommerceContext = createContext({
   products: [],
   isGridView: false,
+  cart: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -298,10 +301,10 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       image: [
         "/assets/image 90.png",
-        "/assets/port1.png",
-        "/assets/port2.png",
-        "/assets/port3.png",
-        "/assets/port4.png",
+        "/assets/port1.jpg",
+        "/assets/port2.jpg",
+        "/assets/port3.jpg",
+        "/assets/port4.jpg",
       ],
       inStock: true,
     },
@@ -368,6 +371,26 @@ export const ContextProvider = ({ children }) => {
   const toggleView = () => {
     setIsGridView((prev) => !prev);
   };
+  const [cart, setCart] = useState([]);
+
+  const addToCart = ({ id, price, quantity = 1 }) => {
+    setCart((prev) => {
+      const itemIndex = prev.findIndex((item) => item.id === id);
+
+      if (itemIndex !== -1) {
+        const updatedCart = [...prev];
+        updatedCart[itemIndex] = { ...updatedCart[itemIndex], quantity }; // Replace quantity
+        return updatedCart;
+      }
+
+      return [...prev, { id, price, quantity }];
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <EcommerceContext.Provider
       value={{
@@ -377,6 +400,10 @@ export const ContextProvider = ({ children }) => {
         setInitialFilters,
         setProducts,
         toggleView,
+        cart,
+
+        addToCart,
+        removeFromCart,
       }}
     >
       {children}

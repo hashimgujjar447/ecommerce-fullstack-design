@@ -9,15 +9,15 @@ const ImageGallery = ({ currentProduct }) => {
       <img
         src={currentProduct?.image?.[currIndex]}
         alt="product"
-        className="w-[345px] h-[345px] object-contain rounded-lg border-1 border-[#DEE2E7]"
+        className=" h-[300px] w-[300px] lg:w-[335px] lg:h-[335px] xl:w-[345px] xl:h-[345px] object-contain rounded-lg border-1 border-[#DEE2E7]"
       />
-      <div className="flex gap-2  mt-2">
+      <div className="flex gap-1 xl:gap-2  mt-2">
         {currentProduct?.image?.map((img, index) => (
           <img
             key={index}
             src={img}
             alt={`product-thumbnail-${index}`}
-            className={`w-15 h-15 object-contain cursor-pointer rounded-lg border-1 ${
+            className={`w-8 h-8 lg:w-13 lg:h-13 xl:w-15 xl:h-15 object-contain cursor-pointer rounded-lg border-1 ${
               index === currIndex ? " border-[#505050]" : " border-[#DEE2E7]"
             }`}
             onClick={() => {
