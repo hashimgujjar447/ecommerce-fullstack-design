@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { UseContext } from "../Context/EcommerceContext";
 import { MdOutlineStar } from "react-icons/md";
+import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const { isGridView } = UseContext();
   const [isWidthBelow400, setIsWidthBelow400] = useState(false);
@@ -19,10 +20,11 @@ const ProductCard = ({ product }) => {
   }, []);
 
   return (
-    <div
+    <Link
+      to={`productInfo/${product.id}`}
       className={`flex ${
         isGridView ? "flex-col" : "flex-row"
-      } gap-4 sm:p-4 p-2 bg-white border border-[#DEE2E7] rounded-md mb-4 relative `}
+      } gap-4 sm:p-4 p-2 bg-white w-full  border border-[#DEE2E7] rounded-md mb-4 relative `}
     >
       <div
         className={` ${
@@ -33,7 +35,7 @@ const ProductCard = ({ product }) => {
       >
         {product.image ? (
           <img
-            src={product.image}
+            src={product.image[0]}
             alt={product.title}
             className={`${
               isGridView
@@ -153,7 +155,7 @@ const ProductCard = ({ product }) => {
           />
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 

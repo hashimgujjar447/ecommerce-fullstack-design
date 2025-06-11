@@ -1,0 +1,58 @@
+import React, { useState } from "react";
+import ButtonComponent from "../Button";
+import InquiryModal from "./InquiryModel";
+
+const ProductSupplier = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const sellerInfoList = [
+    {
+      icon: "/assets/DE@2x.png",
+      title: "Germany, Berlin",
+    },
+    {
+      icon: "/assets/protected.png",
+      title: "Verified Seller",
+    },
+    {
+      icon: "/assets/globe.png",
+      title: "Worldwide shipping",
+    },
+  ];
+  return (
+    <div className="border-1 border-[#DEE2E7] rounded p-4 w-full max-w-md">
+      <div className="flex items-center gap-4 border-b-1 p-2 pb-4 border-[#DEE2E7]">
+        <div className="bg-[#C6F3F1] h-[48px] w-[48px] rounded flex items-center justify-center">
+          <img src="/assets/R.png" className="w-6 w-4" alt="R" />
+        </div>
+        <div>
+          <p>Supplier</p>
+          <p>Guanjoi Trading LLC</p>
+        </div>
+      </div>
+      <div>
+        {sellerInfoList.map((item, index) => (
+          <div key={index} className="flex items-center gap-3 mt-4">
+            <img src={item.icon} alt={item.title} className="w-4 h-4" />
+            <p className="text-sm text-gray-700">{item.title}</p>
+          </div>
+        ))}
+      </div>
+      <ButtonComponent
+        type={"button"}
+        onClick={() => setShowPopup(true)}
+        className="bg-blue-600 w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
+      >
+        Send inquiry
+      </ButtonComponent>
+      <ButtonComponent
+        type={"button"}
+        className="bg-white border-1 border-[#DEE2E7]  w-full text-[#0D6EFD] rounded-lg py-2 mt-4 "
+      >
+        Seller’s profile
+      </ButtonComponent>
+      {showPopup && <InquiryModal onClose={() => setShowPopup(false)} />}
+    </div>
+  );
+};
+
+export default ProductSupplier;

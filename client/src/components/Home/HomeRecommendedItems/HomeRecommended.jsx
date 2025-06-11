@@ -4,7 +4,7 @@ import RecommendedCard from "./RecommendedCard";
 const HomeRecommended = () => {
   const products = [
     {
-      id: 1,
+      id: 13,
       title: "T-shirt",
       price: 10.3,
       description: "T-shirts with multiple colors, for men",
@@ -12,7 +12,7 @@ const HomeRecommended = () => {
       image: "/assets/Bitma.png",
     },
     {
-      id: 2,
+      id: 14,
       title: "Winter Coat",
       price: 10.3,
       description: "Jeans shorts for men, blue color",
@@ -20,7 +20,7 @@ const HomeRecommended = () => {
       image: "/assets/2 1.png",
     },
     {
-      id: 3,
+      id: 7,
       title: "Brown Winter Coat",
       price: 12.5,
       description: "Brown winter coat, medium size",
@@ -28,7 +28,7 @@ const HomeRecommended = () => {
       image: "/assets/image 30.png",
     },
     {
-      id: 4,
+      id: 10,
       title: "Travel Wallet",
       price: 34.0,
       description: "Jeans bag for travel, for men",
@@ -36,7 +36,7 @@ const HomeRecommended = () => {
       image: "/assets/image 24.png",
     },
     {
-      id: 5,
+      id: 12,
       title: "Leather Wallet",
       price: 99.0,
       description: "Leather wallet",
@@ -44,7 +44,7 @@ const HomeRecommended = () => {
       image: "/assets/image 26.png",
     },
     {
-      id: 6,
+      id: 18,
       title: "Camera Shorts",
       price: 9.99,
       description: "Canon camera black, 100x zoom",
@@ -52,7 +52,7 @@ const HomeRecommended = () => {
       image: "/assets/Bitmap.png",
     },
     {
-      id: 7,
+      id: 15,
       title: "Gaming Headset",
       price: 8.99,
       description: "Headset for gaming with mic",
@@ -60,15 +60,15 @@ const HomeRecommended = () => {
       image: "/assets/image 86.png",
     },
     {
-      id: 8,
-      title: "Smart Backpack",
+      id: 5,
+      title: "Smart watch",
       price: 10.3,
       description: "Smartwatch, silver color, modern",
       size: "Medium",
-      image: "/assets/image 26.png",
+      image: "/assets/image 35.png",
     },
     {
-      id: 9,
+      id: 16,
       title: "Clay Pot",
       price: 10.3,
       description: "Blue wallet for men, leather material",
@@ -76,7 +76,7 @@ const HomeRecommended = () => {
       image: "/assets/image 90.png",
     },
     {
-      id: 10,
+      id: 17,
       title: "Travel Kettle",
       price: 80.95,
       description: "Jeans bag for travel, for men",

@@ -146,7 +146,7 @@ const ProductList = () => {
                 />
               </div>
               <div className="bg-[#f7fafc] mt-2 p-4">
-                <h1 className="mb-2 mt-2 text-lg font-semibold">
+                <h1 className="mb-2 mt-2 sm:hidden text-lg font-semibold">
                   You may also Like
                 </h1>
                 <div className=" sm:hidden  scrollbar-hide inline-block overflow-x-auto whitespace-nowrap w-full scrollbar-hidden">

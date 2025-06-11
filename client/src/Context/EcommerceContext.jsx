@@ -18,7 +18,14 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      image: "/assets/image 33.png", // Add image path
+      image: [
+        "/assets/image 33.png",
+        "/assets/ired1.jpg",
+        "/assets/ired2.jpg",
+        "/assets/ired3.jpg",
+        "/assets/ired4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 2,
@@ -30,7 +37,14 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
-      image: "/assets/image 23.png",
+      image: [
+        "/assets/image 23.png",
+        "/assets/redmi1.jpg",
+        "/assets/redmi2.jpg",
+        "/assets/redmi3.jpg",
+        "/assets/redmi4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 3,
@@ -42,7 +56,14 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
-      image: "/assets/image 32.png",
+      image: [
+        "/assets/image 32.png",
+        "/assets/stab1.jpg",
+        "/assets/stab2.jpg",
+        "/assets/stab3.jpg",
+        "/assets/stab4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 4,
@@ -54,11 +75,18 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
-      image: "/assets/image 34.png",
+      image: [
+        "/assets/image 34.png",
+        "/assets/laptop1.jpg",
+        "/assets/laptop2.jpg",
+        "/assets/laptop3.jpg",
+        "/assets/laptop4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 5,
-      title: "GoPro HERO6 4K Action Camera - Black",
+      title: "Best watch for mens",
       price: 998.0,
       oldPrice: 1128.0,
       rating: 7.5,
@@ -66,7 +94,14 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
-      image: "/assets/image 35.png",
+      image: [
+        "/assets/image 35.png",
+        "/assets/watch1.jpg",
+        "/assets/watch2.jpg",
+        "/assets/watch3.jpg",
+        "/assets/watch4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 6,
@@ -78,7 +113,14 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
-      image: "/assets/image 86.png",
+      image: [
+        "/assets/image 86.png",
+        "/assets/sheadphone1.jpg",
+        "/assets/sheadphone2.jpg",
+        "/assets/sheadphne3.jpg",
+        "/assets/sheadphone4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 7,
@@ -89,7 +131,14 @@ export const ContextProvider = ({ children }) => {
       orders: 98,
       shipping: "Free Shipping",
       description: "Stylish and warm winter coat for men with durable fabric.",
-      image: "/assets/image 30.png",
+      image: [
+        "/assets/image 30.png",
+        "/assets/coat1.jpg",
+        "/assets/coat2.jpg",
+        "/assets/coat3.jpg",
+        "/assets/coat4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 8,
@@ -100,7 +149,14 @@ export const ContextProvider = ({ children }) => {
       orders: 320,
       shipping: "Free Shipping",
       description: "Breathable cotton shirt for everyday wear.",
-      image: "/assets/image 34 shirt.png",
+      image: [
+        "/assets/image 34 shirt.png",
+        "/assets/image 37.png",
+        "/assets/image 38.png",
+        "/assets/image 39.png",
+        "/assets/image 40.png",
+      ],
+      inStock: true,
     },
     {
       id: 9,
@@ -111,7 +167,14 @@ export const ContextProvider = ({ children }) => {
       orders: 72,
       shipping: "Free Shipping",
       description: "Premium handwoven Persian-style carpet for living rooms.",
-      image: "/assets/carpet.png",
+      image: [
+        "/assets/carpet.png",
+        "/assets/carpet1.jpg",
+        "/assets/carpet2.jpg",
+        "/assets/carpet3.jpg",
+        "/assets/carpet4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 10,
@@ -122,7 +185,14 @@ export const ContextProvider = ({ children }) => {
       orders: 198,
       shipping: "Free Shipping",
       description: "Elegant and spacious leather handbag for daily use.",
-      image: "/assets/image 24.png",
+      image: [
+        "/assets/image 24.png",
+        "/assets/purse1.jpg",
+        "/assets/purse2.jpg",
+        "/assets/purse3.jpg",
+        "/assets/purse4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 11,
@@ -134,7 +204,14 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       description:
         "Spacious and sturdy bed with under-bed storage compartments.",
-      image: "/assets/image 93.png",
+      image: [
+        "/assets/image 93.png",
+        "/assets/matress1.jpg",
+        "/assets/matress2.jpg",
+        "/assets/matress3.jpg",
+        "/assets/matress4.jpg",
+      ],
+      inStock: true,
     },
 
     {
@@ -146,7 +223,14 @@ export const ContextProvider = ({ children }) => {
       orders: 130,
       shipping: "Free Shipping",
       description: "Ergonomic and stylish bag for everyday use.",
-      image: "/assets/image 26.png",
+      image: [
+        "/assets/image 26.png",
+        "/assets/bag1.jpg",
+        "/assets/bag2.jpg",
+        "/assets/bag3.jpg",
+        "/assets/bag4.jpg",
+      ],
+      inStock: true,
     },
     {
       id: 13,
@@ -157,7 +241,105 @@ export const ContextProvider = ({ children }) => {
       orders: 85,
       shipping: "Free Shipping",
       description: "Comfortable long nikar made with breathable fabric.",
-      image: "/assets/Bitma.png",
+      image: [
+        "/assets/Bitma.png",
+        "/assets/bluish1.jpg",
+        "/assets/bluish2.jpg",
+        "/assets/bluish3.jpg",
+        "/assets/bluish4.jpg",
+      ],
+      inStock: true,
+    },
+
+    {
+      id: 14,
+      title: "Winter Coat",
+      price: 10.3,
+      oldPrice: 30.0,
+      rating: 7.9,
+      orders: 85,
+      description: "Jeans shorts for men, blue color",
+      shipping: "Free Shipping",
+      image: [
+        "/assets/2 1.png",
+        "/assets/hodie1.png",
+        "/assets/hoodie2.png",
+        "/assets/hoodie3.png",
+        "/assets/hoodie4.png",
+      ],
+      inStock: true,
+    },
+    {
+      id: 15,
+      title: "Gaming Headset",
+      price: 8.99,
+      description: "Headset for gaming with mic",
+      oldPrice: 30.0,
+      rating: 7.9,
+      orders: 85,
+      shipping: "Free Shipping",
+      image: [
+        "/assets/image 86.png",
+        "/assets/headphone1.jpg",
+        "/assets/headphone2.jpg",
+        "/assets/headphone3.jpg",
+        "/assets/headphone4.jpg",
+      ],
+      inStock: true,
+    },
+    {
+      id: 16,
+      title: "Clay Pot",
+      price: 10.3,
+      description: "Blue wallet for men, leather material",
+      oldPrice: 30.0,
+      rating: 7.9,
+      orders: 85,
+      shipping: "Free Shipping",
+      image: [
+        "/assets/image 90.png",
+        "/assets/port1.png",
+        "/assets/port2.png",
+        "/assets/port3.png",
+        "/assets/port4.png",
+      ],
+      inStock: true,
+    },
+    {
+      id: 17,
+      title: "Travel Kettle",
+      price: 80.95,
+      description: "Jeans bag for travel, for men",
+      oldPrice: 30.0,
+      rating: 7.9,
+      orders: 85,
+      shipping: "Free Shipping",
+      image: [
+        "/assets/image 85.png",
+        "/assets/tea1.png",
+        "/assets/tea2.png",
+        "/assets/tea3.png",
+        "/assets/tea4.png",
+      ],
+      inStock: true,
+    },
+    {
+      id: 18,
+      title: "Camera Shorts",
+      price: 9.99,
+      description: "Canon camera black, 100x zoom",
+      oldPrice: 30.0,
+      rating: 7.9,
+      orders: 85,
+      shipping: "Free Shipping",
+      image: [
+        "/assets/Bitmap.png",
+        "/assets/short1.png",
+        "/assets/short2.png",
+        "/assets/short3.png",
+        "/assets/short4.png",
+      ],
+      inStock: true,
     },
   ]);
   const [initialFilters, setInitialFilters] = useState({
