@@ -22,6 +22,20 @@ const ProductSupplier = ({ currentProduct }) => {
       title: "Worldwide shipping",
     },
   ];
+  const sellerInfoListSm = [
+    {
+      icon: "/assets/DE@2x.png",
+      title: "Germany",
+    },
+    {
+      icon: "/assets/protected.png",
+      title: "Verified",
+    },
+    {
+      icon: "/assets/globe.png",
+      title: "Shipping",
+    },
+  ];
 
   const handleInquiry = () => {
     console.log(currentProduct);
@@ -45,9 +59,17 @@ const ProductSupplier = ({ currentProduct }) => {
           <p>Guanjoi Trading LLC</p>
         </div>
       </div>
-      <div>
+      <div className="sm:inline-block hidden">
         {sellerInfoList.map((item, index) => (
-          <div key={index} className="flex items-center gap-3 mt-4">
+          <div key={index} className="flex  items-center gap-3 mt-4">
+            <img src={item.icon} alt={item.title} className="w-4 h-4" />
+            <p className="text-sm text-gray-700">{item.title}</p>
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center  sm:hidden gap-3">
+        {sellerInfoListSm.map((item, index) => (
+          <div key={index} className="flex  items-center gap-3 mt-4">
             <img src={item.icon} alt={item.title} className="w-4 h-4" />
             <p className="text-sm text-gray-700">{item.title}</p>
           </div>
@@ -58,13 +80,13 @@ const ProductSupplier = ({ currentProduct }) => {
         onClick={() => {
           handleInquiry(currentProduct);
         }}
-        className="bg-blue-600 w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
+        className="bg-blue-600 sm:inline-block hidden w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
       >
         Send inquiry
       </ButtonComponent>
       <ButtonComponent
         type={"button"}
-        className="bg-white border-1 border-[#DEE2E7]  w-full text-[#0D6EFD] rounded-lg py-2 mt-4 "
+        className="bg-white border-1 sm:inline-block hidden border-[#DEE2E7]  w-full text-[#0D6EFD] rounded-lg py-2 mt-4 "
       >
         Seller’s profile
       </ButtonComponent>

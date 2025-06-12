@@ -27,7 +27,7 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
   return (
     <div className="w-full  ">
       {/* Mobile View (below md) */}
-      <div className="block relative md:hidden bg-white  p-4  w-full md:max-w-[500px]">
+      <div className="block relative md:hidden bg-white  p-4 h-[100px] md:h-full w-full md:max-w-[500px]">
         {/* Product Info Row */}
         <div className="flex gap-3">
           <div className="w-[70px] h-[70px] bg-[#E0E0E0] flex justify-center items-center border border-[#DEE2E7] p-2 rounded">

@@ -59,7 +59,7 @@ const Cart = () => {
     <div className=" sm:px-6 md:px-5 lg:px-[50px] md:py-5 bg-[#f7fafc]">
       <div className="flex flex-col md:flex-row md:gap-4 justify-between">
         {/* Left: Cart Items */}
-        <div className="flex-1 w-full flex justify-center">
+        <div className="flex-1 w-full md:flex md:justify-center">
           <CartItems />
         </div>
 

@@ -65,7 +65,7 @@ const CartItems = () => {
           </ButtonComponent>
         </div>
       </div>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 md:hidden lg:grid-cols-3 gap-5">
+      <div className="mt-8 hidden  lg:grid grid-cols-3 gap-5">
         {features.map((feature, index) => (
           <FeatureCard
             key={index}

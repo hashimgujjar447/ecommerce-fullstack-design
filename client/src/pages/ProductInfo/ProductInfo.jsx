@@ -8,6 +8,7 @@ import { UseContext } from "../../Context/EcommerceContext";
 import ProductDescriptionShipping from "../../components/ProductInfo/ProductDescriptionShipping";
 import DummyCard from "../../components/DummyCard";
 import SimpleCard from "../../components/SimpleCard";
+import ImageSlider from "../../components/ProductInfo/imageSliderSm";
 
 const ProductInfo = () => {
   const { products } = UseContext();
@@ -34,22 +35,26 @@ const ProductInfo = () => {
 
   return (
     <div className="sm:px-15 flex flex-col   md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:pt-[15px] pt-3">
-      <div>
+      <div className="sm:inline-block hidden">
         <ProductTopList />
       </div>
-      <div className="flex justify-between py-5 px-2 xl:px-5 gap-2 mt-3 bg-white border-1 border-[#DEE2E7] ">
-        <div>
+      <div className="flex flex-wrap md:flex-nowrap justify-between py-5 sm:px-2 xl:px-5 gap-2 mt-3 bg-white border border-[#DEE2E7]">
+        <div className="w-full hidden sm:inline-block md:w-auto">
           <ImageGallery currentProduct={currentProduct} />
         </div>
-        <div>
+        <div className="w-full sm:hidden md:w-auto">
+          <ImageSlider currentProduct={currentProduct} />
+        </div>
+        <div className="w-full md:w-auto">
           <ProductDetail currentProduct={currentProduct} />
         </div>
-        <div className="flex-end">
+        <div className="w-full mt-4 md:mt-0 flex justify-center md:justify-end md:w-auto">
           <ProductSupplier currentProduct={currentProduct} />
         </div>
       </div>
+
       <div className="flex justify-between gap-2 mt-3 mb-3  ">
-        <div className="bg-white border-1 border-[#DEE2E7] lg:mix-w-xl xlg:min-w-3xl p-2">
+        <div className="bg-white border-1 sm:inline-block hidden border-[#DEE2E7] lg:mix-w-xl xlg:min-w-3xl p-2">
           <ProductDescriptionShipping />
         </div>
         <div className="bg-white border-1 lg:inline-block hidden  flex flex-col border-[#DEE2E7]">
