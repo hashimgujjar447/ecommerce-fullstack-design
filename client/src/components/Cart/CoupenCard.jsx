@@ -12,12 +12,12 @@ const CouponCard = ({ onApply = (code) => {} }) => {
   };
 
   return (
-    <div className="w-full md:max-w-[300px] bg-white border border-[#DEE2E7] rounded-md p-4 shadow-sm flex flex-col gap-3">
+    <div className="w-full md:max-w-[230px] lg:max-w-[300px] bg-white border border-[#DEE2E7] rounded-md p-4 shadow-sm flex flex-col gap-3">
       {/* Heading */}
       <h3 className="text-base font-semibold text-[#404040]">Any Coupon?</h3>
 
       {/* Input + Apply */}
-      <div className="flex items-center gap-2">
+      <div className="lg:flex-row md:flex-col flex items-center gap-2">
         <input
           type="text"
           value={couponCode}

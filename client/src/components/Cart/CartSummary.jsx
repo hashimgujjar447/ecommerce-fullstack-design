@@ -29,7 +29,7 @@ const OrderSummaryCard = () => {
   }, [cart]);
 
   return (
-    <div className="w-full md:max-w-[300px]  bg-white rounded-md shadow-sm p-4 border border-[#EEE]">
+    <div className="w-full md:max-w-[230px]  lg:max-w-[300px]  bg-white rounded-md shadow-sm p-4 border border-[#EEE]">
       <h2 className="text-lg font-semibold text-[#1C1C1C] mb-4">
         Order Summary
       </h2>

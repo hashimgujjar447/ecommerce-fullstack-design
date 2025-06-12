@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import DetailedCartCard from "./ProductCartCard";
 import { UseContext } from "../../Context/EcommerceContext";
+import ButtonComponent from "../Button";
+import FeatureCard, { features } from "./Features";
+import { useNavigate } from "react-router-dom";
 
 const CartItems = () => {
-  const { cart, removeFromCart, products } = UseContext();
+  const { cart, removeFromCart, products, addToFavorite, removeAllCart } =
+    UseContext();
   const [items, setItems] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const totalItems = products.filter((product) =>
@@ -17,22 +22,63 @@ const CartItems = () => {
     console.log(cart);
   }, [cart]);
 
+  const moveToShop = () => {
+    navigate("/products");
+  };
+
   if (!items) {
     return <div>No items available</div>;
   }
 
-  return (
-    <div className="flex flex-col w-full items-center md:gap-2">
-      {items &&
-        items?.map((item) => (
-          <DetailedCartCard
-            key={item.id}
-            product={item}
-            onDelete={() => {
-              removeFromCart(item.id);
-            }}
+  return items && items.length > 0 ? (
+    <div className="flex flex-col gap-4">
+      <div className="flex relative flex-col md:min-w-[550px] border-1 border-[#DEE2E7] p-3 rounded-lg bg-white   w-full ">
+        {items &&
+          items?.map((item) => (
+            <DetailedCartCard
+              key={item.id}
+              product={item}
+              onDelete={() => {
+                removeFromCart(item.id);
+              }}
+              onFavorite={() => {
+                removeFromCart(item.id);
+                addToFavorite(item.id);
+              }}
+            />
+          ))}
+        <div className="mt-14"></div>
+
+        <div className="hidden justify-between md:flex absolute w-full bottom-3 left-2 ">
+          <ButtonComponent
+            onClick={moveToShop}
+            className="text-white bg-[#127FFF] flex items-center gap-2 p-2 px-3 rounded-md shadow-md border border-[#DEE2E7] hover:cursor-pointer text-sm font-medium"
+          >
+            <img src="/assets/arrowLeft.png" className="w-4 h-4" alt="" /> Back
+            To Shop
+          </ButtonComponent>
+          <ButtonComponent
+            onClick={() => removeAllCart()}
+            className="text-[#127FFF] bg-white p-2 px-3 rounded-md shadow-md border border-[#DEE2E7] hover:text-blue-600 hover:cursor-pointer text-sm font-medium mr-4"
+          >
+            Remove All
+          </ButtonComponent>
+        </div>
+      </div>
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 md:hidden lg:grid-cols-3 gap-5">
+        {features.map((feature, index) => (
+          <FeatureCard
+            key={index}
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
           />
         ))}
+      </div>
+    </div>
+  ) : (
+    <div>
+      <p>No items in cart</p>
     </div>
   );
 };

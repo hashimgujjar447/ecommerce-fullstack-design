@@ -6,6 +6,10 @@ const EcommerceContext = createContext({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  favorite: [],
+  addToFavorite: () => {},
+  removeFromFavorite: () => {},
+  removeAllCart: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -367,6 +371,7 @@ export const ContextProvider = ({ children }) => {
       { id: 5, title: "Large Memory", selected: false },
     ],
   });
+  const [favorite, setFavorite] = useState([]);
 
   const toggleView = () => {
     setIsGridView((prev) => !prev);
@@ -391,6 +396,17 @@ export const ContextProvider = ({ children }) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const addToFavorite = (id) => {
+    setFavorite((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  };
+
+  const removeFromFavorite = (id) => {
+    setFavorite((prev) => prev.filter((item) => item !== id));
+  };
+
+  const removeAllCart = () => {
+    setCart([]);
+  };
   return (
     <EcommerceContext.Provider
       value={{
@@ -401,6 +417,10 @@ export const ContextProvider = ({ children }) => {
         setProducts,
         toggleView,
         cart,
+        favorite,
+        addToFavorite,
+        removeFromFavorite,
+        removeAllCart,
 
         addToCart,
         removeFromCart,

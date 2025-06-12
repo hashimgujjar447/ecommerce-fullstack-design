@@ -144,9 +144,9 @@ const getApp = [
 
 const Footer = () => {
   return (
-    <footer className="bg-white">
-      <div className="max-w-screen-xl space-y-8 lg:space-y-8 mx-auto">
-        <div className="grid grid-cols-1 px-4 sm:px-6 py-16 gap-8 lg:px-16 lg:grid-cols-3">
+    <footer className="bg-white w-full h-full">
+      <div className="max-w-screen-xl  lg:space-y-8 mx-auto">
+        <div className="grid grid-cols-1 px-4 sm:px-6 py-8 gap-8 lg:px-16 lg:grid-cols-3">
           {/* Logo and description */}
           <div>
             <div className="text-teal-600">
@@ -220,7 +220,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Bottom bar */}
-        <div className="flex border-t border-[#DEE2E7] items-center px-4 sm:px-6 gap-8 lg:px-16 justify-between bg-[#EFF2F4] py-7">
+        <div className="flex border-t border-[#DEE2E7] relative top-6  items-center px-4 sm:px-6 gap-8 lg:px-16 justify-between bg-[#EFF2F4] py-7">
           <p className="text-[16px] text-gray-500">
             &copy; {new Date().getFullYear()}. Ecommerce reserved.
           </p>

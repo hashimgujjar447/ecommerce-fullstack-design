@@ -49,10 +49,10 @@ const ProductInfo = () => {
         </div>
       </div>
       <div className="flex justify-between gap-2 mt-3 mb-3  ">
-        <div className="bg-white border-1 border-[#DEE2E7] min-w-3xl p-2">
+        <div className="bg-white border-1 border-[#DEE2E7] lg:mix-w-xl xlg:min-w-3xl p-2">
           <ProductDescriptionShipping />
         </div>
-        <div className="bg-white border-1  flex flex-col border-[#DEE2E7]">
+        <div className="bg-white border-1 lg:inline-block hidden  flex flex-col border-[#DEE2E7]">
           <h2 className="text-xl  p-2 font-semibold">You may like</h2>
           <div className="flex flex-col">
             {products.slice(0, 6).map((product) => (

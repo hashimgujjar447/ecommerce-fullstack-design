@@ -25,9 +25,9 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full  ">
       {/* Mobile View (below md) */}
-      <div className="block relative md:hidden bg-white rounded-md p-4 shadow-sm border border-[#EEE] w-full md:max-w-[500px]">
+      <div className="block relative md:hidden bg-white  p-4  w-full md:max-w-[500px]">
         {/* Product Info Row */}
         <div className="flex gap-3">
           <div className="w-[70px] h-[70px] bg-[#E0E0E0] flex justify-center items-center border border-[#DEE2E7] p-2 rounded">
@@ -101,8 +101,8 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
       </div>
 
       {/* Desktop View (md and up) */}
-      <div className="hidden md:flex items-start w-full max-w-[700px] bg-white rounded-md p-4 shadow-sm gap-4 border border-[#EEE]">
-        <div className="w-[100px] h-[100px] flex justify-center items-center border border-[#DEE2E7] p-2 rounded">
+      <div className="hidden md:flex items-start w-full border-b-1 border-[#DEE2E7]  bg-white p-2 lg:p-4 gap-2  lg:gap-4">
+        <div className="w-[100px] h-[100px] flex justify-center items-center p-2 rounded">
           {product?.image ? (
             <img
               src={product?.image[0]}
