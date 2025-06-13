@@ -100,7 +100,7 @@ const HeaderBottomPart = () => {
     {
       id: 1,
       name: "All Categories",
-      link: "/",
+      link: "/products",
       icon: <IoMenu className="text-2xl text-[#1c1c1c]" />,
     },
     { id: 2, name: "Hot offers", link: "/" },

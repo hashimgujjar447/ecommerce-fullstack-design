@@ -6,7 +6,7 @@ const RecommendedCard = ({ product }) => {
     <Link to={`/products/productInfo/${product.id}`}>
       <div
         key={product.id}
-        className="bg-white p-2 sm:p-4 border border-gray-200 h-[310px] rounded shadow hover:shadow-lg transition-shadow duration-300 max-w-[220px] w-full mx-auto"
+        className="bg-white p-2 sm:p-4 border border-gray-200 h-[280px] rounded shadow hover:shadow-lg transition-shadow duration-300 max-w-[220px] w-full mx-auto"
       >
         <img
           src={product.image}

@@ -8,6 +8,7 @@ import { UseContext } from "../../Context/EcommerceContext";
 import ProductGridLayout from "../../components/MainProductsList/ProductGridLayout";
 import FilterTags from "../../components/MainProductsList/FilterTags";
 import MobileViewBelowProject from "../../components/MainProductsList/MobileViewBelowProject";
+import NewsLetter from "../../components/Home/NewsLetter/NewsLetter";
 
 const ProductList = () => {
   // const [isGrid, setIsGrid] = useState(false);
@@ -113,7 +114,7 @@ const ProductList = () => {
                     setShowFeatured(!showFeatured);
                   }}
                 >
-                  <div className="p-2 border-1 hover:cursor-pointer flex rounded-lg items-center justify-between  border-[#DEE2E7] w-[100px] ">
+                  <div className="p-2 border-1 bg-white hover:cursor-pointer flex rounded-lg items-center justify-between  border-[#DEE2E7] w-[100px] ">
                     Show {totalProductsToShow}
                     <img src="/assets/angleDown.png" />
                   </div>
@@ -145,6 +146,7 @@ const ProductList = () => {
                   setActivePage={setActivePage}
                 />
               </div>
+
               <div className="bg-[#f7fafc] mt-2 p-4">
                 <h1 className="mb-2 mt-2 sm:hidden text-lg font-semibold">
                   You may also Like
@@ -156,6 +158,9 @@ const ProductList = () => {
             </div>
           </main>
         </div>
+      </div>
+      <div>
+        <NewsLetter />
       </div>
     </div>
   );

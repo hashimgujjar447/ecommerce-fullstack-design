@@ -4,6 +4,7 @@ import CouponCard from "../../components/Cart/CoupenCard";
 import OrderSummaryCard from "../../components/Cart/CartSummary";
 import SavedForLater from "../../components/Cart/SavedItems";
 import { UseContext } from "../../Context/EcommerceContext";
+import PromoCard from "../../components/DiscountedCard";
 
 const Cart = () => {
   const { favorite, products } = UseContext();
@@ -65,12 +66,20 @@ const Cart = () => {
 
         {/* Right: Summary + Coupon */}
         <div className="flex flex-col md:gap-4 w-full md:w-[350px] lg:shrink-0">
-          <CouponCard onApply={(code) => console.log(code)} />
+          <div className="md:inline-block hidden">
+            <CouponCard onApply={(code) => console.log(code)} />
+          </div>
           <OrderSummaryCard />
         </div>
       </div>
-      <div className="mt-8 w-full bg-white">
-        <SavedForLater savedItems={savedItems} />
+      {savedItems.length > 0 && (
+        <div className="mt-5 ">
+          <SavedForLater savedItems={savedItems} />
+        </div>
+      )}
+      {/* Promo Card */}
+      <div className="mt-8 mb-10 w-full md:inline-block hidden">
+        <PromoCard />
       </div>
     </div>
   );

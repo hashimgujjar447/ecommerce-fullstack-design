@@ -10,6 +10,7 @@ const EcommerceContext = createContext({
   addToFavorite: () => {},
   removeFromFavorite: () => {},
   removeAllCart: () => {},
+  initialFilters: [],
 });
 
 export const ContextProvider = ({ children }) => {

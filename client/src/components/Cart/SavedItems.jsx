@@ -5,7 +5,7 @@ import { UseContext } from "../../Context/EcommerceContext";
 const SavedForLater = ({ savedItems }) => {
   const { addToCart, removeFromFavorite } = UseContext();
   return (
-    <div className=" bg-[#f7fafc] md:bg-white md:border md:border-gray-200 rounded-md p-2 md:p-4 mt-6">
+    <div className=" bg-[#f7fafc] md:bg-white md:border md:border-gray-200 rounded-md p-3 md:p-4 mt-6">
       <h2 className="text-lg font-semibold mb-4 text-[#1C1C1C]">
         Saved for later
       </h2>

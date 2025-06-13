@@ -32,7 +32,7 @@ const CartItems = () => {
 
   return items && items.length > 0 ? (
     <div className="flex flex-col gap-4">
-      <div className="flex relative flex-col md:min-w-[550px] border-1 border-[#DEE2E7] p-3 rounded-lg bg-white   w-full ">
+      <div className="flex relative flex-col md:min-w-[550px] border-1 border-[#DEE2E7] p-4 rounded-lg bg-white   w-full ">
         {items &&
           items?.map((item) => (
             <DetailedCartCard
@@ -77,7 +77,7 @@ const CartItems = () => {
       </div>
     </div>
   ) : (
-    <div>
+    <div className="flex  border-t-1 border-[#DEE2E7] w-full  items-center justify-center  bg-white p-4">
       <p>No items in cart</p>
     </div>
   );

@@ -6,7 +6,7 @@ const NewsLetter = () => {
     <section className="bg-[#EFF2F4]">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
         <div className="mx-auto max-w-screen-md sm:text-center">
-          <h2 className="mb-4 text-[20px]  font-medium text-gray-900 ">
+          <h2 className="mb-4 text-[20px]  font-semibold text-gray-900 ">
             Sign up for our newsletter
           </h2>
           <p className="mx-auto mb-8 text-[16px] max-w-2xl font-light text-gray-500 md:mb-6 sm:text-xl">

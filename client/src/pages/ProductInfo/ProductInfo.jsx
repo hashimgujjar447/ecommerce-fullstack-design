@@ -9,6 +9,7 @@ import ProductDescriptionShipping from "../../components/ProductInfo/ProductDesc
 import DummyCard from "../../components/DummyCard";
 import SimpleCard from "../../components/SimpleCard";
 import ImageSlider from "../../components/ProductInfo/imageSliderSm";
+import PromoCard from "../../components/DiscountedCard";
 
 const ProductInfo = () => {
   const { products } = UseContext();
@@ -34,7 +35,7 @@ const ProductInfo = () => {
   }, [currentProduct]);
 
   return (
-    <div className="sm:px-15 flex flex-col   md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:pt-[15px] pt-3">
+    <div className="sm:px-15 flex flex-col   md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:pt-[15px] sm:pt-3">
       <div className="sm:inline-block hidden">
         <ProductTopList />
       </div>
@@ -74,6 +75,9 @@ const ProductInfo = () => {
               <DummyCard key={product.id} product={product} isInfo={true} />
             ))}
         </div>
+      </div>
+      <div className="mt-3 mb-20 md:inline-block hidden">
+        <PromoCard />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div>
       <div className="sm:px-15 md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:py-[20px] pt-3">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:rounded border border-[#DEE2E7] bg-white items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-4  lg:gap-4 md:rounded border border-[#DEE2E7] bg-white items-stretch">
           {/* Left - Hidden on small screens */}
           <div className="hidden md:flex md:col-span-1">
             <MainLeft className="flex-1" />
@@ -34,28 +34,28 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[20px]">
-        <div className="  md:mt-8 ">
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[15px] pt-[20px]">
+        <div className="   ">
           <HomeDeal />
         </div>
       </div>
-      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[20px]">
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[10px]">
         <HomeOutDoor />
       </div>
       <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
         <HomeElectronics />
       </div>
-      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-6 ">
         <HomeSupplierCard />
       </div>
-      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+      <div className=" px-3 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-4 ">
         <HomeRecommended />
       </div>
-      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-4">
         <ExtraServices />
       </div>
 
-      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pb-4">
         <HomeSuppliers />
       </div>
       <div className="   bg-[#f7fafc] pt-3">

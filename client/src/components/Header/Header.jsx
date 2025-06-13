@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputComponent from "../Input.jsx";
 import ButtonComponent from "../Button.jsx";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -11,9 +11,23 @@ import HeaderBottomPart from "./HeaderBottomPart.jsx";
 import { MdOutlineSearch } from "react-icons/md";
 import MobileMenu from "./MobileMenu.jsx";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const location = useLocation();
+  const isProductsPage = location.pathname === "/products";
+
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 640);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const listItems = [
     {
       id: 1,
@@ -45,7 +59,7 @@ const Header = () => {
     {
       id: 1,
 
-      link: "/",
+      link: "/cart",
       logo: <FaCartShopping className="w-[24px] h-[24px] text-[#1C1C1C]" />,
     },
     {
@@ -55,54 +69,94 @@ const Header = () => {
       logo: <IoPersonSharp className="w-[24px] h-[24px] text-[#1C1C1C]" />,
     },
   ];
+
+  const hideMenu = isProductsPage && isSmallScreen;
+
+  const isCart = location.pathname === "/cart";
+  const isProductDetailsPage = location.pathname.startsWith(
+    "/products/productInfo/",
+  );
+
   return (
     <header className="bg-[#FFFFFF]  ">
-      <div className="flex items-center justify-between p-4 sm:px-15 md:px-[40px]  lg:px-[50px] py-[20px]   h-[80px]">
+      <div className="flex items-center justify-between p-4 sm:px-15 md:px-[40px]  lg:px-[50px]  sm:py-[20px]   h-[80px]">
         <div className="flex items-center gap-4">
-          <IoMenu
-            className="text-3xl text-[#1C1C1C] md:hidden"
-            onClick={() => setShowMenu((prev) => !prev)}
-          />
+          {(isCart && isSmallScreen) || (hideMenu && isSmallScreen) ? (
+            <div className="flex items-center gap-3">
+              <Link to={isCart ? "/products" : "/"}>
+                <img
+                  src="/assets/arrowRightBlack.png"
+                  className="h-4 w-4 text-[#1C1C1C]"
+                />
+              </Link>
+              <span className="text-[#1C1C1C] font-semibold text-[18px] ">
+                {isCart ? "Shopping Cart" : "Products"}
+              </span>
+            </div>
+          ) : !hideMenu && !(isProductDetailsPage && isSmallScreen) ? (
+            <IoMenu
+              className="text-3xl text-[#1C1C1C] md:hidden "
+              onClick={() => setShowMenu((prev) => !prev)}
+            />
+          ) : (
+            <Link to="/products">
+              <img
+                src="/assets/arrowRightBlack.png"
+                className="h-4 w-4 text-gray-700"
+              />
+            </Link>
+          )}
 
+          {/* Sidebar menu drawer */}
           <div
             className={`fixed top-0 left-0 w-[280px] h-screen overflow-y-auto md:hidden bg-white shadow-lg z-50 transform transition-all duration-500 ease-in-out
-    ${showMenu ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
+      ${
+        showMenu ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+      }`}
           >
             <MobileMenu setShowMenu={setShowMenu} showMenu={showMenu} />
           </div>
 
-          <figure>
-            <img
-              src="/assets/logo-colored.png"
-              alt="website logo"
-              className="w-[116px] h-[36px]  md:w-[150px] md:h-[46px]"
-            />
-          </figure>
+          {((!(isProductDetailsPage && isSmallScreen) && !isCart) ||
+            (isCart && !isSmallScreen)) &&
+            !hideMenu && (
+              <figure>
+                <img
+                  src="/assets/logo-colored.png"
+                  alt="website logo"
+                  className="w-[116px] h-[36px]  md:w-[150px] md:h-[46px]"
+                />
+              </figure>
+            )}
         </div>
-        <div className="flex items-center justify-center md:flex hidden">
-          <InputComponent
-            type="text"
-            name="search"
-            placeholder="Search..."
-            className="border-2 border-[#0D6EFD] md:w-[250px] lg:w-[330px] xl:w-[450px] 2xl:w-[700px] h-[40px] rounded-l px-3  focus:outline-none transition-all"
-          />
-          <div className="flex items-center border-y-2 border-[#0D6EFD] lg:flex hidden h-[40px]">
+
+        {!isCart && (
+          <div className="flex items-center justify-center md:flex hidden">
+            <InputComponent
+              type="text"
+              name="search"
+              placeholder="Search..."
+              className="border-2 border-[#0D6EFD] md:w-[250px] lg:w-[330px] xl:w-[450px] 2xl:w-[700px] h-[40px] rounded-l px-3  focus:outline-none transition-all"
+            />
+            <div className="flex items-center border-y-2 border-[#0D6EFD] lg:flex hidden h-[40px]">
+              <ButtonComponent
+                type="button"
+                className="   text-[#1C1C1C] font-[400] text-sm lg:text-md  px-2  transition-colors"
+              >
+                All category
+              </ButtonComponent>
+              <RiArrowDropDownLine className="text-3xl text-[#8B96A5] " />
+            </div>
+
             <ButtonComponent
               type="button"
-              className="   text-[#1C1C1C] font-[400] text-sm lg:text-md  px-2  transition-colors"
+              className="bg-[#0D6EFD] border-2 border-[#0D6EFD] h-[40px]   text-white px-4 rounded-r hover:bg-blue-600 transition-colors"
             >
-              All category
+              Search
             </ButtonComponent>
-            <RiArrowDropDownLine className="text-3xl text-[#8B96A5] " />
           </div>
+        )}
 
-          <ButtonComponent
-            type="button"
-            className="bg-[#0D6EFD] border-2 border-[#0D6EFD] h-[40px]   text-white px-4 rounded-r hover:bg-blue-600 transition-colors"
-          >
-            Search
-          </ButtonComponent>
-        </div>
         <div className="flex items-center gap-2 hidden md:flex md:gap-4 lg:gap-6">
           {listItems.map((item) => {
             return (
@@ -121,27 +175,36 @@ const Header = () => {
         <div className="flex items-center gap-6 md:hidden">
           {smallScreenItems.map((item) => {
             return (
-              <div key={item.id} className="flex flex-col items-center">
+              <Link
+                to={item.link}
+                key={item.id}
+                className="flex flex-col items-center"
+              >
                 {item.logo}
-              </div>
+              </Link>
             );
           })}
         </div>
       </div>
-      <div className="md:hidden   p-4 sm:px-15 md:px-[40px]  lg:px-[50px] ">
-        <div className=" relative border-1 border-[#DEE2E7] bg-[#F7FAFC] rounded-md ">
-          <MdOutlineSearch className="text-[#8B96A5] text-xl absolute left-4 top-3" />
-          <InputComponent
-            type="text"
-            name="search"
-            placeholder="Search..."
-            className=" bg-[#F7FAFC] ml-7  h-[40px] px-3  focus:outline-none transition-all"
-          />
+      {!isProductDetailsPage && !isCart && (
+        <div className="md:hidden   p-4 sm:px-15 md:px-[40px]  lg:px-[50px] ">
+          <div className=" relative border-1 border-[#DEE2E7] bg-[#F7FAFC] rounded-md ">
+            <MdOutlineSearch className="text-[#8B96A5] text-xl absolute left-4 top-3" />
+            <InputComponent
+              type="text"
+              name="search"
+              placeholder="Search..."
+              className=" bg-[#F7FAFC] ml-7  h-[40px] px-3  focus:outline-none transition-all"
+            />
+          </div>
         </div>
-      </div>
-      <nav className=" py-4 md:flex h-[60px] md:border-y-1 border-[#E5E5E5] p-4 sm:px-15 md:px-[40px]  lg:px-[50px]    height-[80px]">
-        <HeaderBottomPart />
-      </nav>
+      )}
+
+      {!isCart && !(isProductDetailsPage && isSmallScreen) && (
+        <nav className=" py-4 md:flex h-[60px] md:border-y-1 border-[#E5E5E5] p-4 sm:px-15 md:px-[40px]  lg:px-[50px]    height-[80px]">
+          <HeaderBottomPart />
+        </nav>
+      )}
     </header>
   );
 };

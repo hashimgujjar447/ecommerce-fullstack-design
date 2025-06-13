@@ -1,8 +1,19 @@
 import React from "react";
 import ButtonComponent from "../Button";
+import { UseContext } from "../../Context/EcommerceContext";
 
 const ProductDetail = ({ currentProduct }) => {
+  const { addToCart } = UseContext();
   if (!currentProduct) return <p>Loading...</p>;
+
+  const handleInquiry = () => {
+    addToCart({
+      id: currentProduct.id,
+      price: currentProduct.price, // Assuming a fixed price for inquiry
+      quantity: 1,
+    });
+    alert("Inquiry sent! Check your cart.");
+  };
   return (
     <div className="max-w-md mx-auto px-2 lg:px-4  bg-white">
       <div className=" items-center gap-1 sm:flex hidden">
@@ -67,6 +78,7 @@ const ProductDetail = ({ currentProduct }) => {
       <div className="flex justify-between sm:hidden items-center gap-2 mt-2 mb-1">
         <ButtonComponent
           type={"button"}
+          onClick={handleInquiry}
           className="bg-blue-600 w-full text-white rounded-lg py-2  hover:bg-blue-700 transition-colors"
         >
           Send inquiry
