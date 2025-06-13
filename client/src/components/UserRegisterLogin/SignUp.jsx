@@ -16,6 +16,7 @@ const SignUp = () => {
         <input
           type="text"
           placeholder="Full Name"
+          name="fullName"
           className="mt-6 w-full h-10 sm:h-12 rounded-full border border-gray-300/80 pl-6 text-sm placeholder-gray-500 text-gray-700 outline-none"
           required
         />
@@ -24,6 +25,7 @@ const SignUp = () => {
         <input
           type="text"
           placeholder="Username"
+          name="username"
           className="mt-4 w-full h-10 sm:h-12 rounded-full border border-gray-300/80 pl-6 text-sm placeholder-gray-500 text-gray-700 outline-none"
           required
         />
@@ -32,6 +34,7 @@ const SignUp = () => {
         <input
           type="email"
           placeholder="Email ID"
+          name="email"
           className="mt-4 w-full h-10 sm:h-12 rounded-full border border-gray-300/80 pl-6 text-sm placeholder-gray-500 text-gray-700 outline-none"
           required
         />
@@ -40,6 +43,7 @@ const SignUp = () => {
         <input
           type="password"
           placeholder="Password"
+          name="password"
           className="mt-4 w-full h-10 sm:h-12 rounded-full border border-gray-300/80 pl-6 text-sm placeholder-gray-500 text-gray-700 outline-none"
           required
         />

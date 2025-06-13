@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const EcommerceContext = createContext({
   products: [],
@@ -408,6 +408,25 @@ export const ContextProvider = ({ children }) => {
   const removeAllCart = () => {
     setCart([]);
   };
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(storedCart);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorite")) || [];
+    setFavorite(storedFavorites);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorite", JSON.stringify(favorite));
+  }, [favorite]);
+
   return (
     <EcommerceContext.Provider
       value={{
