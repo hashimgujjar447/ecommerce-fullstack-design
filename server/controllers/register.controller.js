@@ -3,7 +3,7 @@ import asyncHandler from "../middleware/asyncHandler.js";
 import AppError from "../utils/AppError.js";
 
 async function registerUser(req, res) {
-  const { fullName, username, email, password } = req.body;
+  const { fullName, username, email, password, role } = req.body;
   if (!fullName || !username || !email || !password) {
     throw new AppError("All fields are required", 400);
   }
@@ -30,6 +30,7 @@ async function registerUser(req, res) {
     username,
     email,
     password,
+    role: role || "user", // Ensure role is included in the user creation
   });
 
   if (!newUser) {

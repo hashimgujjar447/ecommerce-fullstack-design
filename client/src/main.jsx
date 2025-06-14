@@ -20,6 +20,7 @@ import Dashboard from "./components/AdminDashbord/DashBoard.jsx";
 import ListedProducts from "./components/AdminDashbord/ListedProducts.jsx";
 import AddNewProduct from "./components/AdminDashbord/AddNewProduct.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import ProductEdit from "./pages/ProductEdit/ProductEdit.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,6 +44,14 @@ const router = createBrowserRouter(
           <Route path="listedProducts" element={<ListedProducts />} />
           <Route path="addNewProduct" element={<AddNewProduct />} />
         </Route>
+        <Route
+          path="product/edit/:id"
+          element={
+            <ProtectedRoute>
+              <ProductEdit />
+            </ProtectedRoute>
+          }
+        />
       </Route>
     </>,
   ),

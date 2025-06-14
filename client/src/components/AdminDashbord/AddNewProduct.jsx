@@ -49,7 +49,7 @@ const AddNewProduct = () => {
   };
 
   return (
-    <div className="flex lg:ml-40 flex-col justify-between items-center bg-white">
+    <div className="flex lg:ml-40 flex-col justify-between items-center bg-gray-100 mt-2">
       <form
         onSubmit={handleSubmit}
         className="md:p-10 p-4 space-y-5 max-w-xl w-full"
