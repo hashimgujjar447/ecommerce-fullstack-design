@@ -44,7 +44,7 @@ const HomeRecommended = () => {
       image: "/assets/image 26.png",
     },
     {
-      id: "18",
+      _id: "18",
       title: "Camera Shorts",
       price: 9.99,
       description: "Canon camera black, 100x zoom",
@@ -60,7 +60,7 @@ const HomeRecommended = () => {
       image: "/assets/image 86.png",
     },
     {
-      id: "5",
+      _id: "5",
       title: "Smart watch",
       price: 10.3,
       description: "Smartwatch, silver color, modern",

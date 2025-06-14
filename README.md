@@ -1,19 +1,19 @@
 # Ecommerce Fullstack Design
 
-This project is a fullstack ecommerce application designed to demonstrate modern web development practices.
+A modern fullstack ecommerce application showcasing best practices in web development.
 
 ## Features
 
-- User authentication and authorization
-- Product catalog with search and filtering
-- Shopping cart and checkout process
-- Order management for users and admins
-- Responsive UI
+- Secure user authentication and role-based authorization
+- Product catalog with advanced search and filtering
+- Shopping cart with seamless checkout experience
+- Order management dashboard for users and admins
+- Fully responsive and mobile-friendly UI
 
 ## Tech Stack
 
-- **Frontend:** React, Redux, Tailwind CSS
-- **Backend:** Node.js, Express
+- **Frontend:** React, Redux Toolkit, Tailwind CSS
+- **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 
 ## Getting Started
@@ -22,9 +22,21 @@ This project is a fullstack ecommerce application designed to demonstrate modern
    ```bash
    git clone https://github.com/yourusername/ecommerce-fullstack-design.git
    ```
-2. Install dependencies for both frontend and backend.
-3. Configure environment variables as needed.
-4. Run the development servers.
+2. Install dependencies for both frontend and backend:
+   ```bash
+   cd ecommerce-fullstack-design
+   npm install
+   cd client
+   npm install
+   ```
+3. Configure environment variables in `.env` files for both frontend and backend as needed.
+4. Start the development servers:
+   ```bash
+   # In the root directory
+   npm run dev
+   # In the client directory (if running separately)
+   npm start
+   ```
 
 ## License
 

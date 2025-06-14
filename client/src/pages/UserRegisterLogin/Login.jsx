@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { fetchUser, login } from "../../Api/auth.js";
 import { useNavigate } from "react-router-dom";
 import { UseContext } from "../../Context/EcommerceContext.jsx";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -27,9 +28,11 @@ const Login = () => {
             try {
               const user = await fetchUser(); // 🔄 fresh user from backend
               setUser(user); // ✅ context update
+              toast.success("Login successful!");
               navigate("/");
             } catch (err) {
               console.error("Failed to fetch user after login", err);
+              toast.error("Invalid credentials, please try again.");
               setError(true);
             } finally {
               setLoading(false);

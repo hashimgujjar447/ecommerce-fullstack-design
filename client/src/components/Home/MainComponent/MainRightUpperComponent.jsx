@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { UseContext } from "../../../Context/EcommerceContext";
 import { logout } from "../../../Api/auth.js"; // Assuming you have a logout function in your auth API
-
+import toast from "react-hot-toast";
 const MainRightUpperComponent = () => {
   const navigate = useNavigate();
   const { user, setUser } = UseContext();
@@ -22,9 +22,11 @@ const MainRightUpperComponent = () => {
         setTimeout(async () => {
           try {
             setUser(null); // Clear user context
+            toast.success("Logout successful!");
             navigate("/");
           } catch (err) {
             console.error("Failed to fetch user after login", err);
+            toast.error("Logout failed, please try again.");
             setError(true);
           } finally {
             setLoading(false);

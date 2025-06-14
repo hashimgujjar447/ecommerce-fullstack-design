@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ButtonComponent from "../Button";
 import { UseContext } from "../../Context/EcommerceContext";
+import toast from "react-hot-toast";
 
 const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
   const [menu, setMenu] = useState(false);
@@ -16,6 +17,9 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
       quantity: selectedQuantity,
       replace: true,
     });
+    if (selectedQuantity > 1) {
+      toast.success("Quantity changed successfully");
+    }
   }, [selectedQuantity]);
 
   const handleQuantityChange = (type) => {

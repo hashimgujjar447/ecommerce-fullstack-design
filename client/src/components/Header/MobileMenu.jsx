@@ -30,7 +30,7 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
     {
       id: 2,
       name: "All Categories",
-      link: "/categories",
+      link: "/products",
       icon: (
         <img src="/assets/menu.png" alt="menu" className="w-[20px] h-[17px]" />
       ),
@@ -38,7 +38,7 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
     {
       id: 3,
       name: "Favorites",
-      link: "/favorites",
+      link: "/cart",
       icon: (
         <img
           src="/assets/heart.png"
@@ -50,7 +50,7 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
     {
       id: 4,
       name: "My orders",
-      link: "/orders",
+      link: "/",
       icon: (
         <img
           src="/assets/Vector2.png"

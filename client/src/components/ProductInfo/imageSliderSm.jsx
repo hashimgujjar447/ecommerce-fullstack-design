@@ -23,7 +23,7 @@ const ImageSlider = ({ currentProduct }) => {
         className="h-[300px] w-[300px] lg:w-[335px] lg:h-[335px] xl:w-[345px] xl:h-[345px] object-contain "
       />
 
-      <div className="absolute bottom-2 right-7 flex gap-1 bg-black/25 rounded-md p-1">
+      <div className="absolute bottom-2 right-7 flex gap-1 bg-black/35 rounded-md p-1">
         <button
           onClick={handlePrev}
           className="text-white p-1 hover:opacity-80"
@@ -31,7 +31,7 @@ const ImageSlider = ({ currentProduct }) => {
           <img
             src="/assets/leftArrowWhite.png"
             alt="left arrow"
-            className="w-5 h-5"
+            className="w-5 h-5 object-contain"
           />
         </button>
         <button
@@ -41,7 +41,7 @@ const ImageSlider = ({ currentProduct }) => {
           <img
             src="/assets/rightArrowWhite.png"
             alt="left arrow"
-            className="w-5 h-5"
+            className="w-5 h-5  object-contain"
           />
         </button>
       </div>

@@ -3,6 +3,7 @@ import ButtonComponent from "../Button";
 import InquiryModal from "./InquiryModel";
 import { UseContext } from "../../Context/EcommerceContext";
 import { replace, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const ProductSupplier = ({ currentProduct }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -45,7 +46,9 @@ const ProductSupplier = ({ currentProduct }) => {
       quantity: 1,
       replace: true,
     };
+
     setShowPopup(true);
+    toast.success("Items added to cart");
     addToCart(item);
   };
   return (

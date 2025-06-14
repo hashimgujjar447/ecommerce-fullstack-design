@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { getProducts } from "../Api/product.js";
 import { fetchUser } from "../Api/auth.js";
+import toast from "react-hot-toast";
 
 const EcommerceContext = createContext({
   products: [],
@@ -276,10 +277,10 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       image: [
         "/assets/2 1.png",
-        "/assets/hodie1.png",
-        "/assets/hoodie2.png",
-        "/assets/hoodie3.png",
-        "/assets/hoodie4.png",
+        "/assets/hodie1.jpg",
+        "/assets/hoodie2.jpg",
+        "/assets/hoodie3.jpg",
+        "/assets/hoodie4.jpg",
       ],
       inStock: true,
     },
@@ -330,10 +331,10 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       image: [
         "/assets/image 85.png",
-        "/assets/tea1.png",
-        "/assets/tea2.png",
-        "/assets/tea3.png",
-        "/assets/tea4.png",
+        "/assets/tea1.jpg",
+        "/assets/tea2.jpg",
+        "/assets/tea3.jpg",
+        "/assets/tea4.jpg",
       ],
       inStock: true,
     },
@@ -348,10 +349,10 @@ export const ContextProvider = ({ children }) => {
       shipping: "Free Shipping",
       image: [
         "/assets/Bitmap.png",
-        "/assets/short1.png",
-        "/assets/short2.png",
-        "/assets/short3.png",
-        "/assets/short4.png",
+        "/assets/short1.jpg",
+        "/assets/short2.jpg",
+        "/assets/short3.jpg",
+        "/assets/short5.jpg",
       ],
       inStock: true,
     },
@@ -411,18 +412,22 @@ export const ContextProvider = ({ children }) => {
 
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
+    toast.success("Product deleted successfully 🗑️");
   };
 
   const addToFavorite = (id) => {
     setFavorite((prev) => (prev.includes(id) ? prev : [...prev, id]));
+    toast("Added to favorites 💖");
   };
 
   const removeFromFavorite = (id) => {
     setFavorite((prev) => prev.filter((item) => item !== id));
+    toast("Removed from favorites 💔");
   };
 
   const removeAllCart = () => {
     setCart([]);
+    toast.success("All products removed from cart successfully 🗑️");
   };
 
   useEffect(() => {

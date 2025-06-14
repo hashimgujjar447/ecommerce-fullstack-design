@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RecommendedCard = ({ product }) => {
+  console.log(product);
   return (
     <Link to={`/products/productInfo/${product._id}`}>
       <div

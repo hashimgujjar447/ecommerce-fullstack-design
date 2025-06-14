@@ -4,6 +4,7 @@ import { register } from "../../Api/auth.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UseContext } from "../../Context/EcommerceContext.jsx";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const [userData, setUserData] = useState({
@@ -43,11 +44,13 @@ const SignUp = () => {
           console.log("Registration successful:", response);
           setUser(response.user);
           setLoading(false);
+          toast.success("Registration successful please login  ");
           navigate("/login");
         }
       })
       .catch((error) => {
         console.log("Error while registering user");
+        toast.error("Error while registering user");
         setError(true);
       });
     setUserData({
