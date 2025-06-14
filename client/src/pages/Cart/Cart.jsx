@@ -51,7 +51,7 @@ const Cart = () => {
 
   useEffect(() => {
     const favoriteProducts = products.filter((item) =>
-      favorite.includes(item.id),
+      favorite.includes(item._id),
     );
     setSavedItems(favoriteProducts); // assuming you have a setter
   }, [favorite, products]);

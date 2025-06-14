@@ -6,12 +6,15 @@ const ProductDetail = ({ currentProduct }) => {
   const { addToCart } = UseContext();
   if (!currentProduct) return <p>Loading...</p>;
 
-  const handleInquiry = () => {
-    addToCart({
-      id: currentProduct.id,
-      price: currentProduct.price, // Assuming a fixed price for inquiry
+  const handleSmQuery = () => {
+    console.log("Inquiry sent for product:", currentProduct);
+    const item = {
+      id: currentProduct._id,
+      price: currentProduct.price,
       quantity: 1,
-    });
+      replace: true,
+    };
+    addToCart(item);
     alert("Inquiry sent! Check your cart.");
   };
   return (
@@ -78,7 +81,7 @@ const ProductDetail = ({ currentProduct }) => {
       <div className="flex justify-between sm:hidden items-center gap-2 mt-2 mb-1">
         <ButtonComponent
           type={"button"}
-          onClick={handleInquiry}
+          onClick={handleSmQuery}
           className="bg-blue-600 w-full text-white rounded-lg py-2  hover:bg-blue-700 transition-colors"
         >
           Send inquiry

@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <Link
-      to={`productInfo/${product.id}`}
+      to={`productInfo/${product._id}`}
       className={`flex ${
         isGridView ? "flex-col" : "flex-row"
       } gap-4 sm:p-4 p-2 bg-white w-full  border border-[#DEE2E7] rounded-md mb-4 relative `}

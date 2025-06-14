@@ -16,7 +16,7 @@ const SavedForLater = ({ savedItems }) => {
       <div className="hidden md:flex overflow-x-auto gap-4 scrollbar-thin scrollbar-hide scrollbar-thumb-gray-300">
         {savedItems.map((item) => (
           <div
-            key={item.id}
+            key={item._id}
             className="flex-shrink-0 w-[270px] flex flex-col justify-between rounded p-4 bg-white"
           >
             <div className="bg-[#EEEEEE] p-2 rounded-md mb-2">
@@ -34,12 +34,12 @@ const SavedForLater = ({ savedItems }) => {
             <ButtonComponent
               onClick={() => {
                 const item1 = {
-                  id: item.id,
+                  id: item._id,
                   price: item.price,
                   quantity: 1,
                 };
                 addToCart(item1);
-                removeFromFavorite(item.id);
+                removeFromFavorite(item._id);
               }}
               className="text-[#0D6EFD] bg-white mt-4 p-2 flex w-[150px] items-center gap-2 rounded-md border border-[#DEE2E7] hover:cursor-pointer text-[16px] font-medium"
             >
@@ -80,19 +80,19 @@ const SavedForLater = ({ savedItems }) => {
                 <ButtonComponent
                   onClick={() => {
                     const item1 = {
-                      id: item.id,
+                      id: item._id,
                       price: item.price,
                       quantity: 1,
                     };
                     addToCart(item1);
-                    removeFromFavorite(item.id);
+                    removeFromFavorite(item._id);
                   }}
                   className="text-[#0D6EFD] bg-white p-1 text-[13px] px-2 border border-[#DEE2E7] rounded-md font-medium"
                 >
                   Move to cart
                 </ButtonComponent>
                 <ButtonComponent
-                  onClick={() => removeFromFavorite(item.id)}
+                  onClick={() => removeFromFavorite(item._id)}
                   className="text-red-500 bg-white p-1 px-2 border text-[13px]  border-[#DEE2E7] rounded-md font-medium"
                 >
                   Remove

@@ -1,10 +1,66 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchUser, login } from "../../Api/auth.js";
+import { useNavigate } from "react-router-dom";
+import { UseContext } from "../../Context/EcommerceContext.jsx";
 
 const Login = () => {
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const { setUser } = UseContext();
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    login(userData)
+      .then((response) => {
+        if (response) {
+          // Handle successful login, e.g., redirect to home page or show success message
+          console.log("Login successful:", response);
+          setTimeout(async () => {
+            try {
+              const user = await fetchUser(); // 🔄 fresh user from backend
+              setUser(user); // ✅ context update
+              navigate("/");
+            } catch (err) {
+              console.error("Failed to fetch user after login", err);
+              setError(true);
+            } finally {
+              setLoading(false);
+            }
+          }, 100);
+        }
+      })
+      .catch((error) => {
+        // Handle login error, e.g., show error message
+        console.error("Login failed:", error);
+        setError(true);
+      });
+    setUserData({
+      email: "",
+      password: "",
+    });
+  };
+
+  {
+    error && <p className="text-red-500 text-sm mt-2">{error}</p>;
+  }
+  {
+    loading && <p className="text-gray-500 text-sm mt-2">Logging in...</p>;
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen p-5 sm:p-0 w-full bg-gray-100">
-      <form className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
+      <form
+        onSubmit={handleFormSubmit}
+        className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white"
+      >
         <h1 className="text-gray-900 text-2xl sm:text-3xl mt-10 font-medium">
           Login
         </h1>
@@ -29,6 +85,10 @@ const Login = () => {
             placeholder="Email id"
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
+            value={userData.email}
+            onChange={(e) =>
+              setUserData({ ...userData, email: e.target.value })
+            }
           />
         </div>
 
@@ -50,6 +110,10 @@ const Login = () => {
             placeholder="Password"
             className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
             required
+            value={userData.password}
+            onChange={(e) =>
+              setUserData({ ...userData, password: e.target.value })
+            }
           />
         </div>
         <div className="mt-5 text-left text-indigo-500">

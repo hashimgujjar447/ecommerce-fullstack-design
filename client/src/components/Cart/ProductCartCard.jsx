@@ -11,9 +11,10 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
 
   useEffect(() => {
     addToCart({
-      id: product.id,
+      id: product._id,
       price: product.price,
       quantity: selectedQuantity,
+      replace: true,
     });
   }, [selectedQuantity]);
 

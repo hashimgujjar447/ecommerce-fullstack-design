@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const DummyCard = ({ product, isInfo = false }) => {
   return (
     <Link
-      to={`/products/productInfo/${product.id}`}
+      to={`/products/productInfo/${product.id || product._id}`}
       className={`flex flex-col gap-2 ${
         isInfo
           ? "w-[200px]"

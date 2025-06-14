@@ -164,6 +164,7 @@ const Header = () => {
                 to={item.link}
                 key={item.id}
                 className="flex flex-col  items-center"
+                onClick={() => setShowMenu(item.id)}
               >
                 {item.logo && <span className="text-2xl">{item.logo}</span>}
                 <p className="text-[12px] text-[#8B96A5]">{item.name}</p>

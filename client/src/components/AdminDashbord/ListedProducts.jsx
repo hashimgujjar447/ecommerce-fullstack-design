@@ -1,0 +1,71 @@
+import React from "react";
+import { UseContext } from "../../Context/EcommerceContext";
+
+const ListedProducts = () => {
+  const { products } = UseContext();
+
+  return (
+    <div className="flex-1 pb-10 flex flex-col justify-between">
+      <div className="w-full md:p-10 p-4">
+        <h2 className="pb-4 text-xl font-semibold text-gray-800">
+          All Products
+        </h2>
+
+        <div className="overflow-x-auto bg-white border border-gray-300 rounded-lg shadow-sm">
+          <table className="w-full min-w-[800px] text-sm text-left">
+            <thead className="bg-gray-100 text-gray-900">
+              <tr>
+                <th className="px-4 py-3 font-medium">Product</th>
+                <th className="px-4 py-3 font-medium">Category</th>
+                <th className="px-4 py-3 font-medium">Selling Price</th>
+                <th className="px-4 py-3 font-medium">In Stock</th>
+                <th className="px-4 py-3 font-medium text-center">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody className="text-gray-700">
+              {products.map((product, index) => (
+                <tr key={index} className="border-t">
+                  <td className="px-4 py-3 flex items-center gap-3">
+                    <img
+                      src={product.image[0]}
+                      alt="Product"
+                      className="w-14 h-14 object-cover border rounded"
+                    />
+                    <span>{product.name}</span>
+                  </td>
+
+                  <td className="px-4 py-3">{product.category}</td>
+                  <td className="px-4 py-3">${product.oldPrice}</td>
+
+                  <td className="px-4 py-3">
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        className="sr-only peer"
+                        defaultChecked={product.inStock}
+                      />
+                      <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200"></div>
+                      <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
+                    </label>
+                  </td>
+
+                  <td className="px-4 py-3 text-center">
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded mr-2">
+                      Edit
+                    </button>
+                    <button className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ListedProducts;

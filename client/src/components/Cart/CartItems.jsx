@@ -13,7 +13,7 @@ const CartItems = () => {
 
   useEffect(() => {
     const totalItems = products.filter((product) =>
-      cart.some((item) => item.id === product.id),
+      cart.some((item) => item.id === product._id),
     );
     setItems(totalItems);
   }, [cart, products]);
@@ -36,14 +36,14 @@ const CartItems = () => {
         {items &&
           items?.map((item) => (
             <DetailedCartCard
-              key={item.id}
+              key={item._id}
               product={item}
               onDelete={() => {
-                removeFromCart(item.id);
+                removeFromCart(item._id);
               }}
               onFavorite={() => {
-                removeFromCart(item.id);
-                addToFavorite(item.id);
+                removeFromCart(item._id);
+                addToFavorite(item._id);
               }}
             />
           ))}

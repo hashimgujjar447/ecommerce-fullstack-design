@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const RecommendedCard = ({ product }) => {
   return (
-    <Link to={`/products/productInfo/${product.id}`}>
+    <Link to={`/products/productInfo/${product._id}`}>
       <div
-        key={product.id}
+        key={product._id}
         className="bg-white p-2 sm:p-4 border border-gray-200 h-[280px] sm:h-[320px] rounded shadow hover:shadow-lg transition-shadow duration-300 max-w-[220px] w-full mx-auto"
       >
         <img

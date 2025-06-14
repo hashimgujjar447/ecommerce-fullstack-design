@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ButtonComponent from "../Button";
 import InquiryModal from "./InquiryModel";
 import { UseContext } from "../../Context/EcommerceContext";
-import { useParams } from "react-router-dom";
+import { replace, useParams } from "react-router-dom";
 
 const ProductSupplier = ({ currentProduct }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -38,12 +38,12 @@ const ProductSupplier = ({ currentProduct }) => {
   ];
 
   const handleInquiry = () => {
-    console.log(currentProduct);
     if (!currentProduct) return;
     const item = {
-      id: currentProduct.id,
+      id: currentProduct._id,
       price: currentProduct.price,
       quantity: 1,
+      replace: true,
     };
     setShowPopup(true);
     addToCart(item);
@@ -77,9 +77,7 @@ const ProductSupplier = ({ currentProduct }) => {
       </div>
       <ButtonComponent
         type={"button"}
-        onClick={() => {
-          handleInquiry(currentProduct);
-        }}
+        onClick={handleInquiry}
         className="bg-blue-600 sm:inline-block hidden w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
       >
         Send inquiry

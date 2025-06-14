@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { getProducts } from "../Api/product.js";
+import { fetchUser } from "../Api/auth.js";
 
 const EcommerceContext = createContext({
   products: [],
@@ -11,13 +13,19 @@ const EcommerceContext = createContext({
   removeFromFavorite: () => {},
   removeAllCart: () => {},
   initialFilters: [],
+  isAdmin: false,
+  user: {},
+  isUserLoading: true,
 });
 
 export const ContextProvider = ({ children }) => {
+  const [isLoadingUser, setIsLoadingUser] = useState(true);
   const [isGridView, setIsGridView] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // Assuming you might want to manage admin state
+  const [user, setUser] = useState(null);
   const [products, setProducts] = useState([
     {
-      id: 1,
+      _id: "1",
       title: "Canon Camera EOS 2000, Black 10x zoom",
       price: 998.0,
       oldPrice: 1128.0,
@@ -36,7 +44,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 2,
+      _id: "2",
       title: "GoPro HERO6 4K Action Camera - Black",
       price: 998.0,
       oldPrice: null,
@@ -55,7 +63,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 3,
+      _id: "3",
       title: "GoPro HERO6 4K Action Camera - Black",
       price: 998.0,
       oldPrice: null,
@@ -74,7 +82,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 4,
+      _id: "4",
       title: "GoPro HERO6 4K Action Camera - Black",
       price: 998.0,
       oldPrice: null,
@@ -93,7 +101,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 5,
+      _id: "5",
       title: "Best watch for mens",
       price: 998.0,
       oldPrice: 1128.0,
@@ -112,7 +120,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 6,
+      _id: "6",
       title: "GoPro HERO6 4K Action Camera - Black",
       price: 998.0,
       oldPrice: null,
@@ -131,7 +139,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 7,
+      _id: "7",
       title: "Winter Coat for Men - Blue",
       price: 120.0,
       oldPrice: 150.0,
@@ -149,7 +157,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 8,
+      _id: "8",
       title: "Cotton Casual Shirt - White",
       price: 35.0,
       oldPrice: 45.0,
@@ -167,7 +175,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 9,
+      _id: "9",
       title: "Handwoven Carpet - Persian Design",
       price: 240.0,
       oldPrice: 300.0,
@@ -185,7 +193,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 10,
+      _id: "10",
       title: "Leather Handbag - Brown",
       price: 89.0,
       oldPrice: 110.0,
@@ -203,7 +211,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 11,
+      _id: "11",
       title: "King Size Bed with Storage",
       price: 799.0,
       oldPrice: 999.0,
@@ -221,9 +229,8 @@ export const ContextProvider = ({ children }) => {
       ],
       inStock: true,
     },
-
     {
-      id: 12,
+      _id: "12",
       title: "Stylish bag ",
       price: 180.0,
       oldPrice: 220.0,
@@ -241,7 +248,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 13,
+      _id: "13",
       title: "Men's Cotton Long Nikar",
       price: 22.0,
       oldPrice: 30.0,
@@ -258,9 +265,8 @@ export const ContextProvider = ({ children }) => {
       ],
       inStock: true,
     },
-
     {
-      id: 14,
+      _id: "14",
       title: "Winter Coat",
       price: 10.3,
       oldPrice: 30.0,
@@ -278,7 +284,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 15,
+      _id: "15",
       title: "Gaming Headset",
       price: 8.99,
       description: "Headset for gaming with mic",
@@ -296,7 +302,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 16,
+      _id: "16",
       title: "Clay Pot",
       price: 10.3,
       description: "Blue wallet for men, leather material",
@@ -314,7 +320,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 17,
+      _id: "17",
       title: "Travel Kettle",
       price: 80.95,
       description: "Jeans bag for travel, for men",
@@ -332,7 +338,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
     {
-      id: 18,
+      _id: "18",
       title: "Camera Shorts",
       price: 9.99,
       description: "Canon camera black, 100x zoom",
@@ -350,6 +356,7 @@ export const ContextProvider = ({ children }) => {
       inStock: true,
     },
   ]);
+
   const [initialFilters, setInitialFilters] = useState({
     categories: [
       { id: 1, title: "Mobile accessory", selected: false },
@@ -379,13 +386,22 @@ export const ContextProvider = ({ children }) => {
   };
   const [cart, setCart] = useState([]);
 
-  const addToCart = ({ id, price, quantity = 1 }) => {
+  const addToCart = ({ id, price, quantity = 1, replace = false }) => {
+    if (!id || typeof price !== "number" || typeof quantity !== "number") {
+      console.warn("Invalid addToCart call", { id, price, quantity });
+      return;
+    }
     setCart((prev) => {
       const itemIndex = prev.findIndex((item) => item.id === id);
 
       if (itemIndex !== -1) {
         const updatedCart = [...prev];
-        updatedCart[itemIndex] = { ...updatedCart[itemIndex], quantity }; // Replace quantity
+        updatedCart[itemIndex] = {
+          ...updatedCart[itemIndex],
+          quantity: replace
+            ? quantity
+            : updatedCart[itemIndex].quantity + quantity,
+        };
         return updatedCart;
       }
 
@@ -410,6 +426,20 @@ export const ContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    getProducts()
+      .then((response) => {
+        if (Array.isArray(response)) {
+          setProducts((prev) => [...prev, ...response]);
+        } else {
+          console.warn("Unexpected response format:", response);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error.message);
+      });
+  }, []);
+
+  useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);
   }, []);
@@ -427,6 +457,26 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem("favorite", JSON.stringify(favorite));
   }, [favorite]);
 
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const user = await fetchUser();
+        console.log("User fetched:", user);
+
+        if (user) {
+          setUser(user);
+          setIsAdmin(user.role === "admin");
+        }
+      } catch (error) {
+        console.error("Failed to fetch user", error.message);
+      } finally {
+        setIsLoadingUser(false); // ✅ Mark loading complete
+      }
+    };
+
+    loadUser();
+  }, []);
+
   return (
     <EcommerceContext.Provider
       value={{
@@ -441,9 +491,13 @@ export const ContextProvider = ({ children }) => {
         addToFavorite,
         removeFromFavorite,
         removeAllCart,
-
+        isAdmin,
         addToCart,
         removeFromCart,
+        setUser,
+        user,
+        isLoadingUser,
+        isUserLoading: isLoadingUser,
       }}
     >
       {children}

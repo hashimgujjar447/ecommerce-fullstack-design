@@ -8,13 +8,18 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App.jsx";
-import { ContextProvider } from "./Context/EcommerceContext.jsx";
+import { ContextProvider, UseContext } from "./Context/EcommerceContext.jsx";
 import ProductInfo from "./pages/ProductInfo/ProductInfo.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
+import Login from "./pages/UserRegisterLogin/Login.jsx";
 
 import { Home, ProductList } from "./pages/index.js";
-import Login from "./components/UserRegisterLogin/Login.jsx";
-import SignUp from "./components/UserRegisterLogin/SignUp.jsx";
+import SignUp from "./pages/UserRegisterLogin/SignUp.jsx";
+import AdminLayout from "./pages/Admin/AdminDashboared.jsx";
+import Dashboard from "./components/AdminDashbord/DashBoard.jsx";
+import ListedProducts from "./components/AdminDashbord/ListedProducts.jsx";
+import AddNewProduct from "./components/AdminDashbord/AddNewProduct.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +31,18 @@ const router = createBrowserRouter(
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="listedProducts" element={<ListedProducts />} />
+          <Route path="addNewProduct" element={<AddNewProduct />} />
+        </Route>
       </Route>
     </>,
   ),

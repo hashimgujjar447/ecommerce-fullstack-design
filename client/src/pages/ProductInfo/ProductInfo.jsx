@@ -24,7 +24,7 @@ const ProductInfo = () => {
 
   useEffect(() => {
     if (products.length > 0) {
-      const elem = products.find((prod) => prod.id === Number(id));
+      const elem = products.find((prod) => prod._id === id);
       if (!elem) console.warn("No product found with ID:", id);
       setCurrentProduct(elem);
     }

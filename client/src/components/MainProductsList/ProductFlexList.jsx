@@ -29,7 +29,7 @@ const ProductFlexList = ({
     <div className="py-6">
       {productsToDisplay.length > 0 ? (
         productsToDisplay.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))
       ) : (
         <p className="text-center text-gray-500">No items available</p>

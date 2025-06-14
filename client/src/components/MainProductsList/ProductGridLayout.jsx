@@ -30,7 +30,7 @@ const ProductGridLayout = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-3 py-6 w-full">
         {productsToDisplay.length > 0 ? (
           productsToDisplay.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} />
           ))
         ) : (
           <p className="text-center text-gray-500">No items available</p>
