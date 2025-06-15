@@ -3,6 +3,7 @@ import asyncHandler from "../middleware/asyncHandler.js";
 import AppError from "../utils/AppError.js";
 
 async function registerUser(req, res) {
+  console.log(req.body);
   const { fullName, username, email, password, role } = req.body;
   if (!fullName || !username || !email || !password) {
     throw new AppError("All fields are required", 400);
@@ -37,17 +38,11 @@ async function registerUser(req, res) {
     throw new AppError("User registration failed", 500);
   }
 
-  const token = await newUser.generateAuthToken();
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // Set to true in production
-    sameSite: "Strict",
-  });
-
   res.status(201).json({
     status: "success",
     data: {
-      user: newUser,
+      username: newUser.username,
+      email: newUser.email,
     },
   });
 }

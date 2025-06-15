@@ -7,67 +7,77 @@ import { uploadToCloudinary } from "../utils/Cloudinary.js";
 import fs from "fs";
 import AppError from "../utils/AppError.js";
 import { url } from "inspector";
+import adminMiddleware from "../middleware/adminMidleware.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = Router();
 
-router.post("/product", upload.array("images", 5), async (req, res) => {
-  try {
-    console.log(req?.files);
-    console.log(req.body);
-    const urls = [];
-    console.log(req.files);
-    for (const file of req.files) {
-      const result = await uploadToCloudinary(file.path);
-      urls.push(result.url);
-      fs.unlink(file.path, () => {});
+router.post(
+  "/product",
+  authMiddleware,
+  adminMiddleware, // Ensure only admin can add products
+  upload.array("images", 5),
+  async (req, res) => {
+    try {
+      console.log(req?.files);
+      console.log(req.body);
+      const urls = [];
+      console.log(req.files);
+      for (const file of req.files) {
+        const result = await uploadToCloudinary(file.path);
+        urls.push(result.url);
+        fs.unlink(file.path, () => {});
+      }
+      console.log(urls);
+      const {
+        title,
+        price,
+        oldPrice,
+        rating,
+        orders,
+        shipping,
+        description,
+        inStock,
+        categoryName, // Use this in Postman for category name
+      } = req.body;
+
+      // Validate required fields
+      if (!title || !price || !description || !categoryName) {
+        return res
+          .status(400)
+          .json({ error: "Missing required product fields" });
+      }
+
+      // Create or find category
+      const categoryDoc = await Category.findOneAndUpdate(
+        { name: categoryName },
+        { name: categoryName },
+        { new: true, upsert: true },
+      );
+
+      // Create new product
+      const newProduct = await Product.create({
+        title,
+        price: Number(price),
+        oldPrice: Number(oldPrice),
+        rating: Number(rating),
+        orders: Number(orders),
+        shipping,
+        description,
+        inStock: inStock === "true", // convert from string if coming from form-data
+        image: urls,
+        category: categoryDoc._id,
+      });
+
+      res
+        .status(201)
+        .json({ message: "Product added successfully", product: newProduct });
+    } catch (error) {
+      console.error("Error adding product:", error);
+      res.status(500).json({ error: "Internal server error" });
     }
-    console.log(urls);
-    const {
-      title,
-      price,
-      oldPrice,
-      rating,
-      orders,
-      shipping,
-      description,
-      inStock,
-      categoryName, // Use this in Postman for category name
-    } = req.body;
-
-    // Validate required fields
-    if (!title || !price || !description || !categoryName) {
-      return res.status(400).json({ error: "Missing required product fields" });
-    }
-
-    // Create or find category
-    const categoryDoc = await Category.findOneAndUpdate(
-      { name: categoryName },
-      { name: categoryName },
-      { new: true, upsert: true },
-    );
-
-    // Create new product
-    const newProduct = await Product.create({
-      title,
-      price: Number(price),
-      oldPrice: Number(oldPrice),
-      rating: Number(rating),
-      orders: Number(orders),
-      shipping,
-      description,
-      inStock: inStock === "true", // convert from string if coming from form-data
-      image: urls,
-      category: categoryDoc._id,
-    });
-
-    res
-      .status(201)
-      .json({ message: "Product added successfully", product: newProduct });
-  } catch (error) {
-    console.error("Error adding product:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+  },
+);
 
 router.get("/products", async (req, res, next) => {
   try {
@@ -77,25 +87,32 @@ router.get("/products", async (req, res, next) => {
     next(new AppError("No products found", 400)); // This is passed to global error handler
   }
 });
-router.delete("/product/:id", async (req, res, next) => {
-  try {
-    if (!req.params.id) {
-      return res.status(400).json({ error: "Product ID is required" });
+router.delete(
+  "/product/:id",
+  authMiddleware,
+  adminMiddleware,
+  async (req, res, next) => {
+    try {
+      if (!req.params.id) {
+        return res.status(400).json({ error: "Product ID is required" });
+      }
+      const product = await Product.findByIdAndDelete(req.params.id).populate(
+        "category",
+      );
+      if (!product) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+      res.status(200).json({ data: product });
+    } catch (error) {
+      next(new AppError("Error deleting product", 500));
     }
-    const product = await Product.findByIdAndDelete(req.params.id).populate(
-      "category",
-    );
-    if (!product) {
-      return res.status(404).json({ error: "Product not found" });
-    }
-    res.status(200).json({ data: product });
-  } catch (error) {
-    next(new AppError("Error deleting product", 500));
-  }
-});
+  },
+);
 
 router.put(
   "/product/:id",
+  authMiddleware,
+  adminMiddleware, // Ensure only admin can update products
   upload.array("images", 5),
   async (req, res, next) => {
     try {

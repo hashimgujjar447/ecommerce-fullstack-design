@@ -1,35 +1,18 @@
-import express from "express";
-import connectToDatabase from "./config/configDb.js";
 import dotenv from "dotenv";
-import productRouter from "./routes/product.routes.js";
-import cookieParser from "cookie-parser";
-import userRouter from "./routes/user.routes.js";
-import cors from "cors";
+import connectToDatabase from "./config/configDb.js";
+import app from "./app.js";
+
 dotenv.config();
 
-const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(
-  cors({
-    origin: "http://localhost:5173", // your frontend URL
-    credentials: true, // required for cookies to be sent
-  }),
-);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use("/api", productRouter);
-app.use("/api/user", userRouter);
-
-app.listen(3000, () => {
-  // Connect to the database
+app.listen(PORT, () => {
   connectToDatabase()
     .then(() => {
-      console.log("Connected to the database successfully");
+      console.log("✅ Connected to the database");
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
     })
     .catch((error) => {
-      console.error("Error connecting to the database:", error);
+      console.error("❌ Database connection failed:", error);
     });
-  console.log("Server is running on http://localhost:3000");
 });
