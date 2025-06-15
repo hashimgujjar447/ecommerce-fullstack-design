@@ -29,23 +29,28 @@ const OrderSummaryCard = () => {
   }, [cart]);
 
   return (
-    <div className="w-full md:max-w-[230px]  lg:max-w-[300px]  bg-white rounded-md shadow-sm p-4 border border-[#EEE]">
-      <h2 className="text-lg font-semibold text-[#1C1C1C] mb-4">
+    <div className="w-full md:max-w-[230px]  lg:max-w-[300px]  bg-white sm:rounded-md sm:shadow-sm p-4 border border-[#DEE2E7]">
+      <h2 className="text-lg font-semibold text-[#1C1C1C] mb-4 sm:inline-block hidden">
         Order Summary
       </h2>
 
       <div className="space-y-2 text-sm text-[#606060]">
         <div className="flex justify-between">
-          <span>Subtotal:</span>
+          <span className="hidden sm:inline">Subtotal:</span>
+          <span className="sm:hidden">items ({cart.length}):</span>
           <span>${subTotal}</span>
         </div>
         <div className="flex justify-between">
-          <span>Discount:</span>
-          <span>-$60</span>
+          <span className="hidden sm:inline">Discount:</span>
+          <span className="sm:hidden">Shipping:</span>
+          <span className="hidden sm:inline">-$60</span>
+          <span>$10</span>
         </div>
         <div className="flex justify-between">
           <span>Tax:</span>
-          <span>+$14</span>
+          <span>
+            <span className="sm:inline hidden">+</span>$14
+          </span>
         </div>
       </div>
 

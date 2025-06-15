@@ -15,14 +15,15 @@ const ProductList = () => {
   const [totalProductsToShow, setTotalProductsToShow] = useState(6);
   const [showFeatured, setShowFeatured] = useState(false);
   const [activePage, setActivePage] = useState(1);
-  const { isGridView, initialFilters, setInitialFilters } = UseContext();
+  const { isGridView, initialFilters, setInitialFilters, search, setSearch } =
+    UseContext();
   const items = [
     {
       id: 1,
       label: 6,
     },
     {
-      id: 1,
+      id: 2,
       label: 12,
     },
   ];
@@ -64,6 +65,10 @@ const ProductList = () => {
     setInitialFilters(clearedFilters);
   };
 
+  const handleClearSearch = () => {
+    setSearch("");
+  };
+
   return (
     <div>
       <div className="sm:px-15 md:flex hidden  md:px-[40px] sm:bg-[#f7fafc] lg:px-[50px] sm:pt-[15px] pt-3">
@@ -81,15 +86,27 @@ const ProductList = () => {
             <div>
               <MainProductLeftTop />
             </div>
-            <div className="p-4 overflow-x-auto whitespace-nowrap w-full scrollbar-hide">
+            <div className="p-2 px-3  sm:p-4  bg-[#f7fafc] overflow-x-auto whitespace-nowrap w-full scrollbar-hide">
               <FilterTags
                 filters={activeFilters}
                 onRemoveFilter={handleRemove}
                 onClearAll={handleClearAll}
               />
+              {search && (
+                <div className="text-sm text-gray-600  mt-2 flex items-center gap-2">
+                  Showing results for:{" "}
+                  <span className="font-semibold">{search}</span>
+                  <button
+                    onClick={handleClearSearch}
+                    className="text-blue-500 underline text-sm"
+                  >
+                    Clear Search
+                  </button>
+                </div>
+              )}
             </div>
 
-            <div className="p-2 sm:p-4 bg-[#f7fafc]">
+            <div className="p-2 px-3 sm:p-2 bg-[#f7fafc]">
               {isGridView ? (
                 <>
                   <ProductGridLayout
@@ -147,8 +164,8 @@ const ProductList = () => {
                 />
               </div>
 
-              <div className="bg-[#f7fafc] mt-2 p-4">
-                <h1 className="mb-2 mt-2 sm:hidden text-lg font-semibold">
+              <div className="bg-[#f7fafc] mt-2 px-3  p-2">
+                <h1 className="mb-2 mt-2 sm:hidden text-[18px] font-semibold">
                   You may also Like
                 </h1>
                 <div className=" sm:hidden  scrollbar-hide inline-block overflow-x-auto whitespace-nowrap w-full scrollbar-hidden">

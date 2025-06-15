@@ -14,7 +14,7 @@ const MainProductLeftTop = () => {
   ];
 
   return (
-    <div className="bg-white flex  lg:flex-row justify-between items-center lg:items-center sm:rounded-lg border border-[#DEE2E7] px-4 py-2 gap-1 sm:gap-2">
+    <div className="bg-white flex  lg:flex-row justify-between items-center lg:items-center sm:rounded-lg border border-[#DEE2E7] px-3 py-2 gap-1 sm:gap-2">
       {/* Show on large screens only */}
       <div className="hidden md:flex items-center gap-2 lg:gap-4">
         <p className="text-[#495057] sm:text-[12px] lg:text-[16px]">

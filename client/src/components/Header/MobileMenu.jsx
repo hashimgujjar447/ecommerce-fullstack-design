@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonComponent from "../Button";
 
 const MobileMenu = ({ setShowMenu, showMenu }) => {
   const menuRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -117,6 +118,10 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
           <ButtonComponent
             type="button"
             className="font-[400] text-[#1C1C1C] text-sm lg:text-md"
+            onClick={() => {
+              setShowMenu(false);
+              navigate("/login");
+            }}
           >
             Sign in
           </ButtonComponent>
@@ -124,6 +129,10 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
           <ButtonComponent
             type="button"
             className="font-[400] text-[#1C1C1C] text-sm lg:text-md"
+            onClick={() => {
+              setShowMenu(false);
+              navigate("/signup");
+            }}
           >
             Register
           </ButtonComponent>

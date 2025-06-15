@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "../Api/product";
 import { editProduct } from "../Api/product"; // make sure this is the correct import
+import toast from "react-hot-toast";
 
 const EditProductInfo = () => {
   const [product, setProduct] = useState(null);
@@ -54,9 +55,21 @@ const EditProductInfo = () => {
     try {
       const response = await editProduct(product._id, formData);
       console.log("Success", response);
+      toast.success("Product data updated successfully");
     } catch (error) {
       console.log("Error", error);
     }
+
+    setCategory("");
+    setImages([]);
+    setTitle("");
+    setDescription("");
+    setPrice(0);
+    setOldPrice(0);
+    setRating(0);
+    setInStock(false);
+    setShipping("");
+    setOrders(0);
   };
 
   useEffect(() => {
@@ -90,7 +103,7 @@ const EditProductInfo = () => {
   }, [product]);
 
   return (
-    <div className="flex flex-col justify-between items-center bg-gray-100 mt-2">
+    <div className="flex flex-col justify-between items-center  bg-gray-100 mt-2">
       <form
         onSubmit={handleSubmit}
         className="md:p-10 p-4 space-y-5 max-w-xl w-full"

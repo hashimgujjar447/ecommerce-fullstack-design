@@ -10,7 +10,7 @@ const ImageGallery = ({ currentProduct }) => {
         <img
           src={currentProduct?.image?.[currIndex]}
           alt="product"
-          className=" h-[330px] w-[330px] md:h-[300px] md:w-[300px] lg:w-[335px] lg:h-[335px] xl:w-[345px] xl:h-[345px] object-contain"
+          className=" h-[350px] w-[350px]  md:h-[300px] md:w-[300px] lg:w-[335px] lg:h-[335px] xl:w-[345px] xl:h-[345px] object-contain"
         />
       </div>
 

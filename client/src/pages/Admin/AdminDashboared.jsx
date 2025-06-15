@@ -10,28 +10,28 @@ const AdminLayout = () => {
   ];
 
   return (
-    <div className="flex sm:px-11">
+    <div className="flex sm:flex-row flex-col  min-h-screen p-4">
       {/* Sidebar */}
-      <div className="md:w-64 w-16 border-r h-screen text-base border-gray-300 pt-4 flex flex-col">
+      <div className="md:w-64 w-full sm:w-30 sm:w-50 sm:border-r text-base border-gray-300 pt-4 flex flex-row sm:flex-col">
         {links.map((item, index) => (
           <NavLink
             to={item.path}
             key={index}
             className={({ isActive }) =>
-              `flex items-center py-3 px-4 gap-3 ${
+              `flex items-center py-3 px-2 sm:px-4 gap-3 ${
                 isActive
-                  ? "border-r-4 md:border-r-[6px] bg-indigo-500/10 border-[#155dfc] text-indigo-500"
+                  ? "sm:border-r-4 md:border-r-[6px] bg-indigo-500/10 border-[#155dfc] text-indigo-500"
                   : "hover:bg-gray-100/90 text-gray-700"
               }`
             }
           >
-            <span className="md:block hidden">{item.name}</span>
+            <span className="">{item.name}</span>
           </NavLink>
         ))}
       </div>
 
       {/* Main content */}
-      <div className=" px-6 flex ">
+      <div className="flex-1 px-2 sm:px-4 md:px-6 py-4 overflow-auto">
         <Outlet />
       </div>
     </div>

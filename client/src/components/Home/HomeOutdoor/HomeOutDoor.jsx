@@ -53,7 +53,7 @@ const HomeOutDoor = () => {
     },
   ];
   return (
-    <div className="sm:border-1 bg-white sm:border-[#E0E0E0]">
+    <div className="sm:border-1  bg-white sm:border-[#E0E0E0]">
       <OutDoorConsumerReusableComponent
         bgImage="/assets/image92.png"
         items={homeItems}

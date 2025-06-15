@@ -49,6 +49,7 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
+        console.log(error);
         console.log("Error while registering user");
         toast.error("Error while registering user");
         setError(true);

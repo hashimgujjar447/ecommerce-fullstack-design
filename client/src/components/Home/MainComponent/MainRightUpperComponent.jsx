@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UseContext } from "../../../Context/EcommerceContext";
 import { logout } from "../../../Api/auth.js"; // Assuming you have a logout function in your auth API
@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 const MainRightUpperComponent = () => {
   const navigate = useNavigate();
   const { user, setUser } = UseContext();
+  const [Loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSignUp = () => {
     navigate("/signup");
@@ -39,6 +41,10 @@ const MainRightUpperComponent = () => {
       });
   };
 
+  if (Loading) return <div>Loading ......</div>;
+
+  if (error) return <div>Error while logout</div>;
+
   return (
     <div className="bg-[#eaf1f9] h-[180px] lg:h-[190px] p-4 pb-5 w-full rounded-lg text-center">
       {/* Profile Image & Greeting */}
@@ -59,33 +65,33 @@ const MainRightUpperComponent = () => {
       </div>
 
       {/* Buttons */}
-      <div className="mt-4 space-y-2">
+      <div className="lg:mt-4 mt-2 space-y-2">
         {user ? (
           <>
             <button
               onClick={handleLogout}
-              className="bg-[#0d6efd] hover:bg-blue-600 text-white w-full lg:py-2 p-1 rounded-lg"
+              className="bg-[#0d6efd] cursor-pointer hover:bg-blue-600 text-white w-full lg:py-2 p-1 rounded-lg"
             >
               Logout
             </button>
             <button
               onClick={handleLogin}
-              className="text-sm underline text-blue-600 mt-1"
+              className="border border-[#dee2e7] cursor-pointer  text-[#0d6efd] w-full lg:mt-2 text-sm p-1 lg:p-2 rounded-lg bg-white"
             >
-              Log in with a different account
+              another account?
             </button>
           </>
         ) : (
           <>
             <button
               onClick={handleSignUp}
-              className="bg-[#0d6efd] hover:bg-blue-600 text-white w-full lg:py-2 p-1 rounded-lg"
+              className="bg-[#0d6efd] cursor-pointer  hover:bg-blue-600 text-white w-full lg:py-2 p-1 rounded-lg"
             >
               Join now
             </button>
             <button
               onClick={handleLogin}
-              className="border border-[#dee2e7] text-[#0d6efd] w-full lg:py-2 p-1 rounded-lg bg-white"
+              className="border border-[#dee2e7] cursor-pointer  text-[#0d6efd] w-full lg:py-2 p-1 rounded-lg bg-white"
             >
               Log in
             </button>

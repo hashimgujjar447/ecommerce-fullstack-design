@@ -52,7 +52,7 @@ const ProductSupplier = ({ currentProduct }) => {
     addToCart(item);
   };
   return (
-    <div className="border-1 border-[#DEE2E7] rounded p-4 w-full max-w-md">
+    <div className="border-1 border-[#DEE2E7] rounded p-4 sm:px-2 mb-3 w-full bg-white  sm:w-[480px] md:w-full shadow max-w-md">
       <div className="flex items-center gap-4 border-b-1 p-2 pb-4 border-[#DEE2E7]">
         <div className="bg-[#C6F3F1] h-[48px] w-[48px] rounded flex items-center justify-center">
           <img src="/assets/R.png" className="w-6 w-4" alt="R" />
@@ -81,7 +81,7 @@ const ProductSupplier = ({ currentProduct }) => {
       <ButtonComponent
         type={"button"}
         onClick={handleInquiry}
-        className="bg-blue-600 sm:inline-block hidden w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
+        className="bg-blue-600 cursor-pointer sm:inline-block hidden w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
       >
         Send inquiry
       </ButtonComponent>

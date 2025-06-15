@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { addNewProduct } from "../../Api/product.js";
+import { addNewProduct, getProducts } from "../../Api/product.js";
+import toast from "react-hot-toast";
+import { UseContext } from "../../Context/EcommerceContext.jsx";
 
 const AddNewProduct = () => {
+  const { products, setProducts } = UseContext();
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -35,21 +38,37 @@ const AddNewProduct = () => {
     formData.append("oldPrice", Number(oldPrice));
     formData.append("rating", Number(rating));
     formData.append("orders", Number(orders));
-
     formData.append("shipping", shipping);
     formData.append("inStock", inStock);
 
-    addNewProduct(formData)
-      .then((response) => {
-        console.log("Success");
-      })
-      .catch((error) => {
-        console.log("Error");
-      });
+    try {
+      const { product } = await addNewProduct(formData);
+      console.log("Success:", product);
+      toast.success("Product added successfully");
+
+      setProducts((prev) => [...prev, product]);
+      toast("Products updated");
+      console.log(products);
+
+      // ✅ Clear the form only after success
+      setCategory("");
+      setImages([]);
+      setTitle("");
+      setDescription("");
+      setPrice(0);
+      setOldPrice(0);
+      setRating(0);
+      setInStock(false);
+      setShipping("");
+      setOrders(0);
+    } catch (error) {
+      console.error("Error adding product:", error);
+      toast.error("Failed to add product");
+    }
   };
 
   return (
-    <div className="flex lg:ml-40 flex-col justify-between items-center bg-gray-100 mt-2">
+    <div className="flex  flex-col justify-between items-center bg-[#f9fafb] ">
       <form
         onSubmit={handleSubmit}
         className="md:p-10 p-4 space-y-5 max-w-xl w-full"

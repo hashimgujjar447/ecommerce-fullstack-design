@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const HomeDeal = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2025-06-15") - +new Date();
+    const difference = +new Date("2025-06-25") - +new Date();
     let timeLeft = {};
 
     if (difference > 0) {
@@ -45,7 +45,7 @@ const HomeDeal = () => {
   return (
     <div className="flex flex-col sm:flex-row">
       {/* Countdown block */}
-      <div className="p-5 pr-6  sm:border-1 sm:border-[#E0E0E0] bg-white rounded-t sm:rounded-l sm:rounded-tr-none flex flex-row gap-2 sm:gap-0 justify-between sm:justify-start sm:flex-col w-full sm:w-fit">
+      <div className="px-4 pt-4 pr-6  sm:border-1 sm:border-[#E0E0E0] bg-white rounded-t sm:rounded-l sm:rounded-tr-none flex flex-row gap-2 sm:gap-0 justify-between sm:justify-start sm:flex-col w-full sm:w-fit">
         <div>
           <h2 className="text-lg sm:text-2xl font-bold text-black">
             Deals and offers

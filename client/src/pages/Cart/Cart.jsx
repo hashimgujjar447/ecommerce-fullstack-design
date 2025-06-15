@@ -7,7 +7,7 @@ import { UseContext } from "../../Context/EcommerceContext";
 import PromoCard from "../../components/DiscountedCard";
 
 const Cart = () => {
-  const { favorite, products } = UseContext();
+  const { favorite, products, cart } = UseContext();
   // const savedItems = [
   //   {
   //     id: 1,
@@ -57,7 +57,10 @@ const Cart = () => {
   }, [favorite, products]);
 
   return (
-    <div className=" sm:px-6 md:px-5 lg:px-[50px] md:py-5 bg-[#f7fafc]">
+    <div className=" sm:px-15 md:px-5 lg:px-[50px] sm:py-5 md:py-5 bg-[#f7fafc]">
+      <h1 className="text-2xl mb-5 font-semibold md:inline-block hidden">
+        My Cart({cart.length})
+      </h1>
       <div className="flex flex-col md:flex-row md:gap-4 justify-between">
         {/* Left: Cart Items */}
         <div className="flex-1 w-full md:flex md:justify-center">
@@ -73,7 +76,7 @@ const Cart = () => {
         </div>
       </div>
       {savedItems.length > 0 && (
-        <div className="mt-5 ">
+        <div className="sm:mt-5 ">
           <SavedForLater savedItems={savedItems} />
         </div>
       )}

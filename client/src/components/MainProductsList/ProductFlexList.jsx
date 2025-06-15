@@ -26,7 +26,7 @@ const ProductFlexList = ({
   }, [totalProductsToShow]);
 
   return (
-    <div className="py-6">
+    <div className="sm:py-6 ">
       {productsToDisplay.length > 0 ? (
         productsToDisplay.map((product) => (
           <ProductCard key={product._id} product={product} />

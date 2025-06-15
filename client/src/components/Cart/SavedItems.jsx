@@ -5,7 +5,7 @@ import { UseContext } from "../../Context/EcommerceContext";
 const SavedForLater = ({ savedItems }) => {
   const { addToCart, removeFromFavorite } = UseContext();
   return (
-    <div className=" bg-[#f7fafc] md:bg-white md:border md:border-gray-200 rounded-md p-3 md:p-4 mt-6">
+    <div className=" bg-[#f7fafc] md:bg-white md:border md:border-gray-200 rounded-md p-3 md:p-4  sm:mt-6">
       <h2 className="text-lg font-semibold mb-4 text-[#1C1C1C]">
         Saved for later
       </h2>
@@ -68,10 +68,10 @@ const SavedForLater = ({ savedItems }) => {
             {/* Details Section */}
             <div className="flex flex-col  w-full">
               <div>
-                <p className="text-[#1C1C1C] font-semibold text-md">
+                <p className="text-[#1C1C1C] font-normal  text-[16px]">
                   {item.title}
                 </p>
-                <p className="text-[#1C1C1C] text-lg font-bold">
+                <p className="text-[#1C1C1C] text-[16px] font-bold">
                   ${item.price}
                 </p>
               </div>

@@ -10,13 +10,18 @@ import { IoMenu } from "react-icons/io5";
 import HeaderBottomPart from "./HeaderBottomPart.jsx";
 import { MdOutlineSearch } from "react-icons/md";
 import MobileMenu from "./MobileMenu.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { UseContext } from "../../Context/EcommerceContext.jsx";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [input, setInput] = useState("");
   const location = useLocation();
+  const { products, setProducts, setSearch, search, allProducts } =
+    UseContext();
   const isProductsPage = location.pathname === "/products";
+  const navigate = useNavigate();
 
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
 
@@ -27,6 +32,24 @@ const Header = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleInput = () => {
+    setSearch(input);
+    setInput("");
+    navigate("/products");
+    setShowMenu(false);
+  };
+
+  useEffect(() => {
+    if (search) {
+      const filteredProducts = products.filter((product) =>
+        product.title.toLowerCase().includes(search.toLowerCase()),
+      );
+      setProducts(filteredProducts);
+    } else {
+      setProducts(allProducts);
+    }
+  }, [search, allProducts]);
 
   const listItems = [
     {
@@ -79,7 +102,7 @@ const Header = () => {
 
   return (
     <header className="bg-[#FFFFFF]  ">
-      <div className="flex items-center justify-between p-4 sm:px-15 md:px-[40px]  lg:px-[50px]  sm:py-[20px]   h-[80px]">
+      <div className="flex items-center justify-between p-4 sm:px-15 md:px-[30px]  lg:px-[50px]  sm:py-[20px]   h-[80px]">
         <div className="flex items-center gap-4">
           {(isCart && isSmallScreen) || (hideMenu && isSmallScreen) ? (
             <div className="flex items-center gap-3">
@@ -135,6 +158,8 @@ const Header = () => {
             <InputComponent
               type="text"
               name="search"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               placeholder="Search..."
               className="border-2 border-[#0D6EFD] md:w-[250px] lg:w-[330px] xl:w-[450px] 2xl:w-[700px] h-[40px] rounded-l px-3  focus:outline-none transition-all"
             />
@@ -150,6 +175,7 @@ const Header = () => {
 
             <ButtonComponent
               type="button"
+              onClick={handleInput}
               className="bg-[#0D6EFD] border-2 border-[#0D6EFD] h-[40px]   text-white px-4 rounded-r hover:bg-blue-600 transition-colors"
             >
               Search
@@ -188,7 +214,7 @@ const Header = () => {
         </div>
       </div>
       {!isProductDetailsPage && !isCart && (
-        <div className="md:hidden   p-4 sm:px-15 md:px-[40px]  lg:px-[50px] ">
+        <div className="md:hidden  px-4  sm:px-15 md:px-[40px]  lg:px-[50px] ">
           <div className=" relative border-1 border-[#DEE2E7] bg-[#F7FAFC] rounded-md ">
             <MdOutlineSearch className="text-[#8B96A5] text-xl absolute left-4 top-3" />
             <InputComponent

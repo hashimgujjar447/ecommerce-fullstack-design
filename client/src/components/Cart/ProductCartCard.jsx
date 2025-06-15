@@ -35,7 +35,7 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
       <div className="block relative md:hidden bg-white  p-4 h-[100px] md:h-full w-full md:max-w-[500px]">
         {/* Product Info Row */}
         <div className="flex gap-3">
-          <div className="w-[70px] h-[70px] bg-[#E0E0E0] flex justify-center items-center border border-[#DEE2E7] p-2 rounded">
+          <div className="w-[70px] h-[70px] bg-[#f7f7f7] flex justify-center items-center border border-[#E0E0E0] p-2 rounded">
             {product?.image ? (
               <img
                 src={product?.image[0]}
@@ -47,7 +47,7 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
             )}
           </div>
           <div className="flex flex-col gap-1 flex-1">
-            <h2 className="text-[14px] text-[#1C1C1C] font-normal leading-tight">
+            <h2 className="text-[14px] text-[#1C1C1C] font-normal mr-3 leading-tight">
               {product?.title}
             </h2>
             <p className="text-xs text-[#606060]">Size: medium, Color: blue</p>
@@ -60,14 +60,14 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
           <div className="flex items-center border border-gray-300 rounded overflow-hidden w-fit">
             <button
               onClick={() => handleQuantityChange("decrement")}
-              className="px-3 py-1 text-lg font-medium border-r border-gray-300"
+              className="px-3 py-1 text-lg font-medium border-r text-[#8b96a5] border-gray-300"
             >
               −
             </button>
             <div className="px-4 py-1 text-sm">{selectedQuantity}</div>
             <button
               onClick={() => handleQuantityChange("increment")}
-              className="px-3 py-1 text-lg font-medium border-l border-gray-300"
+              className="px-3 py-1 text-lg font-medium border-l text-[#8b96a5] border-gray-300"
             >
               +
             </button>
@@ -132,13 +132,13 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
           <div className="flex gap-3 mt-2">
             <ButtonComponent
               onClick={onDelete}
-              className="text-red-500 p-2 px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-red-600 text-sm font-medium"
+              className="text-red-500 p-2 px-1 lg:px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-red-600 text-sm font-medium"
             >
               Delete from cart
             </ButtonComponent>
             <ButtonComponent
               onClick={onFavorite}
-              className="text-blue-500 p-2 px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-blue-600 text-sm font-medium"
+              className="text-blue-500 p-2 px-1 lg:px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-blue-600 text-sm font-medium"
             >
               Add to favorite
             </ButtonComponent>

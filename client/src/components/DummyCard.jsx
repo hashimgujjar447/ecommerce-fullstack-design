@@ -5,16 +5,16 @@ const DummyCard = ({ product, isInfo = false }) => {
   return (
     <Link
       to={`/products/productInfo/${product.id || product._id}`}
-      className={`flex flex-col gap-2 ${
+      className={`flex flex-col sm:gap-2 ${
         isInfo
           ? "w-[200px]"
           : "w-[160px] min-w-[150px] bg-white border border-[#DEE2E7]"
-      } h-full sm:p-4 p-2  rounded-md mb-4 relative`}
+      } h-full sm:p-4 p-2 bg-white border-1 border-gray-300 sm:border-none  rounded-md mb-4 relative`}
     >
       {/* Image */}
       <div
         className={`flex items-center w-full h-full ${
-          isInfo ? "bg-[#EEEEEE] px-2" : ""
+          isInfo ? "sm:bg-[#EEEEEE] px-2" : ""
         } justify-center`}
       >
         {product.image ? (
@@ -33,12 +33,18 @@ const DummyCard = ({ product, isInfo = false }) => {
       {/* Price and Title */}
       {isInfo ? (
         <>
-          <h2 className="text-[16px] text-[#606060] truncate">
+          <h2 className="text-[16px] hidden sm:inline-block text-[#606060] truncate">
             {product.title}
           </h2>
-          <span className="text-[#1C1C1C] text-[20px] font-semibold">
+          <span className="text-[#1C1C1C] hidden sm:inline text-[20px] font-semibold">
             ${product.price}
           </span>
+          <span className="text-[#1C1C1C] sm:hidden text-[20px] font-semibold">
+            ${product.price}
+          </span>
+          <h2 className="text-[16px] sm:hidden text-[#606060] truncate">
+            {product.title}
+          </h2>
         </>
       ) : (
         <>

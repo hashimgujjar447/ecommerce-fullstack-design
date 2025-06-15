@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ButtonComponent from "../Button";
 import { UseContext } from "../../Context/EcommerceContext";
 
 const ProductDetail = ({ currentProduct }) => {
   const { addToCart } = UseContext();
-  if (!currentProduct) return <p>Loading...</p>;
+  const [isMobile420, setIsMobile420] = useState(false);
 
   const handleSmQuery = () => {
     console.log("Inquiry sent for product:", currentProduct);
+
     const item = {
       id: currentProduct._id,
       price: currentProduct.price,
@@ -17,8 +18,27 @@ const ProductDetail = ({ currentProduct }) => {
     addToCart(item);
     alert("Inquiry sent! Check your cart.");
   };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 420px)");
+
+    const handleChange = (e) => {
+      setIsMobile420(e.matches);
+    };
+
+    // Set initial state
+    setIsMobile420(mediaQuery.matches);
+
+    // Listen for changes
+    mediaQuery.addEventListener("change", handleChange);
+
+    // Cleanup
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  if (!currentProduct) return <p>Loading...</p>;
   return (
-    <div className="max-w-md mx-auto px-2 lg:px-4  bg-white">
+    <div className="max-w-md mx-auto px-4 md:px-1   bg-white">
       <div className=" items-center gap-1 sm:flex hidden">
         <img src="/assets/greenTick.png" className="w-[18px] h-[14px]" />
         <p className="text-green-600  text-[16px] mb-1">In stock</p>
@@ -26,23 +46,27 @@ const ProductDetail = ({ currentProduct }) => {
       <h2 className="text-lg font-semibold  sm:inline-block hidden mb-2">
         {currentProduct?.title}
       </h2>
-      <div className="flex items-center text-sm text-gray-600 space-x-2 lg:space-x-2 mb-3">
+      <div className="md:flex  hidden items-center text-sm text-gray-600 space-x-2 lg:space-x-2 mb-3">
         <div className="text-orange-500 text[12px]  text-[16px] flex items-center gap-1  lg:text-xl ">
           ★★★★<span className="text-[#D4CDC5] ">★</span> 9.3
         </div>
-        <span className="text-[#D4CDC5] text-lg lg:text-xl">•</span>
+        <span className="text-[#D4CDC5] text-lg hidden lg:inline lg:text-xl">
+          •
+        </span>
         <div className="flex items-center gap-1 lg:gap-2">
           <img
             src="/assets/review.png"
             alt="review "
-            className="w-[15px] h-[15px] lg:w-[18px] lg:h-[18px]"
+            className="w-[10px] h-[15px] lg:w-[18px] lg:h-[18px]"
           />
           <span className="text-[#787A80] text[12px] lg:text-[16px]">
             {" "}
             32 reviews
           </span>
         </div>
-        <span className="text-[#D4CDC5] text-lg lg:text-xl">•</span>
+        <span className="text-[#D4CDC5] text-lg  hidden lg:inline lg:text-xl">
+          •
+        </span>
         <div className="flex items-center gap-1 lg:gap-2">
           <img
             src="/assets/bucket.png"
@@ -54,6 +78,56 @@ const ProductDetail = ({ currentProduct }) => {
           </span>
         </div>
       </div>
+      <div
+        className={`flex items-center ${
+          isMobile420 ? "justify-between" : ""
+        } md:hidden items-center text-sm text-gray-600 space-x-4 lg:space-x-2 mb-3`}
+      >
+        <div className="text-orange-500  text-xl flex items-center gap-1  lg:text-xl ">
+          ★★★★<span className="text-[#D4CDC5] ">★</span> 9.3
+        </div>
+        <span
+          className={`text-[#D4CDC5] ${
+            isMobile420 ? "hidden" : "inline"
+          } text-lg lg:text-xl`}
+        >
+          •
+        </span>
+        <div
+          className={` items-center gap-1 ${
+            isMobile420 ? "hidden" : "flex"
+          } lg:gap-2`}
+        >
+          <img
+            src="/assets/review.png"
+            alt="review "
+            className="w-[20px] h-[20px] lg:w-[18px] lg:h-[18px]"
+          />
+          <span className="text-[#787A80] text[16px] "> 32 reviews</span>
+        </div>
+        <span
+          className={`text-[#D4CDC5] ${
+            isMobile420 ? "hidden" : "inline"
+          } text-lg lg:text-xl`}
+        >
+          •
+        </span>
+        <div className="flex items-center gap-1 lg:gap-2">
+          <img
+            src="/assets/bucket.png"
+            alt="review "
+            className="w-[20px] h-[20px] "
+          />
+          <span
+            className={`text-[#787A80] ${
+              isMobile420 ? "text-xl" : "text-[16px] "
+            } `}
+          >
+            154 sold
+          </span>
+        </div>
+      </div>
+
       <h2 className="text-lg font-semibold sm:hidden inline-block mb-2">
         {currentProduct?.title}
       </h2>
@@ -95,18 +169,18 @@ const ProductDetail = ({ currentProduct }) => {
         </div>
       </div>
 
-      <div className="text-sm text-gray-700 space-y-2 sm:inline-block hidden">
-        <div className="flex border-b border-[#DEE2E7] pb-4 mb-2">
+      <div className="text-sm text-gray-700 space-y-4 sm:inline-block hidden">
+        <div className="flex border-b border-[#E0E0E0] pb-4 mb-3">
           <p className="text-[16px] text-[#8B96A5] min-w-[120px]">Price:</p>
           <p className="text-[16px] text-[#505050]">Negotiable</p>
         </div>
 
-        <div className="border-b border-[#DEE2E7] pb-4 mb-2">
-          <div className="flex mb-2">
+        <div className="border-b border-[#E0E0E0] pb-4 mb-2">
+          <div className="flex mb-3">
             <p className="text-[16px] text-[#8B96A5] min-w-[120px]">Type:</p>
             <p className="text-[16px] text-[#505050]">Classic shoes</p>
           </div>
-          <div className="flex mb-2">
+          <div className="flex mb-3">
             <p className="text-[16px] text-[#8B96A5] min-w-[120px]">
               Material:
             </p>
@@ -118,8 +192,8 @@ const ProductDetail = ({ currentProduct }) => {
           </div>
         </div>
 
-        <div>
-          <div className="flex mb-2">
+        <div className="border-b border-[#E0E0E0] pb-4 mb-2">
+          <div className="flex mb-3">
             <p className="text-[16px] text-[#8B96A5] min-w-[120px]">
               Customization:
             </p>
@@ -127,7 +201,7 @@ const ProductDetail = ({ currentProduct }) => {
               Customized logo and design custom packages
             </p>
           </div>
-          <div className="flex mb-2">
+          <div className="flex mb-3">
             <p className="text-[16px] text-[#8B96A5] min-w-[120px]">
               Protection:
             </p>
@@ -163,11 +237,13 @@ const ProductDetail = ({ currentProduct }) => {
 
       {/* Description (only on mobile) */}
       <div className="mt-4 sm:hidden">
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600 text-[16px] font-normal">
           These modern plastic shoes are durable, stylish, and perfect for any
           outdoor activity.
         </p>
-        <button className="text-blue-600 text-sm mt-1">Read more</button>
+        <button className="text-blue-600 text-sm mt-1 text-[16px] font-semibold">
+          Read more
+        </button>
       </div>
     </div>
   );

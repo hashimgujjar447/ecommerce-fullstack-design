@@ -2,6 +2,7 @@ import React from "react";
 import { UseContext } from "../../Context/EcommerceContext";
 import { deleteProduct } from "../../Api/product.js";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const ListedProducts = () => {
   const { products, setProducts } = UseContext();
@@ -12,6 +13,7 @@ const ListedProducts = () => {
       const response = await deleteProduct(id);
       if (response) {
         setProducts((prev) => prev.filter((product) => product._id !== id));
+        toast.success("Product deleted successfully from database");
       }
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -20,7 +22,7 @@ const ListedProducts = () => {
 
   return (
     <div className="flex-1 pb-10 flex flex-col justify-between">
-      <div className="w-full md:p-10 p-4">
+      <div className="w-full md:px-10 px-4">
         <h2 className="pb-4 text-xl font-semibold text-gray-800">
           All Products
         </h2>
@@ -88,11 +90,14 @@ const ListedProducts = () => {
                       ) : (
                         <button
                           className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
-                          onClick={() =>
+                          onClick={() => {
                             setProducts((prev) =>
                               prev.filter((p) => p._id !== product._id),
-                            )
-                          }
+                            );
+                            toast.success(
+                              "Product deleted successfully from local",
+                            );
+                          }}
                         >
                           Delete (Local)
                         </button>

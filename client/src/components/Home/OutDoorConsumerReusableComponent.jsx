@@ -21,7 +21,7 @@ const OutDoorConsumerReusableComponent = ({ bgImage, items, text }) => {
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row w-full border-b-1 border-[#E0E0E0] overflow-hidden">
+    <div className="flex  flex-col sm:flex-row w-full border-b-1 border-[#E0E0E0] overflow-hidden">
       {/* Left section */}
       <div
         className=" py-2 sm:p-5  sm:border-1 sm:border-[#E0E0E0] sm:min-h-[240px] w-full sm:w-[290px] flex-shrink-0 sm:rounded-l sm:rounded-tr-none flex flex-col justify-between sm:bg-cover sm:bg-center"
@@ -34,7 +34,7 @@ const OutDoorConsumerReusableComponent = ({ bgImage, items, text }) => {
           backgroundPosition: "center",
         }}
       >
-        <div className="bg-white/80 p-2 rounded sm:bg-transparent sm:p-0">
+        <div className="bg-white/80 p-2 px-4 rounded sm:bg-transparent sm:p-0">
           <h2 className="text-[20px] hidden sm:block font-bold text-[#1C1C1C] leading-tight">
             {text.includes("Consumer") ? (
               <>

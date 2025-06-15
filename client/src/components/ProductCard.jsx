@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
       to={`productInfo/${product._id}`}
       className={`flex ${
         isGridView ? "flex-col" : "flex-row"
-      } gap-4 sm:p-4 p-2 bg-white w-full  border border-[#DEE2E7] rounded-md mb-4 relative `}
+      } gap-3 sm:gap-4 sm:p-4 p-2 bg-white w-full  border border-[#DEE2E7] rounded-md mb-4 relative `}
     >
       <div
         className={` ${
@@ -84,7 +84,7 @@ const ProductCard = ({ product }) => {
             <span className="text-[#DEE2E7] inline sm:hidden">•</span>
             {/* Orders */}
             <span className="text-[#8B96A5] text-[14px]  inline sm:hidden">
-              {product.orders} orders
+              {product.orders} order
             </span>
             {/* Dot separator */}
           </div>

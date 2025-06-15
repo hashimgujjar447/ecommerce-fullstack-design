@@ -34,31 +34,29 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[15px] pt-[20px]">
-        <div className="   ">
-          <HomeDeal />
-        </div>
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[10px] sm:py-[15px] pt-[20px]">
+        <HomeDeal />
       </div>
-      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[10px]">
+      <div className="sm:px-15  md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-[10px]">
         <HomeOutDoor />
       </div>
-      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-3">
+      <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-[10px]">
         <HomeElectronics />
       </div>
       <div className="sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pt-6 ">
         <HomeSupplierCard />
       </div>
-      <div className=" px-3 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-4 ">
+      <div className=" px-4 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-4 ">
         <HomeRecommended />
       </div>
-      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-4">
+      <div className=" px-4 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] py-4">
         <ExtraServices />
       </div>
 
-      <div className=" px-2 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pb-4">
+      <div className=" px-4 sm:px-15 md:px-[40px] bg-[#f7fafc] lg:px-[50px] pb-4">
         <HomeSuppliers />
       </div>
-      <div className="   bg-[#f7fafc] pt-3">
+      <div className="    bg-[#f7fafc] pt-3">
         <NewsLetter />
       </div>
     </div>

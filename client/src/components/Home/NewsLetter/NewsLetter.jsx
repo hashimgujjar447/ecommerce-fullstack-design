@@ -3,7 +3,7 @@ import ButtonComponent from "../../Button";
 
 const NewsLetter = () => {
   return (
-    <section className="bg-[#EFF2F4]">
+    <section className="bg-[#EFF2F4]  sm:px-0">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
         <div className="mx-auto max-w-screen-md sm:text-center">
           <h2 className="mb-4 text-[20px]  font-semibold text-gray-900 ">
@@ -44,7 +44,7 @@ const NewsLetter = () => {
               <div>
                 <ButtonComponent
                   type="submit"
-                  className="bg-gradient-to-r ml-3 rounded-lg from-[#127FFF] to-[#0067FF] text-white px-6 py-3 border-0 outline-none"
+                  className="bg-gradient-to-r sm:ml-3 rounded-lg from-[#127FFF] to-[#0067FF] text-white px-6 py-3 border-0 outline-none"
                 >
                   Subscribe
                 </ButtonComponent>
