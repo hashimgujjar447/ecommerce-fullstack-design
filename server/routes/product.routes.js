@@ -6,11 +6,13 @@ import { uploadToCloudinary } from "../utils/Cloudinary.js";
 
 import fs from "fs";
 import AppError from "../utils/AppError.js";
+import { url } from "inspector";
 
 const router = Router();
 
 router.post("/product", upload.array("images", 5), async (req, res) => {
   try {
+    console.log(req?.files);
     console.log(req.body);
     const urls = [];
     console.log(req.files);
@@ -19,7 +21,7 @@ router.post("/product", upload.array("images", 5), async (req, res) => {
       urls.push(result.url);
       fs.unlink(file.path, () => {});
     }
-
+    console.log(urls);
     const {
       title,
       price,
