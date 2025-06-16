@@ -3,10 +3,13 @@ import { UseContext } from "../../Context/EcommerceContext";
 import { deleteProduct } from "../../Api/product.js";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const ListedProducts = () => {
   const { products, setProducts } = UseContext();
   const navigate = useNavigate();
+  const [productList, setProductList] = useState(null);
 
   const handleDeleteFromDB = async (id) => {
     try {
@@ -19,6 +22,10 @@ const ListedProducts = () => {
       console.error("Error deleting product:", error);
     }
   };
+
+  useEffect(() => {
+    setProductList([...products]);
+  }, [products]);
 
   return (
     <div className="flex-1 pb-10 flex flex-col justify-between">
@@ -40,8 +47,8 @@ const ListedProducts = () => {
             </thead>
 
             <tbody className="text-gray-700">
-              {products
-                .slice()
+              {productList
+                ?.slice()
                 .reverse()
                 .map((product, index) => (
                   <tr key={index} className="border-t">

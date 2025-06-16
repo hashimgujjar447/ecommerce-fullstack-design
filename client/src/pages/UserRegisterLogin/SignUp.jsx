@@ -4,7 +4,7 @@ import { register } from "../../Api/auth.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { UseContext } from "../../Context/EcommerceContext.jsx";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
   const [userData, setUserData] = useState({
@@ -62,19 +62,9 @@ const SignUp = () => {
     });
   };
 
-  {
-    error && (
-      <p className="text-red-500 text-sm mt-2">Error while registering user</p>
-    );
-  }
-  {
-    loading && (
-      <p className="text-gray-500 text-sm mt-2">Registering user...</p>
-    );
-  }
-
   return (
     <div className="flex  justify-center items-center min-h-screen p-5  w-full bg-gray-100">
+      <Toaster position="top-right" reverseOrder={false} />
       <form
         onSubmit={handleFormSubmit}
         className="max-w-96 w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white"

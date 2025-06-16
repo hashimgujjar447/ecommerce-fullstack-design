@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { fetchUser, login } from "../../Api/auth.js";
 import { useNavigate } from "react-router-dom";
 import { UseContext } from "../../Context/EcommerceContext.jsx";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -16,50 +16,40 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    login(userData)
-      .then((response) => {
-        if (response) {
-          // Handle successful login, e.g., redirect to home page or show success message
-          console.log("Login successful:", response);
-          setTimeout(async () => {
-            try {
-              const user = await fetchUser(); // 🔄 fresh user from backend
-              setUser(user); // ✅ context update
-              toast.success("Login successful!");
-              navigate("/");
-            } catch (err) {
-              console.error("Failed to fetch user after login", err);
-              toast.error("Invalid credentials, please try again.");
-              setError(true);
-            } finally {
-              setLoading(false);
-            }
-          }, 100);
-        }
-      })
-      .catch((error) => {
-        // Handle login error, e.g., show error message
-        console.error("Login failed:", error);
-        setError(true);
-      });
-    setUserData({
-      email: "",
-      password: "",
-    });
-  };
+    setError(false); // reset error
 
-  {
-    error && <p className="text-red-500 text-sm mt-2">{error}</p>;
-  }
-  {
-    loading && <p className="text-gray-500 text-sm mt-2">Logging in...</p>;
-  }
+    try {
+      const response = await login(userData);
+
+      if (response) {
+        try {
+          const user = await fetchUser(); // get fresh user
+          setUser(user);
+          navigate("/");
+          toast.success("Login successful!");
+          // ✅ navigate after success only
+        } catch (err) {
+          toast.error("Failed to fetch user. Please try again.");
+          setError(true);
+        }
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      toast.error("Invalid credentials, please try again."); // ✅ show toast before anything
+      setError(true);
+    } finally {
+      setLoading(false);
+      setUserData({ email: "", password: "" });
+    }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen p-5 w-full bg-gray-100">
+      <Toaster position="top-right" reverseOrder={false} />
+
       <form
         onSubmit={handleFormSubmit}
         className="max-w-96 w-full text-center  border border-gray-300/60 rounded-2xl px-8 bg-white"

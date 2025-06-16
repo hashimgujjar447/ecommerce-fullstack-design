@@ -10,7 +10,7 @@ const AdminLayout = () => {
   ];
 
   return (
-    <div className="flex sm:flex-row flex-col  min-h-screen p-4">
+    <div className="flex sm:flex-row flex-col  min-h-screen px-4">
       {/* Sidebar */}
       <div className="md:w-64 w-full sm:w-30 sm:w-50 sm:border-r text-base border-gray-300 pt-4 flex flex-row sm:flex-col">
         {links.map((item, index) => (

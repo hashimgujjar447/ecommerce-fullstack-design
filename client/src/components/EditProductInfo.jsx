@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProducts } from "../Api/product";
 import { editProduct } from "../Api/product"; // make sure this is the correct import
 import toast from "react-hot-toast";
+import { UseContext } from "../Context/EcommerceContext";
 
 const EditProductInfo = () => {
   const [product, setProduct] = useState(null);
@@ -17,6 +18,8 @@ const EditProductInfo = () => {
   const [shipping, setShipping] = useState("");
   const [inStock, setInStock] = useState(false);
   const { id } = useParams();
+  const { setProducts } = UseContext();
+  const navigate = useNavigate();
 
   const handleImageChange = (e, index) => {
     const files = [...images];
@@ -53,10 +56,14 @@ const EditProductInfo = () => {
     formData.append("inStock", inStock);
 
     try {
-      const response = await editProduct(product._id, formData);
-      console.log("Success", response);
+      const { data } = await editProduct(product._id, formData);
+
       toast.success("Product data updated successfully");
+      setProducts((prev) =>
+        prev.map((item) => (item._id === data._id ? data : item)),
+      );
     } catch (error) {
+      toast.error("Issue while editing product");
       console.log("Error", error);
     }
 
@@ -98,9 +105,13 @@ const EditProductInfo = () => {
       setOrders(product.orders || 0);
       setShipping(product.shipping || "");
       setInStock(product.inStock || false);
-      setImages(product.images || []);
+      setImages(product.image || []);
     }
-  }, [product]);
+  }, [product, id]);
+
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
 
   return (
     <div className="flex flex-col justify-between items-center  bg-gray-100 mt-2">

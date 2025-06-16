@@ -15,6 +15,7 @@ const App = () => {
     <div>
       {!hideLayout && <Header />}
       <Toaster position="top-right" reverseOrder={false} />
+
       <main>
         <Outlet />
       </main>

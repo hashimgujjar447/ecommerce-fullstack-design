@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ButtonComponent from "../Button";
 import { UseContext } from "../../Context/EcommerceContext";
+import OrderConfirmCard from "./OrderConfirmCard.jsx";
 
 const OrderSummaryCard = () => {
   const { cart } = UseContext();
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
+  const [smallScreenTotal, setSmallScreenTotal] = useState(0);
+  const { orderConfirm, setOrderConfirm } = UseContext();
 
   function calculateOrder() {
     const cartSubTotal = cart.reduce((prev, curr) => {
@@ -14,19 +17,34 @@ const OrderSummaryCard = () => {
 
     setSubTotal(cartSubTotal);
     if (cartSubTotal > 0) {
+      let smallTotalCalculated = cartSubTotal + 10 + 14;
       let totalCalculatedResult = cartSubTotal + 14;
       if (cartSubTotal > 99) {
         totalCalculatedResult = cartSubTotal + 14 - 60;
       }
 
-      return setTotal(totalCalculatedResult);
+      setSmallScreenTotal(smallTotalCalculated);
+      setTotal(totalCalculatedResult);
+      return;
     }
     setTotal(0);
+    setSmallScreenTotal(0);
   }
 
   useEffect(() => {
     calculateOrder();
   }, [cart]);
+
+  const handleOrderConfirm = () => {
+    if (cart.length > 0) {
+      setOrderConfirm({
+        orderId: "ORD-123456",
+        amount: total,
+        shippingAddress: "123 Main St, Lahore, Pakistan",
+        estimatedDelivery: "June 20, 2025",
+      });
+    }
+  };
 
   return (
     <div className="w-full md:max-w-[230px]  lg:max-w-[300px]  bg-white sm:rounded-md sm:shadow-sm p-4 border border-[#DEE2E7]">
@@ -44,7 +62,7 @@ const OrderSummaryCard = () => {
           <span className="hidden sm:inline">Discount:</span>
           <span className="sm:hidden">Shipping:</span>
           <span className="hidden sm:inline">-$60</span>
-          <span>$10</span>
+          <span className="sm:hidden">$10</span>
         </div>
         <div className="flex justify-between">
           <span>Tax:</span>
@@ -58,10 +76,14 @@ const OrderSummaryCard = () => {
 
       <div className="flex justify-between font-semibold text-[#1C1C1C] text-base mb-4">
         <span>Total:</span>
-        <span>${total}</span>
+        <span className="hidden sm:inline">${total}</span>
+        <span className="sm:hidden">{smallScreenTotal}</span>
       </div>
 
-      <ButtonComponent className="w-full bg-[#00B517] hover:bg-green-600 text-white py-2 rounded-lg font-medium">
+      <ButtonComponent
+        onClick={handleOrderConfirm}
+        className="w-full bg-[#00B517] hover:bg-green-600 text-white py-2 rounded-lg font-medium"
+      >
         Checkout ({cart.length} items)
       </ButtonComponent>
     </div>

@@ -22,9 +22,12 @@ const EcommerceContext = createContext({
   allProducts: [],
   setAllProducts: () => {},
   setProducts: () => {},
+  orderConfirm: null,
+  setOrderConfirm: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
+  const [orderConfirm, setOrderConfirm] = useState(null);
   const [isLoadingUser, setIsLoadingUser] = useState(true);
   const [isGridView, setIsGridView] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false); // Assuming you might want to manage admin state
@@ -766,7 +769,6 @@ export const ContextProvider = ({ children }) => {
 
   const removeAllCart = () => {
     setCart([]);
-    toast.success("All products removed from cart successfully 🗑️");
   };
 
   useEffect(() => {
@@ -848,6 +850,9 @@ export const ContextProvider = ({ children }) => {
         setSearch,
         allProducts,
         setAllProducts,
+        orderConfirm,
+        setOrderConfirm,
+        setCart,
       }}
     >
       {children}

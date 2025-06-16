@@ -25,13 +25,14 @@ import ProductEdit from "./pages/ProductEdit/ProductEdit.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/" element={<App />}>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/productInfo/:id" element={<ProductInfo />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+
         <Route
           path="admin"
           element={

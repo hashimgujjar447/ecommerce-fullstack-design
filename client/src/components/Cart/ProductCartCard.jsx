@@ -80,7 +80,7 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
 
         {/* Dots Icon + Menu */}
         <div
-          className="w-6 h-6 absolute top-4 right-4 flex justify-center items-center cursor-pointer"
+          className="w-6 h-6 absolute top-4 right-1 flex justify-center items-center cursor-pointer"
           onClick={() => setMenu(!menu)}
         >
           <img src="/assets/dots.png" alt="dots icon" className="" />

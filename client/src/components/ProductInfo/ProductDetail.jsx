@@ -64,7 +64,7 @@ const ProductDetail = ({ currentProduct }) => {
             32 reviews
           </span>
         </div>
-        <span className="text-[#D4CDC5] text-lg  hidden lg:inline lg:text-xl">
+        <span className="text-[#D4CDC5] text-lg  hidden xlg:inline lg:text-xl">
           •
         </span>
         <div className="flex items-center gap-1 lg:gap-2">
