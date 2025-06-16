@@ -13,7 +13,7 @@ This project is a fullstack ecommerce application built to deliver a seamless sh
 
 ## Tech Stack
 
-- **Frontend:** React.js, Redux Toolkit, CSS Modules
+- **Frontend:** React.js, Context api, tailwind css
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB (Mongoose ODM)
 - **Authentication:** JWT (JSON Web Tokens)
