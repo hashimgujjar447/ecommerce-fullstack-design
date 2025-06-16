@@ -4,7 +4,7 @@ import path from "path";
 // Store image in local tmp folder before sending to Cloudinary
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // create this folder
+    cb(null, "src/uploads/"); // create this folder
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
