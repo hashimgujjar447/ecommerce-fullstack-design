@@ -81,10 +81,9 @@ const ProductList = () => {
             <Sidebar />
           </aside>
 
-          {/* Main content scrolls while sidebar sticks */}
           <main className="flex-1 min-w-0">
             <div>
-              <MainProductLeftTop />
+              <MainProductLeftTop filters={activeFilters} />
             </div>
             <div className="p-2 px-3  sm:p-4  bg-[#f7fafc] overflow-x-auto whitespace-nowrap w-full scrollbar-hide">
               <FilterTags

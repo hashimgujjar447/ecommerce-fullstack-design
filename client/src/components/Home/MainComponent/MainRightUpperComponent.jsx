@@ -5,7 +5,7 @@ import { logout } from "../../../Api/auth.js"; // Assuming you have a logout fun
 import toast from "react-hot-toast";
 const MainRightUpperComponent = () => {
   const navigate = useNavigate();
-  const { user, setUser } = UseContext();
+  const { user, setUser, setCart, setFavorite } = UseContext();
   const [Loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -25,6 +25,12 @@ const MainRightUpperComponent = () => {
           try {
             setUser(null); // Clear user context
             toast.success("Logout successful!");
+            if (user) {
+              localStorage.removeItem(`cart_${user._id}`);
+              localStorage.removeItem(`favorite_${user._id}`);
+            }
+            setFavorite([]);
+            setCart([]);
             navigate("/");
           } catch (err) {
             console.error("Failed to fetch user after login", err);
@@ -43,10 +49,8 @@ const MainRightUpperComponent = () => {
 
   if (Loading) return <div>Loading ......</div>;
 
-  if (error) return <div>Error while logout</div>;
-
   return (
-    <div className="bg-[#eaf1f9] h-[180px] lg:h-[190px] p-4 pb-5 w-full rounded-lg text-center">
+    <div className="bg-[#eaf1f9] h-[170px] lg:h-[190px]  md:p-2 lg:p-4 pb-5 w-full rounded-lg text-center">
       {/* Profile Image & Greeting */}
       <div className="flex justify-center gap-4 items-start mb-4">
         <div className="bg-[#c7e1ff] h-[35px] w-[35px]  lg:w-[50px] lg:h-[50px] rounded-full flex justify-center items-end">

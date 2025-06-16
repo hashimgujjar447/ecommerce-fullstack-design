@@ -10,6 +10,7 @@ const ListedProducts = () => {
   const { products, setProducts } = UseContext();
   const navigate = useNavigate();
   const [productList, setProductList] = useState(null);
+  const [inStock, setInStock] = useState(false);
 
   const handleDeleteFromDB = async (id) => {
     try {
@@ -70,6 +71,22 @@ const ListedProducts = () => {
                           type="checkbox"
                           className="sr-only peer"
                           defaultChecked={product.inStock}
+                          value={inStock}
+                          onChange={(e) => {
+                            setInStock(e.target.checked);
+                            setProducts((prev) =>
+                              prev.map((p) =>
+                                p._id === product._id
+                                  ? { ...p, inStock: e.target.checked }
+                                  : p,
+                              ),
+                            );
+                            toast.success(
+                              `Product ${
+                                e.target.checked ? "in stock" : "out of stock"
+                              }`,
+                            );
+                          }}
                         />
                         <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200"></div>
                         <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
@@ -80,7 +97,7 @@ const ListedProducts = () => {
                       {product._id.length === 24 ? (
                         <div className="flex items-center gap-2">
                           <button
-                            className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 ml-1 rounded"
+                            className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white text-xs px-3 py-1 ml-1 rounded"
                             onClick={() =>
                               navigate(`/product/edit/${product._id}`)
                             }
@@ -88,7 +105,7 @@ const ListedProducts = () => {
                             Edit
                           </button>
                           <button
-                            className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
+                            className="bg-red-500 cursor-pointer  hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
                             onClick={() => handleDeleteFromDB(product._id)}
                           >
                             Delete

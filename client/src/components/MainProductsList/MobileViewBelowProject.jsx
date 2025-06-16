@@ -7,7 +7,7 @@ const MobileViewBelowProject = () => {
   return (
     <div className="flex items-center gap-3 sm:gap-2">
       {products.map((product) => {
-        return <DummyCard key={product.id} product={product} />;
+        return <DummyCard key={product._id} product={product} />;
       })}
     </div>
   );

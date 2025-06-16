@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SimpleCard = ({ product }) => {
   return (
     <Link
-      to={`/products/productInfo/${product.id}`}
+      to={`/products/productInfo/${product._id}`}
       className="flex  items-center w-[300px]  bg-white  rounded-md p-3 gap-2"
     >
       {/* Image */}

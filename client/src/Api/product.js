@@ -4,7 +4,6 @@ export const getProducts = async () => {
   try {
     const response = await api.get("/products");
     if (response.status === 200) {
-      console.log("Products fetched successfully:", response.data);
       return response.data?.data || [];
     }
   } catch (error) {

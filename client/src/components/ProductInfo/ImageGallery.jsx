@@ -30,7 +30,6 @@ const ImageGallery = ({ currentProduct }) => {
               onClick={() => {
                 // Logic to change the main image can be added here
                 setCurrIndex(index);
-                console.log("Image clicked:", img);
               }}
             />
           </div>

@@ -48,7 +48,6 @@ const AddNewProduct = () => {
 
       setProducts((prev) => [...prev, product]);
       toast("Products updated");
-      console.log(products);
 
       // ✅ Clear the form only after success
       setCategory("");
@@ -223,7 +222,7 @@ const AddNewProduct = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="px-8 py-2.5 bg-indigo-500 text-white font-medium rounded"
+          className="px-8 py-2.5 bg-[#0d6efd] cursor-pointer text-white font-medium rounded"
         >
           ADD
         </button>

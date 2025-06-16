@@ -256,7 +256,7 @@ const EditProductInfo = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="px-8 py-2.5 bg-indigo-500 text-white font-medium rounded"
+          className="px-8 py-2.5 bg-[#0d6efd] text-white font-medium rounded"
         >
           Update
         </button>

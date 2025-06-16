@@ -14,10 +14,9 @@ import PromoCard from "../../components/DiscountedCard";
 const ProductInfo = () => {
   const { products } = UseContext();
   const { id } = useParams();
-  console.log(id);
 
   const [currentProduct, setCurrentProduct] = useState(null);
-  console.log(products);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -29,10 +28,6 @@ const ProductInfo = () => {
       setCurrentProduct(elem);
     }
   }, [id, products]);
-
-  useEffect(() => {
-    console.log(currentProduct);
-  }, [currentProduct]);
 
   return (
     <div className="sm:px-15 flex flex-col   md:px-[25px] sm:bg-[#f7fafc] lg:px-[50px] sm:pt-[15px] sm:pt-3">
@@ -77,7 +72,7 @@ const ProductInfo = () => {
           <h2 className="text-xl  p-2 font-semibold">You may like</h2>
           <div className="flex flex-col">
             {products.slice(0, 6).map((product) => (
-              <SimpleCard key={product.id} product={product} />
+              <SimpleCard key={product._id} product={product} />
             ))}
           </div>
         </div>
@@ -94,7 +89,7 @@ const ProductInfo = () => {
             products
               .slice(0, 5)
               .map((product) => (
-                <DummyCard key={product.id} product={product} isInfo={true} />
+                <DummyCard key={product._id} product={product} isInfo={true} />
               ))}
         </div>
       </div>

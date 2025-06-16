@@ -777,7 +777,6 @@ export const ContextProvider = ({ children }) => {
         if (Array.isArray(response)) {
           setProducts((prev) => [...prev, ...response]);
           setAllProducts((prev) => [...prev, ...response]);
-          console.log("Products fetched successfully:", response);
         } else {
           console.warn("Unexpected response format:", response);
         }
@@ -788,28 +787,37 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(storedCart);
-  }, []);
+    if (user) {
+      const storedCart =
+        JSON.parse(localStorage.getItem(`cart_${user._id}`)) || [];
+      setCart(storedCart);
+    }
+  }, [user]);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    if (user) {
+      localStorage.setItem(`cart_${user._id}`, JSON.stringify(cart));
+    }
+  }, [cart, user]);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorite")) || [];
-    setFavorite(storedFavorites);
-  }, []);
+    if (user) {
+      const storedFavorites =
+        JSON.parse(localStorage.getItem(`favorite_${user._id}`)) || [];
+      setFavorite(storedFavorites);
+    }
+  }, [user]);
 
   useEffect(() => {
-    localStorage.setItem("favorite", JSON.stringify(favorite));
-  }, [favorite]);
+    if (user) {
+      localStorage.setItem(`favorite_${user._id}`, JSON.stringify(favorite));
+    }
+  }, [favorite, user]);
 
   useEffect(() => {
     const loadUser = async () => {
       try {
         const user = await fetchUser();
-        console.log("User fetched:", user);
 
         if (user) {
           setUser(user);
@@ -853,6 +861,7 @@ export const ContextProvider = ({ children }) => {
         orderConfirm,
         setOrderConfirm,
         setCart,
+        setFavorite,
       }}
     >
       {children}

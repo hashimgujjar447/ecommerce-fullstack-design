@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import ButtonComponent from "../Button";
 import { UseContext } from "../../Context/EcommerceContext";
+import toast from "react-hot-toast";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const ProductDetail = ({ currentProduct }) => {
-  const { addToCart } = UseContext();
+  const { addToCart, user } = UseContext();
   const [isMobile420, setIsMobile420] = useState(false);
 
   const handleSmQuery = () => {
-    console.log("Inquiry sent for product:", currentProduct);
-
+    if (!currentProduct) {
+      toast.error("Product not found");
+      return;
+    }
+    if (!user) {
+      toast.error("Please login to send an inquiry");
+      return;
+    }
     const item = {
       id: currentProduct._id,
       price: currentProduct.price,
@@ -39,10 +47,18 @@ const ProductDetail = ({ currentProduct }) => {
   if (!currentProduct) return <p>Loading...</p>;
   return (
     <div className="max-w-md mx-auto px-4 md:px-1   bg-white">
-      <div className=" items-center gap-1 sm:flex hidden">
-        <img src="/assets/greenTick.png" className="w-[18px] h-[14px]" />
-        <p className="text-green-600  text-[16px] mb-1">In stock</p>
-      </div>
+      {currentProduct.inStock ? (
+        <div className=" items-center gap-1 sm:flex hidden">
+          <img src="/assets/greenTick.png" className="w-[18px] h-[14px]" />
+          <p className="text-green-600  text-[16px] mb-1">In stock</p>
+        </div>
+      ) : (
+        <div className="items-center gap-1 sm:flex hidden">
+          <AiOutlineCloseCircle className="w-[18px] h-[18px] text-red-600" />
+          <p className="text-red-600 text-[16px] mb-1">Out of stock</p>
+        </div>
+      )}
+
       <h2 className="text-lg font-semibold  sm:inline-block hidden mb-2">
         {currentProduct?.title}
       </h2>

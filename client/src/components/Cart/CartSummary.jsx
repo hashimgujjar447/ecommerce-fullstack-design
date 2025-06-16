@@ -82,7 +82,7 @@ const OrderSummaryCard = () => {
 
       <ButtonComponent
         onClick={handleOrderConfirm}
-        className="w-full bg-[#00B517] hover:bg-green-600 text-white py-2 rounded-lg font-medium"
+        className="w-full bg-[#00B517] cursor-pointer hover:bg-green-600 text-white py-2 rounded-lg font-medium"
       >
         Checkout ({cart.length} items)
       </ButtonComponent>

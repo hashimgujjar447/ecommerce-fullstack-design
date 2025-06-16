@@ -1,7 +1,6 @@
 import React from "react";
 
 const FilterTags = ({ filters, onRemoveFilter, onClearAll }) => {
-  console.log(filters);
   return (
     <div className="min-w-max flex gap-2 items-center whitespace-nowrap">
       {filters.map((filter, index) => (

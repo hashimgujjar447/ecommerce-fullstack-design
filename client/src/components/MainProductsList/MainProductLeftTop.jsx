@@ -3,10 +3,11 @@ import CustomCheckBox from "../CustomCheckBox";
 import { UseContext } from "../../Context/EcommerceContext";
 import FilterTags from "./FilterTags";
 
-const MainProductLeftTop = () => {
+const MainProductLeftTop = ({ filters }) => {
   const [showFeatured, setShowFeatured] = React.useState(false);
   const [feature, setFeature] = useState("Featured");
   const { isGridView, toggleView } = UseContext();
+  const [isActive, setIsActive] = useState(false);
   const menuItems = [
     { id: 1, label: "Featured" },
     { id: 2, label: "Most Popular" },
@@ -21,18 +22,26 @@ const MainProductLeftTop = () => {
           12,911 items in <b>Mobile accessory</b>
         </p>
         <div className="flex items-center gap-2">
-          <CustomCheckBox />
-          <p>Verified only</p>
+          <CustomCheckBox
+            checked={isActive}
+            handleChange={() => setIsActive(!isActive)}
+          />
+          <p className="text-[14px]">Verified only</p>
         </div>
       </div>
 
       {/* Show on small screens only */}
       <div className="flex flex-row gap-1 sm:gap-2 md:hidden  justify-between">
-        <div className="p-1 border  border-[#DEE2E7] hover:cursor-pointer  rounded-lg items-center justify-between w-[110px] sm:w-[122px]">
-          <p> Sort :nearest</p>
+        <div className="p-1 border flex  border-[#DEE2E7] hover:cursor-pointer  rounded-lg items-center justify-between w-[130px] sm:w-[122px]">
+          <p> Sort: nearest</p>
+          <img
+            src="/assets/filterMenu.png"
+            className="w-3 h-3 object-contain"
+          />
         </div>
-        <div className="p-1 border border-[#DEE2E7] hover:cursor-pointer rounded-lg items-center justify-between w-[110px] sm:w-[122px]">
-          Filter
+        <div className="p-1 flex items-center  border border-[#DEE2E7] hover:cursor-pointer rounded-lg items-center justify-between w-[80px] sm:w-[122px]">
+          <span>Filter({filters.length})</span>
+          <img src="/assets/filter.png" className="w-3 h-3 object-contain" />
         </div>
       </div>
 

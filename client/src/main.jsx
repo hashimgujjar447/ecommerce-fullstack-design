@@ -21,6 +21,7 @@ import ListedProducts from "./components/AdminDashbord/ListedProducts.jsx";
 import AddNewProduct from "./components/AdminDashbord/AddNewProduct.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import ProductEdit from "./pages/ProductEdit/ProductEdit.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,6 +54,7 @@ const router = createBrowserRouter(
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </>,
   ),

@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 const ProductSupplier = ({ currentProduct }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const { addToCart } = UseContext();
+  const { addToCart, user } = UseContext();
 
   const sellerInfoList = [
     {
@@ -40,6 +40,15 @@ const ProductSupplier = ({ currentProduct }) => {
 
   const handleInquiry = () => {
     if (!currentProduct) return;
+    if (!user) {
+      toast.error("Please login to send an inquiry");
+      return;
+    }
+
+    if (currentProduct.inStock === false) {
+      toast.error("Product is out of stock");
+      return;
+    }
     const item = {
       id: currentProduct._id,
       price: currentProduct.price,

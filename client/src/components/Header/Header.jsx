@@ -166,7 +166,7 @@ const Header = () => {
             <div className="flex items-center border-y-2 border-[#0D6EFD] lg:flex hidden h-[40px]">
               <ButtonComponent
                 type="button"
-                className="   text-[#1C1C1C] font-[400] text-sm lg:text-md  px-2  transition-colors"
+                className="cursor-pointer   text-[#1C1C1C] font-[400] text-sm lg:text-md  px-2  transition-colors"
               >
                 All category
               </ButtonComponent>
@@ -176,7 +176,7 @@ const Header = () => {
             <ButtonComponent
               type="button"
               onClick={handleInput}
-              className="bg-[#0D6EFD] border-2 border-[#0D6EFD] h-[40px]   text-white px-4 rounded-r hover:bg-blue-600 transition-colors"
+              className="bg-[#0D6EFD] border-2 cursor-pointer border-[#0D6EFD] h-[40px]   text-white px-4 rounded-r hover:bg-blue-600 transition-colors"
             >
               Search
             </ButtonComponent>
