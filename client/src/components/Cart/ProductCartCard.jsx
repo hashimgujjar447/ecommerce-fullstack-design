@@ -60,14 +60,14 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
           <div className="flex items-center border border-gray-300 rounded overflow-hidden w-fit">
             <button
               onClick={() => handleQuantityChange("decrement")}
-              className="px-3 py-1 text-lg font-medium border-r text-[#8b96a5] border-gray-300"
+              className="px-3 cursor-pointer py-1 text-lg font-medium border-r text-[#8b96a5] border-gray-300"
             >
               −
             </button>
             <div className="px-4 py-1 text-sm">{selectedQuantity}</div>
             <button
               onClick={() => handleQuantityChange("increment")}
-              className="px-3 py-1 text-lg font-medium border-l text-[#8b96a5] border-gray-300"
+              className="px-3 cursor-pointer py-1 text-lg font-medium border-l text-[#8b96a5] border-gray-300"
             >
               +
             </button>
@@ -91,13 +91,13 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
           <div className="absolute top-10 right-4 z-10 bg-white border border-[#DEE2E7] rounded-md shadow-lg w-[160px]">
             <button
               onClick={onDelete}
-              className="block w-full text-left text-red-500 px-4 py-2 hover:bg-red-50 text-sm"
+              className="block cursor-pointer w-full text-left text-red-500 px-4 py-2 hover:bg-red-50 text-sm"
             >
               Delete Item
             </button>
             <button
               onClick={onFavorite}
-              className="block w-full text-left text-blue-500 px-4 py-2 hover:bg-blue-50 text-sm"
+              className="block cursor-pointer w-full text-left text-blue-500 px-4 py-2 hover:bg-blue-50 text-sm"
             >
               Add to Favorite
             </button>
@@ -132,13 +132,13 @@ const DetailedCartCard = ({ product, onDelete, onFavorite = () => {} }) => {
           <div className="flex gap-3 mt-2">
             <ButtonComponent
               onClick={onDelete}
-              className="text-red-500 p-2 px-1 lg:px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-red-600 text-sm font-medium"
+              className="text-red-500 cursor-pointer p-2 px-1 lg:px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-red-600 text-sm font-medium"
             >
               Delete from cart
             </ButtonComponent>
             <ButtonComponent
               onClick={onFavorite}
-              className="text-blue-500 p-2 px-1 lg:px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-blue-600 text-sm font-medium"
+              className="text-blue-500 cursor-pointer p-2 px-1 lg:px-3 rounded-lg shadow-md border border-[#DEE2E7] hover:text-blue-600 text-sm font-medium"
             >
               Add to favorite
             </ButtonComponent>

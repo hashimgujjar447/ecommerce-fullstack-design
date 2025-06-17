@@ -31,7 +31,7 @@ const CartItems = () => {
   }
 
   return items && items.length > 0 ? (
-    <div className="flex flex-col gap-4">
+    <div className="flex w-full flex-col gap-4">
       <div className="flex relative flex-col md:min-w-[500px]  border-1 border-[#DEE2E7] sm:p-4 rounded-lg bg-white   w-full ">
         {items &&
           items?.map((item) => (
