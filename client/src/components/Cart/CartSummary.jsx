@@ -53,21 +53,24 @@ const OrderSummaryCard = () => {
       </h2>
 
       <div className="space-y-2 text-sm text-[#606060]">
-        <div className="flex justify-between">
+        <div className="flex justify-between text-[16px]">
           <span className="hidden sm:inline">Subtotal:</span>
-          <span className="sm:hidden">items ({cart.length}):</span>
+          <span className="sm:hidden text-[#505050]">
+            items ({cart.length}):
+          </span>
           <span>${subTotal}</span>
         </div>
-        <div className="flex justify-between">
+        <div className="flex text-[16px] justify-between">
           <span className="hidden sm:inline">Discount:</span>
           <span className="sm:hidden">Shipping:</span>
-          <span className="hidden sm:inline">-$60</span>
-          <span className="sm:hidden">$10</span>
+          <span className="hidden sm:inline text-[#FA3434]">- $60</span>
+          <span className="sm:hidden ">$10</span>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between text-[16px]">
           <span>Tax:</span>
           <span>
-            <span className="sm:inline hidden">+</span>$14
+            <span className="sm:inline hidden text-[#00B517]">+</span>{" "}
+            <span className="sm:text-[#00B517]">$14</span>
           </span>
         </div>
       </div>
@@ -84,8 +87,39 @@ const OrderSummaryCard = () => {
         onClick={handleOrderConfirm}
         className="w-full bg-[#00B517] cursor-pointer hover:bg-green-600 text-white py-2 rounded-lg font-medium"
       >
-        Checkout ({cart.length} items)
+        Checkout <span className="md:hidden">({cart.length} items)</span>
       </ButtonComponent>
+
+      <div className="hidden md:flex items-center justify-around mt-4">
+        <div className="bg-white border-1 border-[#EEEEEE] p-1 rounded-md">
+          <img
+            src="/assets/debit.png"
+            className="w-4 h-4 object-contain"
+            alt=""
+          />
+        </div>
+        <div className="bg-white border-1 border-[#EEEEEE] p-1 rounded-md">
+          <img
+            src="/assets/paypal.png"
+            className="w-4 h-4 object-contain"
+            alt=""
+          />
+        </div>
+        <div className="bg-white border-1 border-[#EEEEEE] p-1 rounded-md">
+          <img
+            src="/assets/visa.png"
+            className="w-4 h-4 object-contain"
+            alt=""
+          />
+        </div>
+        <div className="bg-white border-1 border-[#EEEEEE] p-1 rounded-md">
+          <img
+            src="/assets/image 21.png"
+            className="w-4 h-4 object-contain"
+            alt=""
+          />
+        </div>
+      </div>
     </div>
   );
 };
