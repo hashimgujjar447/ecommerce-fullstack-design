@@ -22,6 +22,7 @@ import AddNewProduct from "./components/AdminDashbord/AddNewProduct.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import ProductEdit from "./pages/ProductEdit/ProductEdit.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import UserProfile from "./pages/profile/Profile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,6 +47,7 @@ const router = createBrowserRouter(
           <Route path="listedProducts" element={<ListedProducts />} />
           <Route path="addNewProduct" element={<AddNewProduct />} />
         </Route>
+        <Route path="/profile" element={<UserProfile />} />
         <Route
           path="product/edit/:id"
           element={

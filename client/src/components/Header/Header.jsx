@@ -18,8 +18,15 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const location = useLocation();
-  const { products, setProducts, setSearch, search, allProducts } =
-    UseContext();
+  const {
+    products,
+    setProducts,
+    setSearch,
+    search,
+    allProducts,
+    user,
+    isAdmin,
+  } = UseContext();
   const isProductsPage = location.pathname === "/products";
   const navigate = useNavigate();
 
@@ -50,12 +57,21 @@ const Header = () => {
       setProducts(allProducts);
     }
   }, [search, allProducts]);
+  const getProfileLink = () => {
+    if (user?.role === "admin") {
+      return "/admin/dashboard";
+    } else if (user?.role === "user") {
+      return "/profile";
+    } else {
+      return "/login";
+    }
+  };
 
   const listItems = [
     {
       id: 1,
       name: "Profile",
-      link: "/",
+      link: getProfileLink(),
       logo: <IoPersonSharp className="text-2xl text-[#8B96A5]" />,
     },
     {
@@ -88,7 +104,7 @@ const Header = () => {
     {
       id: 2,
 
-      link: "/",
+      link: getProfileLink(),
       logo: <IoPersonSharp className="w-[24px] h-[24px] text-[#1C1C1C]" />,
     },
   ];
@@ -143,13 +159,13 @@ const Header = () => {
           {((!(isProductDetailsPage && isSmallScreen) && !isCart) ||
             (isCart && !isSmallScreen)) &&
             !hideMenu && (
-              <figure>
+              <Link to={"/"}>
                 <img
                   src="/assets/logo-colored.png"
                   alt="website logo"
                   className="w-[116px] h-[36px]  md:w-[150px] md:h-[46px]"
                 />
-              </figure>
+              </Link>
             )}
         </div>
 

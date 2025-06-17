@@ -128,7 +128,7 @@ const SignUp = () => {
 
         <button
           type="submit"
-          className="mt-6 w-full h-9 sm:h-11 rounded-full text-white  bg-[#0D6EFD] hover:opacity-90 transition-opacity"
+          className="mt-6 cursor-pointer w-full h-9 sm:h-11 rounded-full text-white  bg-[#0D6EFD] hover:opacity-90 transition-opacity"
         >
           Register
         </button>

@@ -20,12 +20,12 @@ const Cart = () => {
   }, [favorite, products]);
 
   return (
-    <div className="relative sm:px-15 md:px-5 lg:px-[50px] sm:py-5 md:py-5 bg-[#f7fafc]">
+    <section className="relative sm:px-15 md:px-5 lg:px-[50px] sm:py-5 md:py-5 bg-[#f7fafc]">
       <h1 className="text-2xl mb-5 font-semibold md:inline-block hidden">
         My Cart({cart.length})
       </h1>
 
-      <div className="flex flex-col md:flex-row md:gap-4 justify-between">
+      <section className="flex flex-col md:flex-row md:gap-4 justify-between">
         {/* Left: Cart Items */}
         <div className="flex-1 w-full md:flex md:justify-center">
           <CartItems />
@@ -38,7 +38,7 @@ const Cart = () => {
           </div>
           <OrderSummaryCard />
         </div>
-      </div>
+      </section>
 
       {/* Saved Items */}
       {savedItems.length > 0 && (
@@ -48,9 +48,9 @@ const Cart = () => {
       )}
 
       {/* Promo Card */}
-      <div className="mt-8 mb-10 w-full md:inline-block hidden">
+      <section className="mt-8 mb-10 w-full md:inline-block hidden">
         <PromoCard />
-      </div>
+      </section>
 
       {/* Order Confirmation Modal */}
       {orderConfirm && (
@@ -69,7 +69,7 @@ const Cart = () => {
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 };
 

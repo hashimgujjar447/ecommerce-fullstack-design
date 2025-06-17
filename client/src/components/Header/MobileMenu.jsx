@@ -1,10 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ButtonComponent from "../Button";
+import { UseContext } from "../../Context/EcommerceContext";
+import { logout } from "../../Api/auth.js";
+import toast from "react-hot-toast";
 
 const MobileMenu = ({ setShowMenu, showMenu }) => {
   const menuRef = useRef();
   const navigate = useNavigate();
+  const { user, setUser } = UseContext();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -18,6 +22,19 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [setShowMenu]);
+
+  const handleLogout = () => {
+    logout()
+      .then((response) => {
+        toast.success("Logout successful");
+        setUser(null);
+        navigate("/");
+        setShowMenu(false);
+      })
+      .catch((error) => {
+        toast.error("Logout fail");
+      });
+  };
 
   const mobileFirstItems = [
     {
@@ -115,39 +132,64 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
           <img src="/assets/photo.png" alt="profile" />
         </div>
         <div className="">
-          <ButtonComponent
-            type="button"
-            className="font-[400] text-[#1C1C1C] text-sm lg:text-md"
-            onClick={() => {
-              setShowMenu(false);
-              navigate("/login");
-            }}
-          >
-            Sign in
-          </ButtonComponent>
-          {" | "}
-          <ButtonComponent
-            type="button"
-            className="font-[400] text-[#1C1C1C] text-sm lg:text-md"
-            onClick={() => {
-              setShowMenu(false);
-              navigate("/signup");
-            }}
-          >
-            Register
-          </ButtonComponent>
+          {user ? (
+            <>
+              <ButtonComponent
+                type="button"
+                className="font-[500] text-[#1C1C1C] text-sm lg:text-md"
+                onClick={handleLogout}
+              >
+                Logout
+              </ButtonComponent>
+              {" | "}
+              <ButtonComponent
+                type="button"
+                className="font-[500] text-[#1C1C1C] text-sm lg:text-md"
+                onClick={() => {
+                  setShowMenu(false);
+                  navigate("/login");
+                }}
+              >
+                Another Account
+              </ButtonComponent>
+            </>
+          ) : (
+            <>
+              <ButtonComponent
+                type="button"
+                className="font-[500] text-[#1C1C1C] text-sm lg:text-md"
+                onClick={() => {
+                  setShowMenu(false);
+                  navigate("/login");
+                }}
+              >
+                Sign in
+              </ButtonComponent>
+              {" | "}
+              <ButtonComponent
+                type="button"
+                className="font-[500] text-[#1C1C1C] text-sm lg:text-md"
+                onClick={() => {
+                  setShowMenu(false);
+                  navigate("/signup");
+                }}
+              >
+                Register
+              </ButtonComponent>
+            </>
+          )}
         </div>
       </div>
 
       {/* First Group */}
-      <ul className="flex flex-col gap-2 px-4 border-b border-[#DEE2E7]">
+      <ul className="flex flex-col gap-3 px-4 border-b border-[#DEE2E7]">
         {mobileFirstItems.map((item) => (
           <li
             key={item.id}
             className="flex items-center gap-2 h-[40px] text-[#1C1C1C] text-sm font-medium"
           >
             <Link to={item.link} className="flex items-center gap-2">
-              {item.icon}
+              <span>{item.icon}</span>
               <span className="pl-2">{item.name}</span>
             </Link>
           </li>
@@ -155,14 +197,14 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
       </ul>
 
       {/* Second Group */}
-      <ul className="flex flex-col gap-2 px-4 mt-4 border-b border-[#DEE2E7]">
+      <ul className="flex flex-col gap-3 px-4 mt-4 border-b border-[#DEE2E7]">
         {mobileSecondItems.map((item) => (
           <li
             key={item.id}
             className="flex items-center gap-2 h-[40px] text-[#1C1C1C] text-sm font-medium"
           >
             <Link to={item.link} className="flex items-center gap-2">
-              {item.icon}
+              <span>{item.icon}</span>
               <span className="pl-2">{item.name}</span>
             </Link>
           </li>
@@ -170,7 +212,7 @@ const MobileMenu = ({ setShowMenu, showMenu }) => {
       </ul>
 
       {/* Third Group */}
-      <ul className="flex flex-col gap-2 px-10 pl-13 mt-4">
+      <ul className="flex flex-col gap-3 px-10 pl-13 mt-4">
         {mobileThirdItems.map((item) => (
           <li
             key={item.id}
