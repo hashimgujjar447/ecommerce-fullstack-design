@@ -60,7 +60,7 @@ const ProductCard = ({ product }) => {
         {!isGridView && (
           <>
             <h2 className=" lg:hidden text-[#505050] text-[16px] sm:text-lg font-semibold ">
-              {"iphone latest"}
+              {product.title}
             </h2>
           </>
         )}
@@ -144,8 +144,7 @@ const ProductCard = ({ product }) => {
         </div>
       ) : (
         <div
-          className={`absolute right-3  ${
-            isWidthBelow400 ? "hidden " : "inline-block"
+          className={`absolute right-3  hidden  sm:inline-block
           } sm:right-4 top-5 sm:top-6 p-2 border-1 border-[#DEE2E7] rounded-md shadow-sm`}
         >
           <img

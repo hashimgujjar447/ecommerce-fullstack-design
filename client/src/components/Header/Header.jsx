@@ -18,6 +18,7 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const location = useLocation();
+  const [smallScreenSearch, setSmallScreenSearch] = useState("");
   const {
     products,
     setProducts,
@@ -48,15 +49,24 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (search) {
-      const filteredProducts = products.filter((product) =>
-        product.title.toLowerCase().includes(search.toLowerCase()),
+    if (smallScreenSearch.trim()) {
+      setSearch(smallScreenSearch);
+      navigate("/products");
+      setShowMenu(false);
+    }
+  }, [smallScreenSearch]);
+
+  useEffect(() => {
+    if (search.trim()) {
+      const filtered = allProducts.filter((product) =>
+        product.title.toLowerCase().includes(search.trim().toLowerCase()),
       );
-      setProducts(filteredProducts);
+      setProducts(filtered);
     } else {
-      setProducts(allProducts);
+      setProducts(allProducts); // Reset on clear
     }
   }, [search, allProducts]);
+
   const getProfileLink = () => {
     if (user?.role === "admin") {
       return "/admin/dashboard";
@@ -238,6 +248,8 @@ const Header = () => {
               name="search"
               placeholder="Search..."
               className=" bg-[#F7FAFC] ml-7  h-[40px] px-3  focus:outline-none transition-all"
+              value={smallScreenSearch}
+              onChange={(e) => setSmallScreenSearch(e.target.value)}
             />
           </div>
         </div>
