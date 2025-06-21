@@ -41,7 +41,7 @@ const ProductSupplier = ({ currentProduct }) => {
   const handleInquiry = () => {
     if (!currentProduct) return;
     if (!user) {
-      toast.error("Please login to send an inquiry");
+      toast.error("Please login to send an inquiry ");
       return;
     }
 
@@ -87,13 +87,24 @@ const ProductSupplier = ({ currentProduct }) => {
           </div>
         ))}
       </div>
-      <ButtonComponent
-        type={"button"}
-        onClick={handleInquiry}
-        className="bg-blue-600 cursor-pointer sm:inline-block hidden w-full text-white rounded-lg py-2 mt-4 hover:bg-blue-700 transition-colors"
-      >
-        Send inquiry
-      </ButtonComponent>
+      $
+      {user && currentProduct && currentProduct.inStock ? (
+        <ButtonComponent
+          type={"button"}
+          className="bg-[#0D6EFD] cursor-pointer text-white w-full rounded-lg py-2 mt-4"
+          onClick={handleInquiry}
+        >
+          Add to Cart
+        </ButtonComponent>
+      ) : (
+        <ButtonComponent
+          type={"button"}
+          className="bg-[#0D6EFD] cursor-pointer text-white w-full rounded-lg py-2 mt-4"
+          onClick={handleInquiry}
+        >
+          Send Inquiry
+        </ButtonComponent>
+      )}
       <ButtonComponent
         type={"button"}
         className="bg-white border-1 sm:inline-block hidden border-[#DEE2E7]  w-full text-[#0D6EFD] rounded-lg py-2 mt-4 "

@@ -11,7 +11,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const { setUser } = UseContext();
+  const { setUser, setIsAdmin } = UseContext();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -23,11 +23,15 @@ const Login = () => {
 
     try {
       const response = await login(userData);
+      console.log(response);
 
       if (response) {
         try {
           const user = await fetchUser(); // get fresh user
+
           setUser(user);
+
+          setIsAdmin(response.user?.role === "admin"); // set admin status
           navigate("/");
           toast.success("Login successful!");
           // ✅ navigate after success only

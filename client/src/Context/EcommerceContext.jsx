@@ -24,6 +24,7 @@ const EcommerceContext = createContext({
   setProducts: () => {},
   orderConfirm: null,
   setOrderConfirm: () => {},
+  setIsAdmin: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -862,6 +863,7 @@ export const ContextProvider = ({ children }) => {
         setOrderConfirm,
         setCart,
         setFavorite,
+        setIsAdmin,
       }}
     >
       {children}

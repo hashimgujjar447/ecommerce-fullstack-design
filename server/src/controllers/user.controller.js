@@ -85,6 +85,7 @@ const loginUser = asyncHandler(async (req, res) => {
       fullName: user.fullName,
       username: user.username,
       email: user.email,
+      role: user.role, // Include role in the response
     },
   });
 });
